@@ -1,0 +1,27 @@
+{
+  "name": "js-structures",
+  "version": "1.0.0",
+  "description": "Some fun data structures implemented in js.",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "chai": "^2.3.0",
+    "mocha": "^2.2.5"
+  },
+  "scripts": {
+    "test": "make test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com/ConnorAtherton/js-structures"
+  },
+  "author": "Connor Atherton",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ConnorAtherton/js-structures/issues"
+  },
+  "homepage": "https://github.com/ConnorAtherton/js-structures"
+}

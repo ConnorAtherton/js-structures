@@ -49,9 +49,7 @@ function timeTravel(arr, timestamp) {
   // Deal with simple case before we go loop de loop
   if (length === 1) return arr[0].value;
 
-  while (i < length && timestamp > arr[i].timestamp) {
-    i++;
-  }
+  while (i < length && timestamp > arr[i].timestamp) i++;
 
   // two reason
   //  - gone past end
