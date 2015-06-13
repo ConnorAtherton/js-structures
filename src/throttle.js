@@ -1,18 +1,27 @@
-function throttle(fn, interval) {
+function throttle(fn, wait) {
   // last time the function was executed
   var previous = 0;
-  var ctx = fnTimeout = result = null;
+  var ctx = fnTimeout = result = args = null;
 
   var later = function() {
-    fnTimeout = null;
+    previous = Date.now()
     result = fn.apply(ctx, args)
+    clearTimeout(fnTimeout);
+    fnTimeout = null;
   }
 
   return function() {
-    var args = [].slice(arguments);
     var now = Date.now();
-    var remaining = interval - (now - previous);
+    var remaining = wait - (now - previous);
     ctx = this;
+    // reference it here so we can use these args in the *later*
+    // function above
+    args = arguments
+
+    // store the time of last invocation for the first
+    // time fn is called
+    if (!previous) previous = now;
+
 
     // we should cancel the timeout and execute the function
     // if remaining is 0 or less - indicating enough time has passed
@@ -21,13 +30,21 @@ function throttle(fn, interval) {
       clearTimeout(fnTimeout);
       fnTimeout = null;
 
-      // store the time of last invocation
-      previous = now;
+      // store the time of last invocation for the first
+      // time fn is called
+      previous = now
 
       // could call later here but saves a call I guess
       result = fn.apply(ctx, args);
+      // reset every value
+      if (!fnTimeout) ctx = args = null;
+    } else if (!fnTimeout) {
+      fnTimeout = setInterval(later, remaining);
     }
 
-    if (!timeout) timeout = setInterval(later, remaining);
+    // This is async but we will return the last result
+    return result
   }
 }
+
+module.exports = throttle

@@ -1,3 +1,6 @@
+// Returns a function, that, as long as it continues to be invoked, will not
+// be triggered. The function will be called after it stops being called for
+// **timeout** milliseconds
 function debounce(fn, timeout, immediate) {
   var fnTimeout = null;
 
@@ -27,3 +30,5 @@ function debounce(fn, timeout, immediate) {
     if (shouldCall) fn.apply(ctx, args);
   }
 }
+
+module.exports = debounce

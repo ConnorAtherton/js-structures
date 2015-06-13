@@ -1,4 +1,7 @@
-var memoize = function(fn, hasher) {
+var memoize = function(fn, hasher, name) {
+  // name is an optional key to handle cases where
+  // the function doesn't have a name
+  name = name || ""
   // stays in scope for all returned functions
   var cache = {};
 
@@ -8,7 +11,7 @@ var memoize = function(fn, hasher) {
 
   return function memoizer() {
     var args = Array.prototype.slice.call(arguments);
-    var key = (!!hasher || createHaskKey).apply(this, arguments);
+    var key = (hasher || createHashKey).call(this, fn, args);
     var isCached = !!cache[key];
 
     // neat tidbit - wrapping the expression in *()* causes the resulting
@@ -22,3 +25,5 @@ var memoize = function(fn, hasher) {
 // attr but expressions don't. And a lot more are documented online,
 // there was a really good blog post by one of the people working on
 // jshint
+
+module.exports = memoize
