@@ -1,3 +1,9 @@
+/**
+ * Binary Search
+ *
+ * @complexity {Time}
+ * @complexity {Space}
+ */
 exports = function binarySearch(list, value){
   var startIndex = 0
   var stopIndex = list.length - 1

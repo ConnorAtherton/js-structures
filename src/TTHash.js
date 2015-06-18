@@ -1,6 +1,6 @@
 function TTHash() {
   if(!(this instanceof TTHash))
-    return new TTHash.apply(arguments);
+    return new TTHash(arguments);
 
   this.store = {};
 }
@@ -8,15 +8,14 @@ function TTHash() {
 TTHash.prototype.set = function(key, val) {
   if (!key || !val) return undefined;
 
-  // seconds since epoch
-  // var timestamp = Math.round(Date.now() / 10000);
   var timestamp = Date.now();
   this.store[key] = this.store[key] || [];
 
   this.store[key].push({value: val, timestamp: timestamp})
 };
 
-/* If no timestamp is given we just get the latest element.
+/**
+ * If no timestamp is given we just get the latest element.
  *
  * @param {String} key
  * @param {Number} timestamp {optional} - Seconds since the epoch, this is the search value we are comparing against
@@ -26,10 +25,12 @@ TTHash.prototype.get = function(key, timestamp) {
   var last = this.store[key].length - 1;
 
   return this.store[key] ?
-    timestamp !== (undefined || null) ? timeTravel(this.store[key], timestamp) : this.store[key][last].value : undefined;
+    timestamp !== (undefined || null) ?
+      timeTravel(this.store[key], timestamp) : this.store[key][last].value : undefined;
 };
 
-/* Search through an array looking for an object with
+/**
+ * Search through an array looking for an object with
  * the closest timestamp to an arbitrary timestamp value
  * passed in.
  *

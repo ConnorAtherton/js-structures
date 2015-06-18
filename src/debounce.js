@@ -1,6 +1,12 @@
-// Returns a function, that, as long as it continues to be invoked, will not
-// be triggered. The function will be called after it stops being called for
-// **timeout** milliseconds
+/**
+ * Returns a function, that, as long as it continues to be invoked, will not
+ * be triggered. The function will be called after it stops being called for
+ * **timeout** milliseconds
+ *
+ * @params fn {Function}
+ * @param timeout {Number}
+ * @param immediate {Boolean}
+ */
 function debounce(fn, timeout, immediate) {
   var fnTimeout = null;
 
