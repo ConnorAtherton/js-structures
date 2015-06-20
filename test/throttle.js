@@ -18,6 +18,22 @@ describe('throttle', function() {
     }, 60);
   })
 
+  it("won't execute more than once within the threshold", function(done) {
+   var counter = 0;
+   var incr = function(){
+     counter++;
+   };
+   var throttledIncr = throttle(incr, 10);
+
+   throttledIncr();
+   throttledIncr();
+
+   setTimeout(function(){
+     assert.equal(counter, 1);
+     done()
+   }, 8);
+  });
+
   it ('throttle functions return values', function(done) {
     var counter = 0;
     var incr = function(){ return ++counter; };
@@ -31,28 +47,12 @@ describe('throttle', function() {
     }, 4);
   })
 
-  it("won't execute more than once within the threshold", function(done) {
-    var counter = 0;
-    var incr = function(){
-      counter++;
-    };
-    var throttledIncr = throttle(incr, 30);
-
-    throttledIncr();
-    throttledIncr();
-
-    setTimeout(function(){
-      assert.equal(counter, 1)
-      done()
-    }, 24);
-  });
-
   it('gets called with correct context set', function(done) {
     var ctx;
 
-    var throttled = throttle(function() {
+    var throttled = throttle(function test() {
       ctx = this;
-    }, 10);
+    }, 20);
 
     throttled.call(11);
     throttled.call(22);
@@ -60,7 +60,7 @@ describe('throttle', function() {
     setTimeout(function() {
       assert.equal(ctx, 22);
       done();
-    }, 20)
+    }, 45);
   });
 
   it('gets called with arguments', function(done) {
