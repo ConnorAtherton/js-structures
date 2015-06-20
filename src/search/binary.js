@@ -1,10 +1,13 @@
 /**
  * Binary Search
  *
+ * Returns the array index of the number if found.
+ * Returns null if the value isn't found.
+ *
  * @complexity {Time}
  * @complexity {Space}
  */
-exports = function binarySearch(list, value){
+function binarySearch(list, value) {
   var startIndex = 0
   var stopIndex = list.length - 1
   var middle = Math.floor((stopIndex + startIndex) / 2)
@@ -23,5 +26,7 @@ exports = function binarySearch(list, value){
   }
 
   // make sure it's the right value
-  return (list[middle] !== value) ? -1 : middle;
+  return (list[middle] !== value) ? null : middle;
 }
+
+module.exports = binarySearch;
