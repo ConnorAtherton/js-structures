@@ -16,7 +16,7 @@ ESLINT := $(BIN)/eslint
 default: test
 
 test: | node_modules
-	@$(MOCHA)
+	@$(MOCHA) --recursive
 
 lint: | node_modules
 	@$(ESLINT) app/

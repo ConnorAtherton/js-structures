@@ -6,11 +6,13 @@
  *
  * @complexity {Time}
  * @complexity {Space}
+ *
+ * TODO Add eslint rules to this project
  */
 function binarySearch(list, value) {
-  var startIndex = 0
-  var stopIndex = list.length - 1
-  var middle = Math.floor((stopIndex + startIndex) / 2)
+  var startIndex = 0;
+  var stopIndex = list.length - 1;
+  var middle = Math.floor((stopIndex + startIndex) / 2);
 
   while (list[middle] !== value && startIndex < stopIndex) {
 
@@ -26,7 +28,7 @@ function binarySearch(list, value) {
   }
 
   // make sure it's the right value
-  return (list[middle] !== value) ? null : middle;
+  return (list[middle] === value) ? middle : null;
 }
 
 module.exports = binarySearch;
