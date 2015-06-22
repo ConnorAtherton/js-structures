@@ -8,7 +8,7 @@
  * @param immediate {Boolean}
  */
 function debounce(fn, timeout, immediate) {
-  var fnTimeout = null;
+  var fnTimeout = ctx = args = null;
 
   // use function expression to avoid
   // hoisting.
@@ -18,8 +18,8 @@ function debounce(fn, timeout, immediate) {
   }
 
   return function() {
-    var args = [].slice(arguments);
-    var ctx = this;
+    args = [].slice(arguments);
+    ctx = this;
 
     // we should execute straight away if we tell it
     // to immediatly and this function is not already waiting
@@ -28,10 +28,10 @@ function debounce(fn, timeout, immediate) {
 
     // it has been called again so clean the timeout and
     // *debounce* the call by resetting the interval again
-    window.clearTimeout(fnTimeout);
+    clearTimeout(fnTimeout);
 
     // clean any previous timeouts on this function
-    fnTimeout = window.setTimeout(later, timeout);
+    fnTimeout = setTimeout(later, timeout);
 
     if (shouldCall) fn.apply(ctx, args);
   }
