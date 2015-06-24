@@ -12,7 +12,8 @@ DHash.prototype.get = function(key, setter) {
     return value;
   }
 
-  return setter ? this.store[key] = setter() : undefined;
+  // TODO: check if this is a fn or value
+  return setter ? (this.store[key] = setter()) : undefined;
 };
 
 DHash.prototype.set = function(key, value) {

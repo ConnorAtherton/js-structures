@@ -19,10 +19,10 @@ test: | node_modules
 	@$(MOCHA) --recursive
 
 lint: | node_modules
-	@$(ESLINT) app/
+	@$(ESLINT) src/
 
 clean-deps:
-	@rm -rf node_modules vendor
+	@rm -rf node_modules
 
 install-deps:
 	@npm install
