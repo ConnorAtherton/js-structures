@@ -1,4 +1,8 @@
-function DHash() {
+/**
+ * A destructive hash where
+ * a key can only be fetched a maximum of one time.
+ */
+export default function DHash() {
   if (!(this instanceof DHash))
     return new DHash();
 
@@ -25,8 +29,4 @@ DHash.prototype.flush = function() {
   delete this.store;
   return this.store = {};
 };
-
-module.exports = DHash;
-
-
 

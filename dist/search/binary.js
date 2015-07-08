@@ -17,7 +17,14 @@
  *
  */
 
-export function binarySearch(list, value) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.binarySearch = binarySearch;
+
+function binarySearch(list, value) {
   var startIndex = 0;
   var stopIndex = list.length - 1;
   var middle = Math.floor((stopIndex + startIndex) / 2);
@@ -25,9 +32,9 @@ export function binarySearch(list, value) {
   while (list[middle] !== value && startIndex < stopIndex) {
 
     // adjust search area
-    if (value < list[middle]){
+    if (value < list[middle]) {
       stopIndex = middle - 1;
-    } else if (value > list[middle]){
+    } else if (value > list[middle]) {
       startIndex = middle + 1;
     }
 
@@ -36,6 +43,5 @@ export function binarySearch(list, value) {
   }
 
   // make sure it's the right value
-  return (list[middle] === value) ? middle : null;
+  return list[middle] === value ? middle : null;
 }
-

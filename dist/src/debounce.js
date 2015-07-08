@@ -8,30 +8,32 @@
  * @param fn {Function}
  * @param timeout {Number}
  */
+"use strict";
+
 function debounce(fn, waitTime) {
   var fnTimeout = ctx = args = time = result = null;
 
   // use function expression to avoid
   // hoisting.
-  var later = function() {
-    var calledLast = Date.now() - last
+  var later = function later() {
+    var calledLast = Date.now() - last;
 
     if (calledLast < waitTime && last >= 0) {
       fnTimeout = setTimeout(later, waitTime - calledLast);
     } else {
       fnTimeout = null;
 
-      result = fn.apply(ctx, args)
+      result = fn.apply(ctx, args);
       if (!timeout) context = args = null;
     }
-  }
+  };
 
-  return function() {
+  return function () {
     args = [].slice(arguments);
     ctx = this;
-    time = Date.now()
+    time = Date.now();
 
-    var shouldCall = !fnTimeout
+    var shouldCall = !fnTimeout;
 
     // it has been called again so clean the timeout and
     // *debounce* the call by resetting the interval again
@@ -42,8 +44,8 @@ function debounce(fn, waitTime) {
 
     if (shouldCall) result = fn.apply(ctx, args);
 
-    return result
-  }
+    return result;
+  };
 }
 
 module.exports = debounce;

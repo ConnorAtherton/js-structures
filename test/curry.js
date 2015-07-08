@@ -2,7 +2,6 @@
 // var curry = require('./');
 
 // describe('curry', function() {
-
 //   it('curries the function at least once', function() {
 //     var add = curry(function(a, b) {
 //       return a + b;
@@ -31,6 +30,4 @@
 //     assert.equal(add(1)(2)(3), 6);
 //     assert.equal(add(2)(3)(4), 9);
 //   });
-
-
 // });

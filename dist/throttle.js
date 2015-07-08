@@ -8,19 +8,21 @@
  * @param fn {Function}
  * @param wait {Number}
  */
+"use strict";
+
 function throttle(fn, wait) {
   // last time the function was executed
   var previous = 0;
   var ctx = fnTimeout = result = args = null;
 
-  var later = function() {
+  var later = function later() {
     previous = Date.now();
     result = fn.apply(ctx, args);
     clearTimeout(fnTimeout);
     fnTimeout = null;
   };
 
-  return function() {
+  return function () {
     var now = Date.now();
     var remaining = wait - (now - previous);
 

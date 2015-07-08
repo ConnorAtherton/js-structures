@@ -7,6 +7,8 @@
  * @param {Node} next - Stores a reference to the next node in the list
  *                      so we can traverse
  */
+"use strict";
+
 function Node(value, next) {
   this.value = value;
   this.next = next || null;
@@ -35,7 +37,7 @@ function LinkedList() {
  *
  * @param {Function} callback - Function to be invoked for each node in the list.
  */
-LinkedList.prototype.iterate = function(callback) {
+LinkedList.prototype.iterate = function (callback) {
   var current = this.first;
 
   while (current !== null) {
@@ -51,7 +53,7 @@ LinkedList.prototype.iterate = function(callback) {
  *
  * @param {Any} value - value to be appended to the list
  */
-LinkedList.prototype.append = function(value) {
+LinkedList.prototype.append = function (value) {
   var node = new Node(value);
 
   if (this.size === 0) {
@@ -65,7 +67,7 @@ LinkedList.prototype.append = function(value) {
   this.size++;
 
   return this;
-}
+};
 
 /**
  * A function that returns an iterator object so we can loop through
@@ -87,16 +89,16 @@ function Iterator(list) {
  *
  * @returns {Boolean}
  */
-Iterator.prototype.hasNext = function() {
+Iterator.prototype.hasNext = function () {
   return this.index !== null && this.index.next !== null;
-}
+};
 
 /**
  * Moves along the list setting the next node as the current node.
  *
  * @returns {Node} The next node.
  */
-Iterator.prototype.next = function() {
+Iterator.prototype.next = function () {
   var nextNode = this.index.next;
   this.index = nextNode;
   return this.index;
@@ -117,4 +119,4 @@ Iterator.prototype.next = function() {
  *   i.next();
  * }
  */
-
+;

@@ -1,16 +1,17 @@
+"use strict";
+
 function TTHash() {
-  if(!(this instanceof TTHash))
-    return new TTHash(arguments);
+  if (!(this instanceof TTHash)) return new TTHash(arguments);
 
   this.store = {};
 }
 
-TTHash.prototype.set = function(key, val) {
+TTHash.prototype.set = function (key, val) {
   if (!key || !val) return undefined;
 
   var timestamp = Date.now();
   this.store[key] = this.store[key] || [];
-  this.store[key].push({value: val, timestamp: timestamp})
+  this.store[key].push({ value: val, timestamp: timestamp });
 };
 
 /**
@@ -20,12 +21,10 @@ TTHash.prototype.set = function(key, val) {
  * @param {Number} timestamp {optional} - Seconds since the epoch, this is the search value we are comparing against
  */
 
-TTHash.prototype.get = function(key, timestamp) {
+TTHash.prototype.get = function (key, timestamp) {
   var last = this.store[key].length - 1;
 
-  return this.store[key] ?
-    timestamp !== (undefined || null) ?
-      timeTravel(this.store[key], timestamp) : this.store[key][last].value : undefined;
+  return this.store[key] ? timestamp !== (undefined || null) ? timeTravel(this.store[key], timestamp) : this.store[key][last].value : undefined;
 };
 
 /**
@@ -42,7 +41,7 @@ TTHash.prototype.get = function(key, timestamp) {
 
 function timeTravel(arr, timestamp) {
   var length = arr.length;
-  var i = beforeDifference = afterDifference = 0
+  var i = beforeDifference = afterDifference = 0;
 
   // Deal with simple case before we go loop de loop
   if (length === 1) return arr[0].value;
@@ -59,7 +58,6 @@ function timeTravel(arr, timestamp) {
   afterDifference = Math.abs(timestamp - arr[i].timestamp);
 
   return beforeDifference < afterDifference ? arr[i - 1].value : arr[i].value;
-
 }
 
 module.exports = TTHash;

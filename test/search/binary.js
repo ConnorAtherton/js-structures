@@ -1,5 +1,5 @@
 var assert = require('assert');
-var search = require('../../src/search/binary');
+var search = require('../../dist/search/binary');
 
 describe('Binary Search', function() {
   it('find the correct element', function() {

@@ -6,10 +6,17 @@
   "directories": {
     "test": "test"
   },
-  "dependencies": {},
+  "dependencies": {
+    "gulp-load-plugins": "^0.10.0"
+  },
   "devDependencies": {
     "chai": "^2.3.0",
     "eslint": "^0.21.1",
+    "gulp": "^3.9.0",
+    "gulp-babel": "^5.1.0",
+    "gulp-jshint": "^1.11.2",
+    "gulp-watch": "^4.2.4",
+    "jshint-stylish": "^2.0.1",
     "mocha": "^2.2.5"
   },
   "scripts": {

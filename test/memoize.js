@@ -1,5 +1,5 @@
 var assert = require('assert');
-var memoize = require('../src/memoize');
+var memoize = require('../dist/memoize');
 
 describe('memoize', function() {
 

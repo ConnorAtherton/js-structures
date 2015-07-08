@@ -12,11 +12,12 @@ BIN = ./node_modules/.bin
 
 MOCHA := $(BIN)/mocha
 ESLINT := $(BIN)/eslint
+GULP := $(BIN)/gulp
 
-default: test
+default: build
 
 test: | node_modules
-	@$(MOCHA) --recursive
+	@$(MOCHA)
 
 lint: | node_modules
 	@$(ESLINT) src/
@@ -27,5 +28,10 @@ clean-deps:
 install-deps:
 	@npm install
 
+clean:
+	@rm -rf dist
+
+build: | node_modules
+	@$(GULP)
+
 .PHONY: test
-.PHONY: lint

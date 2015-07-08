@@ -1,5 +1,5 @@
 var assert = require('assert')
-var DHash = require('../src/DHash')
+var DHash = require('../dist/DHash').DHash
 
 describe('DHash', function() {
   var hash
