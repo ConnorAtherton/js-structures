@@ -22,7 +22,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.binarySearch = binarySearch;
+exports["default"] = binarySearch;
 
 function binarySearch(list, value) {
   var startIndex = 0;
@@ -45,3 +45,5 @@ function binarySearch(list, value) {
   // make sure it's the right value
   return list[middle] === value ? middle : null;
 }
+
+module.exports = exports["default"];

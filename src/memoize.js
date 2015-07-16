@@ -1,4 +1,4 @@
-export function memoize(fn, hasher, name) {
+export default function memoize(fn, hasher, name) {
   // name is an optional key to handle cases where
   // the function doesn't have a name
   name = name || ""
@@ -25,5 +25,3 @@ export function memoize(fn, hasher, name) {
 // attr but expressions don't. And a lot more are documented online,
 // there was a really good blog post by one of the people working on
 // jshint
-
-module.exports = memoize

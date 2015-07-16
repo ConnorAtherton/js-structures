@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.memoize = memoize;
+exports["default"] = memoize;
 
 function memoize(fn, hasher, name) {
   // name is an optional key to handle cases where
@@ -33,4 +33,4 @@ function memoize(fn, hasher, name) {
 // there was a really good blog post by one of the people working on
 // jshint
 
-module.exports = memoize;
+module.exports = exports["default"];

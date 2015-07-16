@@ -17,7 +17,7 @@
  *
  */
 
-export function binarySearch(list, value) {
+export default function binarySearch(list, value) {
   var startIndex = 0;
   var stopIndex = list.length - 1;
   var middle = Math.floor((stopIndex + startIndex) / 2);

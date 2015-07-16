@@ -8,7 +8,7 @@
  * @param fn {Function}
  * @param wait {Number}
  */
-function throttle(fn, wait) {
+export default function throttle(fn, wait) {
   // last time the function was executed
   var previous = 0;
   var ctx = fnTimeout = result = args = null;
@@ -57,5 +57,3 @@ function throttle(fn, wait) {
     return result;
   };
 }
-
-module.exports = throttle;

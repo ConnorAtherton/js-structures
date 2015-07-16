@@ -10,6 +10,11 @@
  */
 "use strict";
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = debounce;
+
 function debounce(fn, waitTime) {
   var fnTimeout = ctx = args = time = result = null;
 
@@ -48,4 +53,4 @@ function debounce(fn, waitTime) {
   };
 }
 
-module.exports = debounce;
+module.exports = exports["default"];

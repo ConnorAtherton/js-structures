@@ -10,6 +10,11 @@
  */
 "use strict";
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = throttle;
+
 function throttle(fn, wait) {
   // last time the function was executed
   var previous = 0;
@@ -60,4 +65,4 @@ function throttle(fn, wait) {
   };
 }
 
-module.exports = throttle;
+module.exports = exports["default"];

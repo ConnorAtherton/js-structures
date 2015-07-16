@@ -8,7 +8,7 @@
  * @param fn {Function}
  * @param timeout {Number}
  */
-function debounce(fn, waitTime) {
+export default function debounce(fn, waitTime) {
   var fnTimeout = ctx = args = time = result = null;
 
   // use function expression to avoid
@@ -45,5 +45,3 @@ function debounce(fn, waitTime) {
     return result
   }
 }
-
-module.exports = debounce;
