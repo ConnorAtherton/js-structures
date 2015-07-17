@@ -1,25 +1,18 @@
-"use strict";
+'use strict';
 
-Object.defineProperty(exports, "__esModule", {
+Object.defineProperty(exports, '__esModule', {
   value: true
 });
 
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-var Node = function Node(value) {
-  var next = arguments[1] === undefined ? null : arguments[1];
-  var previous = arguments[2] === undefined ? null : arguments[2];
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
-  _classCallCheck(this, Node);
+var _helpersNode = require('./helpers/node');
 
-  this.value = value;
-  this.next = next;
-  this.previous = previous;
-};
-
-exports.Node = Node;
+var _helpersNode2 = _interopRequireDefault(_helpersNode);
 
 var LinkedList = (function () {
   function LinkedList() {
@@ -27,17 +20,17 @@ var LinkedList = (function () {
 
     _classCallCheck(this, LinkedList);
 
-    this.head = this.tail = node instanceof Node ? node : null;
+    this.head = this.tail = node instanceof _helpersNode2['default'] ? node : null;
     this.length = node ? 1 : 0;
     this.current = this.head;
   }
 
   _createClass(LinkedList, [{
-    key: "append",
+    key: 'append',
 
     // Adds node to the end of the list
     value: function append(node) {
-      node = node instanceof Node ? node : new Node(node);
+      node = node instanceof _helpersNode2['default'] ? node : new _helpersNode2['default'](node);
 
       if (this.empty()) {
         this.head = this.tail = this.current = node;
@@ -52,11 +45,11 @@ var LinkedList = (function () {
       return this;
     }
   }, {
-    key: "prepend",
+    key: 'prepend',
 
     // Adds node to the start of the list
     value: function prepend(node) {
-      node = node instanceof Node ? node : new Node(node);
+      node = node instanceof _helpersNode2['default'] ? node : new _helpersNode2['default'](node);
 
       if (this.empty()) {
         this.head = this.tail = this.current = node;
@@ -72,36 +65,50 @@ var LinkedList = (function () {
       return this;
     }
   }, {
-    key: "pop",
+    key: 'pop',
 
     // Removes node from the end of the list
     value: function pop() {
-      this.tail = this.tail.previous;
-      this.tail.next = null;
+      var node = this.tail;
+
+      if (this.tail.previous) {
+        this.tail = this.tail.previous;
+        this.tail.next = null;
+      } else {
+        this.tail = null;
+      }
+
       this.length--;
 
-      return this;
+      return node;
     }
   }, {
-    key: "lpop",
+    key: 'lpop',
 
     // Removes node from the start of the list
     value: function lpop() {
-      this.current = this.head = this.head.next;
-      this.head.previous = null;
+      var node = this.head;
+
+      if (this.head.next) {
+        this.current = this.head = this.head.next;
+        this.head.previous = null;
+      } else {
+        this.current = this.head = null;
+      }
+
       this.length--;
 
-      return this;
+      return node;
     }
   }, {
-    key: "moveToHead",
+    key: 'moveToHead',
     value: function moveToHead(node) {
       excise(node);
       node.next = this.head;
       this.head = this.current = node;
     }
   }, {
-    key: "remove",
+    key: 'remove',
     value: function remove(node) {
       excise(node);
       this.length--;
@@ -109,7 +116,7 @@ var LinkedList = (function () {
       return this;
     }
   }, {
-    key: "excise",
+    key: 'excise',
 
     // removes a node from the list and joins the nodes around it
     // together
@@ -126,7 +133,7 @@ var LinkedList = (function () {
       return node;
     }
   }, {
-    key: "empty",
+    key: 'empty',
     value: function empty() {
       return this.length === 0;
     }
@@ -136,7 +143,7 @@ var LinkedList = (function () {
       return this;
     }
   }, {
-    key: "next",
+    key: 'next',
     value: function next() {
       var obj = null;
 
@@ -149,49 +156,29 @@ var LinkedList = (function () {
       }
     }
   }, {
-    key: "reset",
+    key: 'reset',
+
+    //
+    // Called when the iterator ends prematurely (abruptly)
+    // Caused by the following
+    //
+    // - break
+    // - return
+    // - throw
+    // - continue (can act like a break if in outer loop)
+    //
     value: function reset() {
       this.current = this.head;
     }
   }, {
-    key: "return",
+    key: 'return',
     value: function _return() {
-      // This will be called if the itertor was ended prematurely
-      return this;
+      this.current = this.head;
     }
   }]);
 
   return LinkedList;
 })();
 
-exports["default"] = LinkedList;
-
-var list = new LinkedList();
-
-list.append(2);
-list.append(3).append(4).prepend(1);
-
-var _iteratorNormalCompletion = true;
-var _didIteratorError = false;
-var _iteratorError = undefined;
-
-try {
-  for (var _iterator = list[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-    var value = _step.value;
-
-    console.log(value);
-  }
-} catch (err) {
-  _didIteratorError = true;
-  _iteratorError = err;
-} finally {
-  try {
-    if (!_iteratorNormalCompletion && _iterator["return"]) {
-      _iterator["return"]();
-    }
-  } finally {
-    if (_didIteratorError) {
-      throw _iteratorError;
-    }
-  }
-}
+exports['default'] = LinkedList;
+module.exports = exports['default'];

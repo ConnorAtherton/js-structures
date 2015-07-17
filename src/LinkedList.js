@@ -1,10 +1,4 @@
-export class Node {
-  constructor(value, next = null, previous = null) {
-    this.value = value;
-    this.next = next;
-    this.previous = previous;
-  }
-}
+import Node from './helpers/node'
 
 export default class LinkedList {
   constructor(node = null) {
@@ -50,20 +44,34 @@ export default class LinkedList {
 
   // Removes node from the end of the list
   pop() {
-    this.tail = this.tail.previous;
-    this.tail.next = null;
+    let node = this.tail
+
+    if (this.tail.previous) {
+      this.tail = this.tail.previous;
+      this.tail.next = null;
+    } else {
+      this.tail = null
+    }
+
     this.length--;
 
-    return this
+    return node
   }
 
   // Removes node from the start of the list
   lpop() {
-    this.current = this.head = this.head.next;
-    this.head.previous = null;
+    let node = this.head
+
+    if (this.head.next) {
+      this.current = this.head = this.head.next;
+      this.head.previous = null;
+    } else {
+      this.current = this.head = null;
+    }
+
     this.length--;
 
-    return this
+    return node
   }
 
   moveToHead(node) {
@@ -114,24 +122,20 @@ export default class LinkedList {
     }
   }
 
+  //
+  // Called when the iterator ends prematurely (abruptly)
+  // Caused by the following
+  //
+  // - break
+  // - return
+  // - throw
+  // - continue (can act like a break if in outer loop)
+  //
   reset() {
     this.current = this.head
   }
 
   return() {
-    // This will be called if the itertor was ended prematurely
-    return this
+    this.current = this.head
   }
 }
-
-
-let list = new LinkedList();
-
-list.append(2)
-list.append(3).append(4).prepend(1)
-
-for (let value of list) {
-  console.log(value)
-}
-
-
