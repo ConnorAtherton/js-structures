@@ -75,31 +75,31 @@ export default class LinkedList {
   }
 
   moveToHead(node) {
-    excise(node);
+    this.excise(node);
     node.next = this.head;
     this.head = this.current = node;
-  }
-
-  remove(node) {
-    excise(node);
-    this.length--;
 
     return this
   }
 
-  // removes a node from the list and joins the nodes around it
-  // together
+  remove(node) {
+    this.excise(node);
+    this.length--
+
+    return this
+  }
+
   excise(node) {
     let previous = node.previous;
     let next = node.next;
 
-    if (!previous) previous.next = next;
-    if (!next)     next.previous = previous;
+    if (previous !== null) previous.next = next;
+    if (next !== null)     next.previous = previous;
 
-    if (this.previous === node) this.head = next;
-    if (this.tail === node)     this.tail = previous;
+    if (this.head === node) this.head = this.current = next;
+    if (this.tail === node) this.tail = previous;
 
-    return node;
+    return this;
   }
 
   empty() {

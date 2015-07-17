@@ -103,34 +103,33 @@ var LinkedList = (function () {
   }, {
     key: 'moveToHead',
     value: function moveToHead(node) {
-      excise(node);
+      this.excise(node);
       node.next = this.head;
       this.head = this.current = node;
+
+      return this;
     }
   }, {
     key: 'remove',
     value: function remove(node) {
-      excise(node);
+      this.excise(node);
       this.length--;
 
       return this;
     }
   }, {
     key: 'excise',
-
-    // removes a node from the list and joins the nodes around it
-    // together
     value: function excise(node) {
       var previous = node.previous;
       var next = node.next;
 
-      if (!previous) previous.next = next;
-      if (!next) next.previous = previous;
+      if (previous !== null) previous.next = next;
+      if (next !== null) next.previous = previous;
 
-      if (this.previous === node) this.head = next;
+      if (this.head === node) this.head = this.current = next;
       if (this.tail === node) this.tail = previous;
 
-      return node;
+      return this;
     }
   }, {
     key: 'empty',
