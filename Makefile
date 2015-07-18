@@ -17,7 +17,7 @@ GULP := $(BIN)/gulp
 default: build
 
 test: | node_modules
-	@$(MOCHA)
+	@$(MOCHA) --recursive --compilers js:mocha-traceur
 
 lint: | node_modules
 	@$(ESLINT) src/

@@ -17,7 +17,8 @@ http://programmers.stackexchange.com/questions/155639/which-algorithms-data-stru
 [] insertion sort
 
 ## Data stuctures
-[] stack
+[x] stack
+[x] queue
 [] trie
 [] heap
 

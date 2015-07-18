@@ -1,5 +1,12 @@
-js-structures
+# jsStructures ![Build Status](https://api.travis-ci.org/ConnorAtherton/js-structures.svg)
 =============
 
-A playground for creating interesting data structures in js.
+My js playground.
+
+## To test
+
+```js
+make install-deps
+make test
+```
 
