@@ -4,7 +4,7 @@ http://programmers.stackexchange.com/questions/155639/which-algorithms-data-stru
 
 ## Search
 [x] binary search
-[ ] linear search
+[x] linear search
 [ ] depth-first search
 [ ] breadth-first search
 
@@ -20,6 +20,10 @@ http://programmers.stackexchange.com/questions/155639/which-algorithms-data-stru
 [x] stack
 [x] queue
 [] trie
+[] graphs
+  [] adjacency list
+  [] adjacency matrix
+  [] incidence matrix
 [] heap
 
 ## Misc
