@@ -18,16 +18,16 @@
  */
 
 export default function binarySearch(list, value) {
-  var startIndex = 0;
-  var stopIndex = list.length - 1;
-  var middle = Math.floor((stopIndex + startIndex) / 2);
+  let startIndex = 0;
+  let stopIndex = list.length - 1;
+  let middle = Math.floor((stopIndex + startIndex) / 2);
 
   while (list[middle] !== value && startIndex < stopIndex) {
 
     // adjust search area
     if (value < list[middle]){
       stopIndex = middle - 1;
-    } else if (value > list[middle]){
+    } else {
       startIndex = middle + 1;
     }
 
