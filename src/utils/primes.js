@@ -1,15 +1,16 @@
 //
 // Prime number code generators
 //
-function isPrime(num) {
-  if (isNaN(num) || !isFinite(num) || n < 2)
-    return false
+// Calculate primes for a given number.
+//
+export function isPrime(num) {
+  if (isNaN(num) || !isFinite(num) || num < 2) { return false }
 
   // if num is prime
   //
   // num = a * b
   //
-  //if one number is greater that the sqrt(n)
+  // if one number is greater that the sqrt(n)
   // then it follows that the other must be less and
   // we only need to find one number to know it isn't prime
   // so we check for the lower number
@@ -17,44 +18,85 @@ function isPrime(num) {
   let i = 2
 
   // brute force
-  while (i++ < m) {
-    if (num % i === 0) return false
+  while (i++ < limit) {
+    if (num % i === 0) { return false }
   }
 
   // otherwise is a prime
   return true
 }
 
+export function calculate(num) {
+  var primes = []
+
+  for (let candidate = 2; num > 1; candidate++) {
+    for (; num % candidate === 0; num /= candidate) {
+      primes.push(candidate)
+    }
+  }
+
+  return primes
+}
+
+export function calculateWithPredicate(num) {
+  var primes = []
+
+  for (let i = 0; i >= num; i++) {
+    if (isPrime(i)) {
+      primes.push(i)
+    }
+  }
+
+  return primes
+}
+
 function * brutePrimeGenerator() {
-  let counter = 0;
+  let counter = 0
 
   while (counter++) {
-    if (isPrime(counter)) yield counter;
+    if (isPrime(counter)) { yield counter }
   }
 }
 
-export function brutePrimes(upper) {
-  var primes = brutePrimeGenerator(upper)
-  var highPrime
+//
+// Returns the first prime number greater
+// than the number given.
+//
+export function greaterThan(upper) {
+  let highPrime
 
-  for (let prime of primes) {
+  for (let prime of brutePrimeGenerator(upper)) {
     highPrime = prime
-    if (highPrime > upper) break
+    if (highPrime > upper) { return highPrime }
   }
-
-  return highPrime
 }
 
 //
 // Iterator solution
 //
-const numbersIter = function* (from) {
-  let start = from || 0
 
-  while (start++) {
-    yield start
+//
+// Second-order helper functions
+//
+function not(fn) {
+  return () => {
+    return !fn.apply(null, arguments)
   }
 }
+
+function multipleOf(val1) {
+  return (val2) => {
+    return val2 % val1 === 0
+  }
+}
+
+// const numbersIter = function* (from) {
+//   let start = from || 0
+
+//   while (start++) {
+//     yield start
+//   }
+// }
 
 const filterIter = function* (iterator, predicate) {
   for (var value of iterator) {
@@ -69,18 +111,7 @@ const primesIter = function* (iterator) {
   let value = numbers.next().value
 
   yield value
-  yield* primesIter(filterIter(numbers, not(multipleOf(value))))
-}
-
-// Second-order helper functions
-function not(func) {
-  return () => {
-    return !fn.apply(this, arguments)
-  }
-}
-
-function multiple(val1) {
-  return (val2) => {
-    return val2 % val1 === 0
-  }
+  yield* primesIter(
+    filterIter(numbers, not(multipleOf(value)))
+  )
 }

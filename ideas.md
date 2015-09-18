@@ -33,6 +33,7 @@ http://programmers.stackexchange.com/questions/155639/which-algorithms-data-stru
 [] longest words in a string
 [] reverse a string (iterative, recursive)
 [] balance brackets
+[] delegator helper (delegation pattern)
 
 ## Array problems
 [] array flatten (recursive, one-level-deep, native solution using reduce)
@@ -41,4 +42,4 @@ http://programmers.stackexchange.com/questions/155639/which-algorithms-data-stru
 [] First non-repeated character in string
 [] palindromes
 [] anagrams
-[] reading complexity (Using formulas)
+[] reading complexity (Using wikipedia formulas)

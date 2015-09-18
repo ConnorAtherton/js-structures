@@ -17,7 +17,7 @@ export default function curry(func, ...initialArgs) {
     }
 
     if (curriedArgs.length >= arity) {
-      return func.apply(this, curriedArgs)
+      return func.apply(null, curriedArgs)
     } else {
       return function inner() {
         let innerArgs = Array.prototype.slice.call(arguments)
@@ -30,9 +30,9 @@ export default function curry(func, ...initialArgs) {
 //
 // Pure ES6 version
 //
-const curry = fn => {
-  const arity = fn.length;
+const newCurry = fn => {
+  const arity = fn.length
   const curried = (...args) =>
-    args.length < arity ? (...more) => curried(...args, ...more) : fn(...args);
-  return curried;
-};
+    args.length < arity ? (...more) => curried(...args, ...more) : fn(...args)
+  return curried
+}

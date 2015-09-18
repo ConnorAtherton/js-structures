@@ -11,7 +11,7 @@ export default class Queue {
   }
 
   pop() {
-    if (this.size === 0) return undefined
+    if (this.size === 0) { return null }
     let val = this.store.pop()
     this.size--
     return val

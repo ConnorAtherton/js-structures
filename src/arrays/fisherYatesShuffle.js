@@ -1,4 +1,4 @@
-import { randomFromRange } from '../utils/random';
+import { randomFromRange } from '../utils/random'
 
 //
 // Fisher-Yates shuffle
@@ -14,13 +14,13 @@ export default function fisherYatesShuffle(array) {
   var randomIndex
   var tmp
 
-  if (length === 0 || length === 1) return array
+  if (length === 0 || length === 1) { return array }
 
   for (let index = 0; index < length; index++) {
-    randomIndex = getRandomFromRange(index, lastIndex)
+    randomIndex = randomFromRange(index, lastIndex)
 
     // switch the values in place
-    tmp = arr[index]
+    tmp = array[index]
     array[index] = array[randomIndex]
     array[randomIndex] = tmp
   }
