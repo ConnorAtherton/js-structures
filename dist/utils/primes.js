@@ -1,21 +1,29 @@
 //
 // Prime number code generators
 //
+// Calculate primes for a given number.
+//
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.brutePrimes = brutePrimes;
+exports.isPrime = isPrime;
+exports.calculate = calculate;
+exports.calculateWithPredicate = calculateWithPredicate;
+exports.greaterThan = greaterThan;
 var marked0$0 = [brutePrimeGenerator].map(regeneratorRuntime.mark);
+
 function isPrime(num) {
-  if (isNaN(num) || !isFinite(num) || n < 2) return false;
+  if (isNaN(num) || !isFinite(num) || num < 2) {
+    return false;
+  }
 
   // if num is prime
   //
   // num = a * b
   //
-  //if one number is greater that the sqrt(n)
+  // if one number is greater that the sqrt(n)
   // then it follows that the other must be less and
   // we only need to find one number to know it isn't prime
   // so we check for the lower number
@@ -23,12 +31,38 @@ function isPrime(num) {
   var i = 2;
 
   // brute force
-  while (i++ < m) {
-    if (num % i === 0) return false;
+  while (i++ < limit) {
+    if (num % i === 0) {
+      return false;
+    }
   }
 
   // otherwise is a prime
   return true;
+}
+
+function calculate(num) {
+  var primes = [];
+
+  for (var candidate = 2; num > 1; candidate++) {
+    for (; num % candidate === 0; num /= candidate) {
+      primes.push(candidate);
+    }
+  }
+
+  return primes;
+}
+
+function calculateWithPredicate(num) {
+  var primes = [];
+
+  for (var i = 0; i >= num; i++) {
+    if (isPrime(i)) {
+      primes.push(i);
+    }
+  }
+
+  return primes;
 }
 
 function brutePrimeGenerator() {
@@ -63,20 +97,26 @@ function brutePrimeGenerator() {
   }, marked0$0[0], this);
 }
 
-function brutePrimes(upper) {
-  var primes = brutePrimeGenerator(upper);
-  var highPrime;
+//
+// Returns the first prime number greater
+// than the number given.
+//
+
+function greaterThan(upper) {
+  var highPrime = undefined;
 
   var _iteratorNormalCompletion = true;
   var _didIteratorError = false;
   var _iteratorError = undefined;
 
   try {
-    for (var _iterator = primes[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+    for (var _iterator = brutePrimeGenerator(upper)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
       var prime = _step.value;
 
       highPrime = prime;
-      if (highPrime > upper) break;
+      if (highPrime > upper) {
+        return highPrime;
+      }
     }
   } catch (err) {
     _didIteratorError = true;
@@ -92,39 +132,36 @@ function brutePrimes(upper) {
       }
     }
   }
-
-  return highPrime;
 }
 
 //
 // Iterator solution
 //
-var numbersIter = regeneratorRuntime.mark(function numbersIter(from) {
-  var start;
-  return regeneratorRuntime.wrap(function numbersIter$(context$1$0) {
-    while (1) switch (context$1$0.prev = context$1$0.next) {
-      case 0:
-        start = from || 0;
 
-      case 1:
-        if (! start++) {
-          context$1$0.next = 6;
-          break;
-        }
+//
+// Second-order helper functions
+//
+function not(fn) {
+  var _arguments = arguments;
 
-        context$1$0.next = 4;
-        return start;
+  return function () {
+    return !fn.apply(null, _arguments);
+  };
+}
 
-      case 4:
-        context$1$0.next = 1;
-        break;
+function multipleOf(val1) {
+  return function (val2) {
+    return val2 % val1 === 0;
+  };
+}
 
-      case 6:
-      case "end":
-        return context$1$0.stop();
-    }
-  }, numbersIter, this);
-});
+// const numbersIter = function* (from) {
+//   let start = from || 0
+
+//   while (start++) {
+//     yield start
+//   }
+// }
 
 var filterIter = regeneratorRuntime.mark(function filterIter(iterator, predicate) {
   var _iteratorNormalCompletion2, _didIteratorError2, _iteratorError2, _iterator2, _step2, value;
@@ -219,19 +256,3 @@ var primesIter = regeneratorRuntime.mark(function primesIter(iterator) {
     }
   }, primesIter, this);
 });
-
-// Second-order helper functions
-function not(func) {
-  var _this = this,
-      _arguments = arguments;
-
-  return function () {
-    return !fn.apply(_this, _arguments);
-  };
-}
-
-function multiple(val1) {
-  return function (val2) {
-    return val2 % val1 === 0;
-  };
-}

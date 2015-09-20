@@ -1,3 +1,6 @@
+//
+// Factorial
+//
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -20,7 +23,7 @@ function tailRecursive(_x2) {
     acc = undefined;
     _again = false;
     var acc = _arguments[1] === undefined ? 0 : _arguments[1];
-    if (num == 0) {
+    if (num === 0) {
       return acc;
     } else {
       _arguments = [_x2 = num - 1, num * acc];
@@ -33,7 +36,9 @@ function tailRecursive(_x2) {
 function brute(num) {
   var acc = num;
 
-  while (num-- > 1) acc = acc * num;
+  while (num-- > 1) {
+    acc *= num;
+  }
 
   return acc;
 }

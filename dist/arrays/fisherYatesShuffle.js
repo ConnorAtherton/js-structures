@@ -22,13 +22,15 @@ function fisherYatesShuffle(array) {
   var randomIndex;
   var tmp;
 
-  if (length === 0 || length === 1) return array;
+  if (length === 0 || length === 1) {
+    return array;
+  }
 
   for (var index = 0; index < length; index++) {
-    randomIndex = getRandomFromRange(index, lastIndex);
+    randomIndex = (0, _utilsRandom.randomFromRange)(index, lastIndex);
 
     // switch the values in place
-    tmp = arr[index];
+    tmp = array[index];
     array[index] = array[randomIndex];
     array[randomIndex] = tmp;
   }

@@ -11,6 +11,10 @@ export default class TupleMap {
     this.store = []
   }
 
+  get length() {
+    return this.store.length
+  }
+
   get(key) {
     return (this.findTuple(key) || [])[1]
   }
@@ -38,16 +42,8 @@ export default class TupleMap {
   }
 
   deleteKey(key) {
-    // this sucks because we have to loop through
-    // every element even when we have found it
-    let tuple = this.findTuple(key)
-    let index = this.store.indexOf(tuple)
-
-    if (index) { this.store.slice(index, 1) }
-  }
-
-  length() {
-    return this.store.length
+    let index = this.store.findIndex(tuple => tuple[0] === key)
+    if (index !== -1) { this.store.splice(index, 1) }
   }
 
   findTuple(key) {

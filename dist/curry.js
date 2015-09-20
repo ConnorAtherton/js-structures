@@ -28,7 +28,7 @@ function curry(func) {
     }
 
     if (curriedArgs.length >= arity) {
-      return func.apply(this, curriedArgs);
+      return func.apply(null, curriedArgs);
     } else {
       return function inner() {
         var innerArgs = Array.prototype.slice.call(arguments);
@@ -38,4 +38,24 @@ function curry(func) {
   };
 }
 
+//
+// Pure ES6 version
+//
+var newCurry = function newCurry(fn) {
+  var arity = fn.length;
+  var curried = function curried() {
+    for (var _len2 = arguments.length, args = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+      args[_key2] = arguments[_key2];
+    }
+
+    return args.length < arity ? function () {
+      for (var _len3 = arguments.length, more = Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
+        more[_key3] = arguments[_key3];
+      }
+
+      return curried.apply(undefined, args.concat(more));
+    } : fn.apply(undefined, args);
+  };
+  return curried;
+};
 module.exports = exports["default"];

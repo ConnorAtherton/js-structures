@@ -25,7 +25,9 @@ var Queue = (function () {
   _createClass(Queue, [{
     key: "pop",
     value: function pop() {
-      if (this.size === 0) return undefined;
+      if (this.size === 0) {
+        return null;
+      }
       var val = this.store.pop();
       this.size--;
       return val;

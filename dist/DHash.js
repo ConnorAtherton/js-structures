@@ -32,12 +32,14 @@ var DHash = (function () {
       }
 
       // TODO: check if this is a fn or value
-      return setter ? this.store[key] = setter() : undefined;
+      return setter ? this.store[key] = setter() : null;
     }
   }, {
     key: "set",
     value: function set(key, value) {
-      if (key && value) return this.store[key] = value;
+      if (key && value) {
+        return this.store[key] = value;
+      }
     }
   }, {
     key: "flush",

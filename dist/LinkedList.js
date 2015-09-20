@@ -123,11 +123,21 @@ var LinkedList = (function () {
       var previous = node.previous;
       var next = node.next;
 
-      if (previous !== null) previous.next = next;
-      if (next !== null) next.previous = previous;
+      if (previous !== null) {
+        previous.next = next;
+      }
 
-      if (this.head === node) this.head = this.current = next;
-      if (this.tail === node) this.tail = previous;
+      if (next !== null) {
+        next.previous = previous;
+      }
+
+      if (this.head === node) {
+        this.head = this.current = next;
+      }
+
+      if (this.tail === node) {
+        this.tail = previous;
+      }
 
       return this;
     }

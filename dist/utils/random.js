@@ -1,6 +1,6 @@
 //
-// Functions thay generate or otherwise deal
-// with randomness.
+// Functions thay generate, or otherwise deal
+// with, randomness.
 //
 "use strict";
 
