@@ -1,5 +1,5 @@
 let assert = require('assert');
-let HashMap = require('../../dist/misc/hashMap');
+let HashMap = require('../dist/hashMap');
 
 // HashMap.has(key) always returns an integer
 describe('HashMap', () => {

@@ -1,5 +1,5 @@
 let assert = require('assert');
-let TupleMap = require('../../dist/misc/tupleMap');
+let TupleMap = require('../dist/tupleMap');
 
 describe('TupleMap', () => {
   let tuple = null
