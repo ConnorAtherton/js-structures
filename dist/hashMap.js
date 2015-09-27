@@ -34,8 +34,17 @@ var HashMap = (function () {
     // get too many collisions
     this.maxSize = maxSize;
 
+    // NOTE: The Array constructor doesn't need **new** and passing
+    // a value doesn't actually fill the slots, it just sets the length
+    // property to that value and the values are essentially *empty slots*
+    //
     // allocate enough memory will all value set to undefined
-    this.map = new Array(this.maxSize);
+    //
+    // Will create empty slots with values =>
+    // this.map = new Array(this.maxSize)
+    //
+    // Will create all undefined valyes because the obj is spread =>
+    this.map = Array.apply(null, { length: this.maxSixe });
 
     // holds all of our keys. Helps to avoid
     // hashing in cases where we don't have that key
