@@ -21,13 +21,27 @@ function timeTravel(arr, timestamp) {
   // Deal with simple case before we go loop de loop
   if (length === 1) { return arr[0].value }
 
-  while (i < length && timestamp > arr[i].timestamp) { i++ }
+  // Progress the reference until it finds an element that
+  // is bigger than it. In that case, we check the difference
+  // between the elements before and after to check which one
+  // has the smallest difference, and therefor is closest to
+  // our value.
+  //
+  // This works because we know that time
+  // is always increasing and because we add new values to the
+  // back of the array.
+  //
+  // Yay, time travel.
+  for (; i < length && timestamp > arr[i].timestamp; i++) {}
+
+  // This is in case the first element turns out to be the
+  // one we want
+  if (i === 0) { return arr[0].value }
 
   // two reason
   //  - gone past end
   //  - reached timestamp larger than us
   if (i === length) { return arr[length - 1].value }
-  // if (i === 0) return arr[0].value;
 
   before = Math.abs(timestamp - arr[i - 1].timestamp)
   after = Math.abs(timestamp - arr[i].timestamp)
@@ -44,9 +58,8 @@ export default class TTHash {
   set(key, val) {
     if (!key || !val) { return null }
 
-    var timestamp = Date.now()
     this.store[key] = this.store[key] || []
-    this.store[key].push({value: val, timestamp: timestamp})
+    this.store[key].push({value: val, timestamp: Date.now()})
   }
 
   get(key, timestamp) {
