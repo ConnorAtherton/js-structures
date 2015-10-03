@@ -12,7 +12,7 @@ BIN = ./node_modules/.bin
 
 MOCHA := $(BIN)/mocha
 ESLINT := $(BIN)/eslint
-TODO := $(BIN)/todo
+TODO := $(BIN)/todos
 
 default: build
 
@@ -31,8 +31,8 @@ install-deps:
 clean:
 	@rm -rf dist
 
-todos: build
-  @$(TODO) --ignore='dist'
+todos:
+	@$(TODO) --ignore='dist'
 
 watch: | node_modules
 	@npm run watch
