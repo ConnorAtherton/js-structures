@@ -16,7 +16,7 @@ TODO := $(BIN)/todos
 
 default: build
 
-test: | node_modules
+test: build | node_modules
 	@$(MOCHA) --recursive --compilers js:mocha-traceur
 
 lint: | node_modules
