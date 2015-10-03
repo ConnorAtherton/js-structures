@@ -28,12 +28,14 @@ http://programmers.stackexchange.com/questions/155639/which-algorithms-data-stru
 
 ## Misc
 [] fibonacci
-[] factorial
+[x] factorial
+[] recursive multiplication
 [] primes
 [] longest words in a string
 [] reverse a string (iterative, recursive)
 [] balance brackets
 [] delegator helper (delegation pattern)
+[] towers of hanoi
 
 ## Array problems
 [] array flatten (recursive, one-level-deep, native solution using reduce)

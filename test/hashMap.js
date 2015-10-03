@@ -60,7 +60,7 @@ describe('HashMap', () => {
   it('deletes keys correctly', () => {
     hash.set('key', 'value')
     assert.equal(hash.get('key'), 'value')
-    console.log(hash.deleteKey('key'))
+    hash.deleteKey('key')
     assert.equal(hash.get('key'), null)
     assert.deepEqual(hash.keys, [])
   })

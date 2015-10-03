@@ -30,7 +30,7 @@ export default function curry(func, ...initialArgs) {
 //
 // Pure ES6 version
 //
-const newCurry = fn => {
+export function newCurry(fn) {
   const arity = fn.length
   const curried = (...args) =>
     args.length < arity ? (...more) => curried(...args, ...more) : fn(...args)

@@ -1,7 +1,7 @@
 let assert = require('assert')
 let hashFromString = require('../../dist/misc/hashFromString')
 
-describe('', function() {
+describe('hashFromString', function() {
   it('returns an empty hash', () => {
     let hash = hashFromString('', {}, function() {})
     assert.deepEqual(hash, {})

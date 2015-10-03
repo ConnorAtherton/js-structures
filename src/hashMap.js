@@ -6,8 +6,6 @@
 // hmap.set(1, 2)
 // hmap.get(1) => 2
 //
-// Doesn't work yet.
-//
 import TupleMap from './tupleMap'
 
 export default class HashMap {
@@ -74,7 +72,6 @@ export default class HashMap {
 
   // deletes a key from our hashmap
   deleteKey(key) {
-    console.log(this.keys)
     if (!this.hasKey(key)) { return false }
 
     let position = this.hash(key)

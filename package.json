@@ -6,24 +6,19 @@
   "directories": {
     "test": "test"
   },
-  "dependencies": {
-    "gulp-load-plugins": "^0.10.0"
-  },
+  "dependencies": {},
   "devDependencies": {
-    "babel-core": "^5.7.4",
+    "babel": "^5.8.23",
+    "babel-eslint": "^4.1.3",
     "chai": "^2.3.0",
     "eslint": "1.4.3",
-    "gulp": "^3.9.0",
-    "gulp-babel": "^5.1.0",
-    "gulp-changed": "^1.2.1",
-    "gulp-jshint": "^1.11.2",
-    "gulp-watch": "^4.2.4",
-    "jshint-stylish": "^2.0.1",
     "mocha": "^2.2.5",
     "mocha-traceur": "^2.1.0"
   },
   "scripts": {
-    "test": "make test"
+    "test": "make test",
+    "build": "babel src -D -d dist",
+    "watch": "babel src -D -d dist -w"
   },
   "repository": {
     "type": "git",

@@ -12,7 +12,7 @@ BIN = ./node_modules/.bin
 
 MOCHA := $(BIN)/mocha
 ESLINT := $(BIN)/eslint
-GULP := $(BIN)/gulp
+TODO := $(BIN)/todo
 
 default: build
 
@@ -31,7 +31,13 @@ install-deps:
 clean:
 	@rm -rf dist
 
+todos: build
+  @$(TODO) --ignore='dist'
+
+watch: | node_modules
+	@npm run watch
+
 build: | node_modules
-	@$(GULP)
+	@npm run build
 
 .PHONY: test
