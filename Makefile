@@ -16,7 +16,7 @@ TODO := $(BIN)/todos
 
 default: build
 
-test: build | node_modules
+test: | node_modules
 	@$(MOCHA) --recursive --compilers js:mocha-traceur
 
 lint: | node_modules
@@ -34,10 +34,10 @@ clean:
 todos:
 	@$(TODO) --ignore='dist'
 
-watch: | node_modules
+watch: clean | node_modules
 	@npm run watch
 
-build: | node_modules
+build: clean | node_modules
 	@npm run build
 
 .PHONY: test
