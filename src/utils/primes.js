@@ -38,6 +38,45 @@ export function calculate(num) {
   return primes
 }
 
+//
+// optimizations
+//
+// - only use odd integers in the arrar because, by definition, even
+// numbers are known to be divisible by 2 and so are not prime.
+export function sieveOfEratosthenes(max) {
+  // we want one more than the max but
+  let sieve = new Array(max + 1)
+  let counter = 2
+
+  // set all values
+  sieve.map((flag, i) => i > 1 ? true : false)
+
+  // iterate through all primes and sum through
+  // the array crossing off multiples
+  while (counter < Math.sqrt(max)) {
+    // we start with counter * counter as the first multiple
+    // because any k * prime, where k < prime, would have
+    // already been crossed off in a prior iteration.
+    for (var i = counter * counter; i < sieve.length; i += counter) {
+      sieve[i] = false
+    }
+
+    // pick the next value that hasn't already been removed
+    // from the sieve starting from the next consecutive number
+    counter = counter + 1
+    while (counter < sieve.length && !sieve[counter]) {
+      counter++
+    }
+
+    // exit if we have reached the end of the sieve
+    if (counter >= sieve.length) {
+      break
+    }
+  }
+
+  return sieve
+}
+
 export function calculateWithPredicate(num) {
   var primes = []
 

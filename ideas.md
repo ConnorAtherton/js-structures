@@ -3,18 +3,21 @@
 http://programmers.stackexchange.com/questions/155639/which-algorithms-data-structures-should-i-recognize-and-know-by-name
 
 ## Search
+
 [x] binary search
 [x] linear search
 [ ] depth-first search
 [ ] breadth-first search
 
 ## Sort
-[] tsort
-[] selection sort
+
 [] quick sort
-[] merge sort
 [] bubble sort
+[] merge sort
+[] selection sort
 [] insertion sort
+[] tsort
+[] https://en.wikipedia.org/wiki/Timsort
 
 ## Data stuctures
 [x] stack
@@ -27,21 +30,25 @@ http://programmers.stackexchange.com/questions/155639/which-algorithms-data-stru
 [] heap
 
 ## Misc
-[] fibonacci
+
+[x] fibonacci
 [x] factorial
 [] recursive multiplication
 [] primes
-[] longest words in a string
 [] reverse a string (iterative, recursive)
 [] balance brackets
 [] delegator helper (delegation pattern)
 [] towers of hanoi
 
 ## Array problems
+
 [] array flatten (recursive, one-level-deep, native solution using reduce)
 
 ## String problems
+
 [] First non-repeated character in string
 [] palindromes
 [] anagrams
-[] reading complexity (Using wikipedia formulas)
+[] longest words in a string
+[] reading complexity (Using wikipedia formulas on string complexity)
+[] If, after jumbling, all characters in a string were used.
