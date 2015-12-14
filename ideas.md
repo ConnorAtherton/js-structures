@@ -35,10 +35,10 @@ http://programmers.stackexchange.com/questions/155639/which-algorithms-data-stru
 [x] factorial
 [] recursive multiplication
 [] primes
-[] reverse a string (iterative, recursive)
 [] balance brackets
 [] delegator helper (delegation pattern)
 [] towers of hanoi
+[] huffman encoding
 
 ## Array problems
 
@@ -50,5 +50,9 @@ http://programmers.stackexchange.com/questions/155639/which-algorithms-data-stru
 [] palindromes
 [] anagrams
 [] longest words in a string
-[] reading complexity (Using wikipedia formulas on string complexity)
 [] If, after jumbling, all characters in a string were used.
+[] reverse a string (iterative, recursive)
+[] reading complexity (Using wikipedia formulas on string complexity)
+
+- https://github.com/v8/v8/blob/master/src/string-search.h#L511
+- https://github.com/v8/v8/blob/master/src/string-search.h#L301

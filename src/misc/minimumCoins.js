@@ -9,11 +9,13 @@ const coins = [200, 100, 50, 20, 10, 5, 2, 1]
 
 export default function minimumCoins(val) {
   let results = {}
+  // started with the highest coin first
   let coinIndex = 0
   let coinValue
 
   val = Math.abs(val)
 
+  // 0 is falsey in js
   while (val) {
     coinValue = coins[coinIndex++]
 
@@ -21,6 +23,7 @@ export default function minimumCoins(val) {
     // we can update the results
     if (val >= coinValue) {
       results[coinValue] = Math.floor(val / coinValue)
+      // modulus of the con value
       val = val % coinValue
     }
   }

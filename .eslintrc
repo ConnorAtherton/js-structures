@@ -8,6 +8,14 @@ env:
     browser: true
     es6: true
 
+globals:
+  # these are all for mocha
+  describe: false
+  it: false
+  beforeEach: false
+  before: false
+  context: false
+
 rules:
     indent: [2, 2]
     block-spacing: 2

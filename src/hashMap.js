@@ -32,7 +32,7 @@ export default class HashMap {
     // this.map = new Array(this.maxSize)
     //
     // Will create all undefined valyes because the obj is spread =>
-    this.map = Array.apply(null, { length: this.maxSixe })
+    this.map = Array.apply(null, { length: this.maxSize })
 
     // holds all of our keys. Helps to avoid
     // hashing in cases where we don't have that key

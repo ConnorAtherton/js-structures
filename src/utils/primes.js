@@ -48,6 +48,8 @@ export function sieveOfEratosthenes(max) {
   let sieve = new Array(max + 1)
   let counter = 2
 
+  // TODO: set 0 and 1 to false
+
   // set all values
   sieve.map((flag, i) => i > 1 ? true : false)
 
@@ -60,6 +62,8 @@ export function sieveOfEratosthenes(max) {
     for (var i = counter * counter; i < sieve.length; i += counter) {
       sieve[i] = false
     }
+
+    // ----- Cleanup
 
     // pick the next value that hasn't already been removed
     // from the sieve starting from the next consecutive number

@@ -94,3 +94,9 @@ export function intersectionSorted(arr1, arr2) {
 
   return intersection
 }
+
+// export function intersectionCollection(...arr) {
+//   return arr.reduce(function(a, b) {
+//     return intersectionUnsortedBinary(a, b)
+//   })
+// }
