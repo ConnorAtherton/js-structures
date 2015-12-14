@@ -1,25 +1,22 @@
 let assert = require('assert')
-let bubble = require('../../dist/sort/bubblesort')
+let bubble = require('../../dist/sort/bubble')
 
 describe('bubblesort', function() {
-  let expected = [1, 2, 4, 5, 8]
+  let expected = [1, 2, 3, 4, 5, 8]
   let file
 
   beforeEach(function() {
-    file = [5, 1, 4, 2, 8]
+    file = [5, 1, 4, 2, 8, 3]
   })
 
-  it('sorts using naive solution', function() {
-    // file = bubble.bubble(file)
-    // assert.deepEqual(file, expected)
+  it('sorts using n - i loops', function() {
+    file = bubble.simple(file)
+    assert.deepEqual(file, expected)
   })
 
-  it('sorts using n - 1 loops', function() {
-
-  })
-
-  it('sorts switching direction each time', function() {
-
+  it('sorts using n - i loops and short circuits', function() {
+    file = bubble.simpleImproved(file)
+    assert.deepEqual(file, expected)
   })
 })
 

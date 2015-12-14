@@ -22,5 +22,5 @@ export function iterative(string) {
 
 export function recursive(string) {
   let len = string.length
-  return (len === 0 || len === 1) ? false : recursive(string.substr(1, len - 2))
+  return (len === 0 || len === 1 || string[0] !== string[len - 1]) ? false : recursive(string.substr(1, len - 2))
 }

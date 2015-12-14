@@ -1,6 +1,8 @@
 // Bubble sort
 //
 // Type - Exchange Sort
+// Stable - yes
+// In-place - yes
 //
 // Loop through the file and interchange the position of
 // two elements if they are not in proper order. The sort
@@ -13,29 +15,51 @@
 
 import swap from '../utils/swap'
 
-// Naive solution looping through
-export function bubble(file) {
-  // stores whether an iteration changes elements
-  var clean
-  var tmp
+export function simple(file) {
+  let len = file.length
 
-  // n - 1 passes
-  for (let i = 0, len = file.length; i < len - 1; i++) {
-    // set it to true on each pass
-    clean = true
+  console.log(`starting file: ${file}`)
 
-    console.log(file[i], file[i + 1])
-
-    // always compare each element
-    if (file[i] > file[i + 1]) {
-      clean = false
-      swap(file, i, i + 1)
+  for (let i = 0; i < len - 1; i++) {
+    for (let j = 1; j < len - i; j++) {
+      if (file[j - 1] > file[j]) {
+        swap(file, j - 1, j)
+      }
     }
+
+    console.log(`${i + 1}th iteration result: ${file}`)
   }
 
   return file
 }
 
+export function simpleImproved(file) {
+  let len = file.length
+  let clean = false
+
+  console.log(`starting file: ${file}`)
+
+  for (let i = 0; i < len - 1; i++) {
+    // NOTE: If no swaps are made through one cycle of the outer loop then the
+    // array is sorted.
+    if (clean) { return file }
+    clean = true
+
+    for (let j = 1; j < len - i; j++) {
+      if (file[j - 1] > file[j]) {
+        swap(file, j - 1, j)
+        clean = false
+      }
+    }
+
+    console.log(`${i + 1}th iteration result: ${file}`)
+  }
+
+  return file
+}
+
+// ascending the descending because elements tended to group
+// towards the end the belong
 export function bubbleToggle(file, numElements = file.length) {
 
 }
