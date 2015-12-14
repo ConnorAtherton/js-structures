@@ -12,8 +12,36 @@
 // A file of n elements requires no more than n - 1 iterations
 // because at least 1 element is placed into it's correct
 // position during each iteration.
+//
+// NOTE: we can switch the sign in the if statement to reverse
+// the sort order
 
 import swap from '../utils/swap'
+
+export function whileLoop(file) {
+  let len = file.length
+  // we haven't started sorting yet
+  let sorted = false
+
+  console.log(`starting file: ${file}`)
+
+  // not done until we have one full pass where
+  // we don't switch any elements
+  while (!sorted) {
+    sorted = true
+
+    for (let i = 0; i < len; i++) {
+      if (file[i] > file[i + 1]) {
+        sorted = false
+        swap(file, i)
+      }
+    }
+
+    console.log(`iteration result: ${file}`)
+  }
+
+  return file
+}
 
 export function simple(file) {
   let len = file.length
@@ -62,4 +90,20 @@ export function simpleImproved(file) {
 // towards the end the belong
 export function bubbleToggle(file, numElements = file.length) {
 
+}
+
+// takes advantage of the fact that the nth-largest numbers will
+// always be in their position after the nth iteration
+export function remaining(file) {
+  console.log(`starting file: ${file}`)
+
+  for (let passesLeft = file.length - 1; passesLeft > 0; passesLeft--) {
+    for (let i = 0; i < passesLeft; i++) {
+      if (file[i] > file[i + 1]) { swap(file, i) }
+    }
+
+    console.log(`${passesLeft - 1} passes left: ${file}`)
+  }
+
+  return file
 }
