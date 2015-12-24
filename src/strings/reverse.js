@@ -8,7 +8,7 @@ import { stringSwap as swap } from '../utils/swap'
 
 // iterative. We need to identify whether this works
 // for both odd and even strings.
-export function simple(string) {
+export function iterative(string) {
   let len = string.length
   let indexBound = len - 1
   // we don't want to consider the middle element

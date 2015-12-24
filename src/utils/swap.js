@@ -4,7 +4,7 @@
 // We are mutating the object referenced by *arr* which is why we don't
 // have to return anything here.
 
-import stringReplace from './stringReplace'
+import stringReplace from '../strings/replace'
 
 export default function swap(arr, i, j = i + 1) {
   if (i === j) { return }

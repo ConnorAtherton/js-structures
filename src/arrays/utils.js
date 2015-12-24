@@ -16,6 +16,28 @@ export function uniq(arr) {
   return set
 }
 
+export function uniqBrute(arr) {
+  let set = []
+  let setLen = 0
+  let arrLen = arr.length
+
+  for (let i = 0; i < arrLen; i++) {
+    let el = arr[i]
+    let duplicate = false
+
+    for (let j = 0; j < setLen; j++) {
+      if (el !== set[j]) { continue }
+      duplicate = true
+      break
+    }
+
+    if (duplicate) { continue }
+    set[setLen++] = el
+  }
+
+  return set
+}
+
 // ∪
 //
 // Returns an array of all distinct values in both arrays

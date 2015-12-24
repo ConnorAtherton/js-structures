@@ -2,11 +2,18 @@ let assert = require('assert')
 let utils = require('../../dist/arrays/utils')
 
 describe('utils', function() {
-  let value = undefined
+  let value = null
 
   describe('.uniq', function() {
-    it('remove duplicate items in array', function() {
+    it('removes duplicate items in array', function() {
       value = utils.uniq([1, 2, 3, 3, 4, 4, 5, 1])
+      assert.deepEqual(value, [1, 2, 3, 4, 5])
+    })
+  })
+
+  describe('.uniqBrute', function() {
+    it('removes duplicate items in array', function() {
+      value = utils.uniqBrute([1, 2, 3, 3, 4, 4, 5, 1])
       assert.deepEqual(value, [1, 2, 3, 4, 5])
     })
   })
@@ -41,4 +48,4 @@ describe('utils', function() {
       assert.deepEqual(value, [3, 4, 5])
     })
   })
-});
+})

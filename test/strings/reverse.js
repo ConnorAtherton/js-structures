@@ -14,8 +14,8 @@ describe('reverse', function() {
 
   context('iterative', function() {
     it('reverses correctly', function() {
-      assert.deepEqual(reverse.simple(even), evenExpected)
-      assert.deepEqual(reverse.simple(odd), oddExpected)
+      assert.deepEqual(reverse.iterative(even), evenExpected)
+      assert.deepEqual(reverse.iterative(odd), oddExpected)
     })
   })
 
