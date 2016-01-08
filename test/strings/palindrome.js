@@ -25,5 +25,10 @@ describe('palindrome', function() {
     it('returns false for non-palindromes', function() {
       assert.equal(palindrome.recursive('saw war'), false)
     })
+
+    it('returns true for palindromes', function() {
+      assert.equal(palindrome.recursive('sas'), true)
+      assert.equal(palindrome.recursive('saw was'), true)
+    })
   })
 })

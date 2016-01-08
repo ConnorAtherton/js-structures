@@ -7,11 +7,13 @@
 import stringReplace from '../strings/replace'
 
 export default function swap(arr, i, j = i + 1) {
-  if (i === j) { return }
+  if (i === j) { return arr }
 
   let tmp = arr[i]
   arr[i] = arr[j]
   arr[j] = tmp
+
+  return arr
 }
 
 export function stringSwap(string, i, j = i + 1) {

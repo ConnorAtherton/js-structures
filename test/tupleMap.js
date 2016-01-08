@@ -9,8 +9,8 @@ describe('TupleMap', () => {
   })
 
   it('initalizes with an empty store', () => {
-    assert.deepEqual(tuple.values(), [])
-    assert.deepEqual(tuple.keys(), [])
+    assert.deepEqual(tuple.values, [])
+    assert.deepEqual(tuple.keys, [])
   })
 
   it('returns null if no key is found', () => {
@@ -30,6 +30,12 @@ describe('TupleMap', () => {
     assert.equal(tuple.get('key1'), 'value2')
   })
 
+  it('knows when it has keys', () => {
+    tuple.set('key1', 'value1')
+    assert.equal(tuple.hasKey('key1'), true)
+    assert.equal(tuple.hasKey('key2'), false)
+  })
+
   it('stores the correct length', () => {
     tuple.set('key', 'value')
     assert.equal(tuple.length, 1)
@@ -39,27 +45,27 @@ describe('TupleMap', () => {
     tuple.set('key1', 'value1')
     tuple.set('key2', 'value2')
     tuple.set('key3', 'value3')
-    assert.deepEqual(tuple.keys(), ['key1', 'key2', 'key3'])
+    assert.deepEqual(tuple.keys, ['key1', 'key2', 'key3'])
   })
 
   it('can return all values', () => {
     tuple.set('key1', 'value1')
     tuple.set('key2', 'value2')
     tuple.set('key3', 'value3')
-    assert.deepEqual(tuple.values(), ['value1', 'value2', 'value3'])
+    assert.deepEqual(tuple.values, ['value1', 'value2', 'value3'])
   })
 
   it('can remove values added first', () => {
     tuple.set('key', 'value')
-    assert.deepEqual(tuple.values(), ['value'])
+    assert.deepEqual(tuple.values, ['value'])
     tuple.deleteKey('key')
-    assert.deepEqual(tuple.values(), [])
+    assert.deepEqual(tuple.values, [])
   })
 
   it('can remove values added last', () => {
     tuple.set('key1', 'value1')
     tuple.set('key2', 'value2')
     tuple.deleteKey('key2')
-    assert.deepEqual(tuple.values(), ['value1'])
+    assert.deepEqual(tuple.values, ['value1'])
   })
 })

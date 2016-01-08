@@ -1,5 +1,5 @@
 import assert from 'assert'
-const factorial = require('../../dist/utils/factorial')
+import * as factorial from '../../dist/utils/factorial'
 
 describe('Factorial', () => {
   it('brute works', () => {

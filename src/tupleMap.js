@@ -29,11 +29,11 @@ export default class TupleMap {
     }
   }
 
-  keys() {
+  get keys() {
     return this.store.map(tuple => tuple[0])
   }
 
-  values() {
+  get values() {
     return this.store.map(tuple => tuple[1])
   }
 

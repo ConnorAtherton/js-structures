@@ -8,12 +8,11 @@ pids
 *.seed
 
 node_modules
+coverage
+dist
 
 # Users Environment Variables
 .lock-wscript
 # Leftover files
 *.swp
 *.swo
-
-# We don't want this
-/dist

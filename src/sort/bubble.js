@@ -23,7 +23,7 @@ export function whileLoop(file) {
   // we haven't started sorting yet
   let sorted = false
 
-  console.log(`starting file: ${file}`)
+  // console.log(`starting file: ${file}`)
 
   // not done until we have one full pass where
   // we don't switch any elements
@@ -37,7 +37,7 @@ export function whileLoop(file) {
       }
     }
 
-    console.log(`iteration result: ${file}`)
+    // console.log(`iteration result: ${file}`)
   }
 
   return file
@@ -46,7 +46,7 @@ export function whileLoop(file) {
 export function simple(file) {
   let len = file.length
 
-  console.log(`starting file: ${file}`)
+  // console.log(`starting file: ${file}`)
 
   for (let i = 0; i < len - 1; i++) {
     for (let j = 1; j < len - i; j++) {
@@ -55,7 +55,7 @@ export function simple(file) {
       }
     }
 
-    console.log(`${i + 1}th iteration result: ${file}`)
+    // console.log(`${i + 1}th iteration result: ${file}`)
   }
 
   return file
@@ -65,7 +65,7 @@ export function simpleImproved(file) {
   let len = file.length
   let clean = false
 
-  console.log(`starting file: ${file}`)
+  // console.log(`starting file: ${file}`)
 
   for (let i = 0; i < len - 1; i++) {
     // NOTE: If no swaps are made through one cycle of the outer loop then the
@@ -80,7 +80,7 @@ export function simpleImproved(file) {
       }
     }
 
-    console.log(`${i + 1}th iteration result: ${file}`)
+    // console.log(`${i + 1}th iteration result: ${file}`)
   }
 
   return file
@@ -95,14 +95,14 @@ export function bubbleToggle(file, numElements = file.length) {
 // takes advantage of the fact that the nth-largest numbers will
 // always be in their position after the nth iteration
 export function remaining(file) {
-  console.log(`starting file: ${file}`)
+  // console.log(`starting file: ${file}`)
 
   for (let passesLeft = file.length - 1; passesLeft > 0; passesLeft--) {
     for (let i = 0; i < passesLeft; i++) {
       if (file[i] > file[i + 1]) { swap(file, i) }
     }
 
-    console.log(`${passesLeft - 1} passes left: ${file}`)
+    // console.log(`${passesLeft - 1} passes left: ${file}`)
   }
 
   return file

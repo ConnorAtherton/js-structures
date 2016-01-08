@@ -29,7 +29,7 @@ export default function isAnagram(first, second) {
     table[chr] = table[chr] + 1
   }
 
-  // decrease counts for the second work
+  // decrease counts for the second word
   for (let j = 0, len = second.length; j < len; j++) {
     let chr = second[j]
     // if (!table[chr]) { table[chr] = 0 }
