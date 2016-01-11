@@ -53,3 +53,25 @@ export function recursive(list, value, low = 0, high = list.length - 1) {
   return value < list[middle] ? recursive(list, value, low, middle - 1) : recursive(list, value, middle + 1, high)
 }
 
+export function loop(file, val) {
+  let low = 0
+  let high = file.length - 1
+  let mid = null
+  let res = null
+
+  while (low <= high) {
+    mid = (low + high) / 2
+    res = val > mid
+
+    if (val === mid) {
+      return mid
+    } else if (res === false) {
+      high = mid - 1
+    } else {
+      low = mid + 1
+    }
+  }
+
+  return null
+}
+

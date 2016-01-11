@@ -13,5 +13,10 @@ describe('quicksort', function() {
     file = quick.simple(file)
     assert.deepEqual(file, expected)
   })
+
+  it('sorts using simple partitiion', function() {
+    quick.simpleSwap(file)
+    assert.deepEqual(file, expected)
+  })
 })
 
