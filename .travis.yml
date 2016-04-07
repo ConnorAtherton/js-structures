@@ -3,4 +3,4 @@ sudo: false
 node_js:
   - "iojs-v2.3.1"
   - "0.12.5"
-script: make && make test
+script: make && make coverage

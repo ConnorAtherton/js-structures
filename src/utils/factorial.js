@@ -6,7 +6,7 @@ export function recursive(num) {
 }
 
 export function tailRecursive(num, acc = 0) {
-  return (num === 0 ) ? acc : tailRecursive(num - 1, (num * acc))
+  return (num === 1 ) ? acc : tailRecursive(num - 1, (num * acc))
 }
 
 export function brute(num) {
