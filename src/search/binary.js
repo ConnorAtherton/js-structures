@@ -68,7 +68,9 @@ export function recursive(list, value, low = 0, high = list.length - 1) {
     return middle
   }
 
-  return value < list[middle] ? recursive(list, value, low, middle - 1) : recursive(list, value, middle + 1, high)
+  return value < list[middle]
+    ? recursive(list, value, low, middle - 1)
+    : recursive(list, value, middle + 1, high)
 }
 
 export function loop(file, val) {

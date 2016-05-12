@@ -1,7 +1,7 @@
 let assert = require('assert')
 let anagram = require('../../dist/strings/anagram')
 
-describe('reverse', function() {
+describe('anagram', function() {
   let anagramNoSpaces = ['cinema', 'iceman']
   let notAnagram = ['two', '']
   let notAnagramLength = ['two', 'six']
