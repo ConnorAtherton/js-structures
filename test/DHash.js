@@ -1,8 +1,8 @@
-var assert = require('assert')
-var DHash = require('../dist/DHash')
+import assert from 'assert'
+import DHash from '../dist/DHash'
 
 describe('DHash', function() {
-  var hash
+  let hash
 
   beforeEach(function() {
     hash = new DHash
@@ -34,9 +34,7 @@ describe('DHash', function() {
   });
 
   it('should override the key with setter if key does not already exist', function() {
-    hash.get('key', function() {
-      return 'value'
-    })
+    hash.get('key', () => 'value')
 
     assert.equal(hash.get('key'), 'value')
   });

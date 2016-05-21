@@ -1,5 +1,5 @@
-let assert = require('assert')
-let anagram = require('../../dist/strings/anagram')
+import assert from 'assert'
+import anagram from '../../dist/strings/anagram'
 
 describe('anagram', function() {
   let anagramNoSpaces = ['cinema', 'iceman']

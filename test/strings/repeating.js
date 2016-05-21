@@ -1,10 +1,10 @@
-let assert = require('assert')
-let firstNonRepeated = require('../../dist/strings/repeating')
+import assert from 'assert'
+import firstNonRepeated from '../../dist/strings/repeating'
 
-describe('repeated', function() {
+context('repeated', function() {
   let string = 'eeerrrriooooppppe'
 
-  it('runs', function() {
+  it('#firstNonRepeated', function() {
     assert.deepEqual(firstNonRepeated(string), 'i')
   })
 })

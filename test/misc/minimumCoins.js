@@ -1,7 +1,7 @@
-let assert = require('assert')
-let calculate = require('../../dist/misc/minimumCoins')
+import assert from 'assert'
+import calculate from '../../dist/misc/minimumCoins'
 
-describe('Minimum coins', () => {
+describe('minimumCoins', () => {
   let results
 
   beforeEach(() => {

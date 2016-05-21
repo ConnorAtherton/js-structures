@@ -1,8 +1,8 @@
-var assert = require('assert')
-var Stack = require('../dist/Stack')
+import assert from 'assert'
+import Stack from '../dist/Stack'
 
 describe('Stack', function() {
-  var stack
+  let stack
 
   beforeEach(function() {
     stack = new Stack

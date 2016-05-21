@@ -1,10 +1,10 @@
-var assert = require('assert')
-var LinkedList = require('../dist/LinkedList')
-var Node = require('../dist/helpers/node')
+import assert from 'assert'
+import LinkedList from '../dist/LinkedList'
+import Node from '../dist/helpers/node'
 
 describe('Linked list', function() {
-  var llist
-  var node
+  let llist
+  let node
 
   describe('starting empty', function() {
     beforeEach(function() {

@@ -1,8 +1,8 @@
-var assert = require('assert')
-var Queue = require('../dist/Queue')
+import assert from 'assert'
+import Queue from '../dist/Queue'
 
 describe('Queue', function() {
-  var queue
+  let queue
 
   beforeEach(function() {
     queue = new Queue

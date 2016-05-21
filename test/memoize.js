@@ -1,8 +1,7 @@
-var assert = require('assert');
-var memoize = require('../dist/memoize');
+import assert from 'assert'
+import memoize from '../dist/memoize'
 
 describe('memoize', function() {
-
   it('can handle a single argument', function() {
     var called = 0;
     var fib = memoize(function(n) {
@@ -29,7 +28,7 @@ describe('memoize', function() {
     assert.equal(called, 11);
   });
 
-  it('can handle function declerations', function() {
+  it('can handle function declarations', function() {
     var called = 0;
     var fib = null;
 

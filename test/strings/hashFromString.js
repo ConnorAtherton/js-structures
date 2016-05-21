@@ -1,5 +1,5 @@
-let assert = require('assert')
-let hashFromString = require('../../dist/strings/hashFromString')
+import assert from 'assert'
+import hashFromString from '../../dist/strings/hashFromString'
 
 describe('hashFromString', function() {
   let hash
