@@ -5,8 +5,8 @@
  * be triggered. The function will be called after it stops being called for
  * **timeout** milliseconds
  *
- * @param fn {Function}
- * @param wait {Number}
+ * @param {Function} fn
+ * @param {Number} wait
  */
 export default function throttle(fn, wait) {
   // last time the function was executed
@@ -48,7 +48,7 @@ export default function throttle(fn, wait) {
       result = fn.apply(ctx, args);
 
       // reset every value
-      if (!fnTimeout) ctx = args = null;
+      ctx = args = null;
     } else if (!fnTimeout) {
       fnTimeout = setTimeout(later, remaining);
     }

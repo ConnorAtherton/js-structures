@@ -123,6 +123,25 @@ describe('Linked list', function() {
     })
   })
 
+  describe('reversing', function() {
+    beforeEach(function() {
+      llist = new LinkedList(node)
+      llist.append(2).append(3).append(4)
+    })
+
+    it('Can print out the list correctly', function() {
+      assert.equal(llist.toString(), '1 -> 2 -> 3 -> 4 -> null')
+    })
+
+    it('Can reverse a singly-linked list', function() {
+      assert.equal(llist.reverse().toString(), '4 -> 3 -> 2 -> 1 -> null')
+    })
+
+    it('Can reverse a doubly-linked list', function() {
+      assert.equal(llist.reverseDoubly().toString(), '4 -> 3 -> 2 -> 1 -> null')
+    })
+  })
+
   describe('iteration', function() {
     beforeEach(function() {
       llist = new LinkedList(node)

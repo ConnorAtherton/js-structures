@@ -1,5 +1,17 @@
 import Node from './helpers/node'
 
+//
+// TODO
+//
+// Write a method that accepts a predicate as its only argument and
+// removes any node where the value matches the predicate.
+//
+// Write the above function again but instead return a list containing all
+// nodes matching the predicate.
+//
+// Test for a cycle in the list.
+//
+
 export default class LinkedList {
   constructor(node = null) {
     this.head = this.tail = (node instanceof Node) ? node : null
@@ -33,8 +45,7 @@ export default class LinkedList {
     } else {
       this.head.previous = node
       node.next = this.head
-      this.head = node
-      this.current = node
+      this.head = this.current = node
     }
 
     this.length++
@@ -114,6 +125,61 @@ export default class LinkedList {
 
   empty() {
     return this.length === 0
+  }
+
+  // Time Complexity : O(n)
+  //   We have to traverse every element
+  // Space Complexity : O(1)
+  //   Only using two pointers
+  //
+  // Reverses a singly-linked list.
+  reverse() {
+    let previous = null
+    let next = null
+    let current = this.head
+
+    while (current !== null) {
+      next = current.next
+      current.next = previous
+      previous = current
+      current = next
+    }
+
+    this.head = this.current = previous
+
+    return this
+  }
+
+  // Reverses a doubly-linked list.
+  reverseDoubly() {
+    let tmp = null
+    let node = this.head
+
+    while (node) {
+      tmp = node.previous
+      node.previous = node.next
+      node.next = tmp
+      node = node.previous
+    }
+
+    // swap the references
+    tmp = this.head
+    this.head = this.current = this.tail
+    this.tail = tmp
+
+    return this
+  }
+
+  toString() {
+    let str = ''
+
+    for (let node of this) {
+      str += `${node.value} -> `
+    }
+
+    str += 'null'
+
+    return str
   }
 
   [Symbol.iterator]() {

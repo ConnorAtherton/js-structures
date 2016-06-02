@@ -3,6 +3,7 @@
 http://programmers.stackexchange.com/questions/155639/which-algorithms-data-structures-should-i-recognize-and-know-by-name
 https://github.com/kanwei/algorithms/tree/master/lib
 https://github.com/tejasmanohar/npm-algos
+https://github.com/parkjs814/AlgorithmVisualizer/blob/gh-pages/algorithm/graph_search/bfs/tree/code.js
 
 ## Search
 
@@ -24,16 +25,18 @@ https://github.com/tejasmanohar/npm-algos
 
 ## Data stuctures
 
-- [x] stack
-- [x] queue
+- [x] Stack
+- [x] Queue
+- [x] HashMap
+- [x] HashSet
 - [ ] Double ended queue (deque)
-- [ ] trie
+- [ ] Trie
 - [ ] graphs
   - [ ] adjacency list
   - [ ] adjacency matrix
   - [ ] incidence matrix
-- [ ] heap
-- [ ] Re-black tree https://github.com/electronicarts/EASTL/blob/master/source/red_black_tree.cpp
+- [ ] Heap
+- [ ] Red-black tree https://github.com/electronicarts/EASTL/blob/master/source/red_black_tree.cpp
 
 ## Misc
 
