@@ -3,17 +3,12 @@ import { recursive as binarySearch } from '../search/binary'
 // Turns an array into a Set
 export function uniq(arr) {
   let hash = {}
-  let set = []
 
   for (let i = 0, l = arr.length; i < l; i++) {
-    // we need to set a value here because all keys
-    // are strings in js hashes
-    hash[arr[i]] = arr[i]
+    hash[arr[i]] = true
   }
 
-  for (let key of Object.keys(hash)) { set.push(hash[key]) }
-
-  return set
+  return Object.keys(hash)
 }
 
 export function uniqBrute(arr) {

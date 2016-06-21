@@ -1,6 +1,7 @@
 import assert from 'assert'
-import LinkedList from '../dist/LinkedList'
-import Node from '../dist/helpers/node'
+import LinkedList from '../../dist/lists/LinkedList'
+import DoublyLinkedList from '../../dist/lists/DoublyLinkedList.js'
+import Node from '../../dist/helpers/node'
 
 describe('Linked list', function() {
   let llist
@@ -123,6 +124,28 @@ describe('Linked list', function() {
     })
   })
 
+  describe('.union', function() {
+    let llist2
+
+    beforeEach(function() {
+      llist = new LinkedList()
+      llist.append(1).append(2).append(3).append(4)
+
+      llist2 = new LinkedList()
+      llist2.append(5).append(6).append(7)
+    })
+
+    it('Joins two lists together', function() {
+      llist.union(llist2)
+      assert.equal(llist.toString(), '1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> null')
+    })
+
+    it('returns the first list for chaining', function() {
+      let res = llist.union(llist2)
+      assert.equal(llist, res)
+    })
+  })
+
   describe('reversing', function() {
     beforeEach(function() {
       llist = new LinkedList(node)
@@ -137,8 +160,20 @@ describe('Linked list', function() {
       assert.equal(llist.reverse().toString(), '4 -> 3 -> 2 -> 1 -> null')
     })
 
+  })
+
+  describe('DoublyLinkedList', function() {
+    beforeEach(function() {
+      llist = new DoublyLinkedList(node)
+      llist.append(2).append(3).append(4)
+    })
+
+    it('Can print out the list correctly', function() {
+      assert.equal(llist.toString(), '1 <-> 2 <-> 3 <-> 4 <-> null')
+    })
+
     it('Can reverse a doubly-linked list', function() {
-      assert.equal(llist.reverseDoubly().toString(), '4 -> 3 -> 2 -> 1 -> null')
+      assert.equal(llist.reverse().toString(), '4 <-> 3 <-> 2 <-> 1 <-> null')
     })
   })
 

@@ -30,6 +30,11 @@ https://github.com/parkjs814/AlgorithmVisualizer/blob/gh-pages/algorithm/graph_s
 - [x] HashMap
 - [x] HashSet
 - [ ] Double ended queue (deque)
+- [ ] Vector/ArrayList
+  http://www.cs.ucf.edu/~dmarino/ucf/cop3502/spr13/examples/arraylist.c
+- [ ] Binary Tree
+  http://datastructuresnotes.blogspot.com/2009/02/binary-tree-traversal-preorder-inorder.html
+- [ ] Binary Search Tree
 - [ ] Trie
 - [ ] graphs
   - [ ] adjacency list

@@ -6,6 +6,9 @@
 //   ['key2', 'val2']
 // ]
 //
+// Used for the default conflict resolution method in for
+// the HashMap class.
+//
 export default class TupleMap {
   constructor() {
     this.store = []

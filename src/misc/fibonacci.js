@@ -25,3 +25,35 @@ export function iterative(n) {
 
   return result
 }
+
+//
+// TODO: test and memoize
+//
+export const iterator = {
+  [Symbol.iterator]() {
+    let first = 0
+    let second = 1
+
+    return {
+      next() {
+        let val = { done: false, value: first }
+
+        console.log('->', val);
+
+        [first, second] = [second, first + second];
+
+        return val
+      }
+    }
+  }
+}
+
+export function* infinite(n = null) {
+  const infinite = n === null;
+  let [current, next] = [0, 1]
+
+  while (infinite || n--) {
+    yield current;
+    [current, next] = [next, current + next];
+  }
+}

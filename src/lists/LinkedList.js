@@ -1,15 +1,21 @@
-import Node from './helpers/node'
+import Node from '../helpers/node'
 
 //
 // TODO
 //
-// Write a method that accepts a predicate as its only argument and
+// -> Split into subclasses with doubly and singly linked and an a common interface for both.
+//
+// 1) Write a method that accepts a predicate as its only argument and
 // removes any node where the value matches the predicate.
 //
-// Write the above function again but instead return a list containing all
+// 2) Write the above function again but instead return a list containing all
 // nodes matching the predicate.
 //
-// Test for a cycle in the list.
+// 3) Test for a cycle in the list.
+//
+// 4) Select a random node.
+//
+// 5) Given a singly linked list, find the 3rd element from the end.
 //
 
 export default class LinkedList {
@@ -27,7 +33,6 @@ export default class LinkedList {
       this.head = this.tail = this.current = node
     } else {
       this.tail.next = node
-      node.previous = this.tail
       this.tail = node
     }
 
@@ -100,6 +105,7 @@ export default class LinkedList {
     return this
   }
 
+  // Remove a node from a doubly linked list
   excise(node) {
     let previous = node.previous
     let next = node.next
@@ -127,6 +133,18 @@ export default class LinkedList {
     return this.length === 0
   }
 
+  //
+  // Joins the current list to another list in O(1) time.
+  //
+  // TODO: Duplicate the current object first?
+  //
+  union(list) {
+    this.tail.next = list.head
+    this.tail = list.tail
+
+    return this
+  }
+
   // Time Complexity : O(n)
   //   We have to traverse every element
   // Space Complexity : O(1)
@@ -146,26 +164,6 @@ export default class LinkedList {
     }
 
     this.head = this.current = previous
-
-    return this
-  }
-
-  // Reverses a doubly-linked list.
-  reverseDoubly() {
-    let tmp = null
-    let node = this.head
-
-    while (node) {
-      tmp = node.previous
-      node.previous = node.next
-      node.next = tmp
-      node = node.previous
-    }
-
-    // swap the references
-    tmp = this.head
-    this.head = this.current = this.tail
-    this.tail = tmp
 
     return this
   }
