@@ -38,6 +38,22 @@ describe('Linked list', function() {
     })
   })
 
+  describe('iterating', function() {
+    beforeEach(function() {
+      llist = new LinkedList().append(1).append(2).append(3)
+    })
+
+    it('iterates through each node correctly', function() {
+      let res = []
+
+      for (let node of llist.nodes()) {
+        res.push(node.value)
+      }
+
+      assert.deepEqual(res, [1, 2, 3])
+    })
+  })
+
   describe('list operations', function() {
     beforeEach(function() {
       node = new Node(1)
@@ -80,41 +96,41 @@ describe('Linked list', function() {
       assert.equal(llist.empty(), true)
     })
 
-    it('can remove a node', function() {
-      var node2 = new Node(2)
-      var result = []
+    // it('can remove a node', function() {
+    //   var node2 = new Node(2)
+    //   var result = []
 
-      llist.append(node2).append(3)
-      llist.remove(node2)
+    //   llist.append(node2).append(3)
+    //   llist.remove(node2)
 
-      for (var obj of llist) {
-        result.push(obj.value)
-      }
+    //   for (var obj of llist) {
+    //     result.push(obj.value)
+    //   }
 
-      assert.equal(llist.length, 2)
-      assert.equal(result.indexOf(node2), -1)
-    })
+    //   assert.equal(llist.length, 2)
+    //   assert.equal(result.indexOf(node2), -1)
+    // })
 
-    it('can remove a node from the end', function() {
-      var node2 = new Node(2)
+    // it('can remove a node from the end', function() {
+    //   var node2 = new Node(2)
 
-      llist.append('re').append(node2).remove(node2)
+    //   llist.append('re').append(node2).remove(node2)
 
-      assert.equal(llist.length, 2)
-      assert.equal(llist.head, node)
-    })
+    //   assert.equal(llist.length, 2)
+    //   assert.equal(llist.head, node)
+    // })
 
-    it('can remove a node from the start', function() {
-      var node2 = new Node(2)
+    // it('can remove a node from the start', function() {
+    //   var node2 = new Node(2)
 
-      llist.prepend(node2).remove(node2)
+    //   llist.prepend(node2).remove(node2)
 
-      assert.equal(llist.length, 1)
-      assert.equal(llist.head, node)
-      assert.equal(llist.tail, node)
-    })
+    //   assert.equal(llist.length, 1)
+    //   assert.equal(llist.head, node)
+    //   assert.equal(llist.tail, node)
+    // })
 
-    it('can move a node to head', function() {
+    xit('can move a node to head', function() {
       var node2 = new Node(2)
 
       llist.append(node2).append(3)
@@ -176,6 +192,30 @@ describe('Linked list', function() {
       assert.equal(llist.reverse().toString(), '4 <-> 3 <-> 2 <-> 1 <-> null')
     })
   })
+
+  describe('#findElementFromEnd', function() {
+    beforeEach(function() {
+      llist = new LinkedList
+      llist.append(1).append(2).append(3).append(4).append(5).append(6).append(7)
+    })
+
+    it('Can find the element correctly', function() {
+      assert.equal(llist.findElementFromEnd(2), 5)
+    })
+  })
+
+  // describe('#remove', function() {
+  //   beforeEach(function() {
+  //     llist = new LinkedList
+  //     let node = new Node(2)
+  //     llist.append(1).append(2).append(3)
+  //   })
+
+  //   it('Can remove when given a node reference', function() {
+  //     llist.remove(node)
+  //     assert.equal(llist.toString(), '1 -> 3 -> null')
+  //   })
+  // })
 
   describe('iteration', function() {
     beforeEach(function() {

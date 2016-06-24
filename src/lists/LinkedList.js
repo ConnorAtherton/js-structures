@@ -15,7 +15,11 @@ import Node from '../helpers/node'
 //
 // 4) Select a random node.
 //
-// 5) Given a singly linked list, find the 3rd element from the end.
+// 6) Given two linked lists, return the intersection of the two lists: i.e. return a list
+//    containing only the elements that occur in both of the input lists.
+//
+// 7) There is linked list of millions of node and you do not know the length of it. Write
+//    a function which will return a random number from the list.
 //
 
 export default class LinkedList {
@@ -90,44 +94,13 @@ export default class LinkedList {
     return node
   }
 
-  moveToHead(node) {
-    this.excise(node)
-    node.next = this.head
-    this.head = this.current = node
+  // moveToHead(node) {
+  //   this.excise(node)
+  //   node.next = this.head
+  //   this.head = this.current = node
 
-    return this
-  }
-
-  remove(node) {
-    this.excise(node)
-    this.length--
-
-    return this
-  }
-
-  // Remove a node from a doubly linked list
-  excise(node) {
-    let previous = node.previous
-    let next = node.next
-
-    if (previous !== null) {
-      previous.next = next
-    }
-
-    if (next !== null) {
-      next.previous = previous
-    }
-
-    if (this.head === node) {
-      this.head = this.current = next
-    }
-
-    if (this.tail === node) {
-      this.tail = previous
-    }
-
-    return this
-  }
+  //   return this
+  // }
 
   empty() {
     return this.length === 0
@@ -166,6 +139,65 @@ export default class LinkedList {
     this.head = this.current = previous
 
     return this
+  }
+
+  //
+  // Given a singly linked list, find the nth element from the end.
+  //
+  findElementFromEnd(n) {
+    let slow = this.head
+    let fast = this.head
+
+    // Advanmce th fast pointer n numbers in from
+    while (n--) {
+      fast = fast.next
+    }
+
+    // iterate both pointers through until the fast [pointer is at the end
+    while (fast.next !== null) {
+      slow = slow.next
+      fast = fast.next
+    }
+
+    return slow.value
+  }
+
+  // TODO: Support deleting by node reference of by value
+  //
+  // Since we can't look backwards this will be O(n)
+  remove(node) {
+    let slow = this.head
+    let fast = this.head
+
+    while (fast.next !== null) {
+      // Switch references
+      if (fast == node) {
+        console.log('Found node', fast)
+
+        if (fast == this.head) {
+          this.head = this.head.next
+        } else {
+          slow.next = fast.next
+        }
+
+        // mark it for deletion by CG
+        fast = null
+        this.length--
+      }
+
+      fast = fast.next
+    }
+
+    return this
+  }
+
+  * nodes () {
+    let current = this.head
+
+    while (current !== null) {
+      yield current
+      current = current.next
+    }
   }
 
   toString() {

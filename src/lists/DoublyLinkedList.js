@@ -65,6 +65,21 @@ export default class DoublyLinkedList extends LinkedList {
     return this
   }
 
+  remove(node) {
+    this.excise(node)
+    this.length--
+
+    return this
+  }
+
+  moveToHead(node) {
+    this.excise(node)
+    node.next = this.head
+    this.head = this.current = node
+
+    return this
+  }
+
   reverse() {
     let tmp = null
     let node = this.head

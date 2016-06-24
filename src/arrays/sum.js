@@ -55,7 +55,9 @@ const threeNumbers = (arr) => {
 }
 
 export {
+  brute,
   hash,
   hashWithDuplicates,
-  inPlace
+  inPlace,
+  threeNumbers
 }

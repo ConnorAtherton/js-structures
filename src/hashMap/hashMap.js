@@ -6,6 +6,8 @@
 // hmap.set(1, 2)
 // hmap.get(1) => 2
 //
+// 1) What’s the difference between a hashtable and a hashmap?
+//
 import TupleMap from './tupleMap'
 
 export default class HashMap {
