@@ -63,11 +63,8 @@ export function sieveOfEratosthenes(max) {
       sieve[i] = false
     }
 
-    // ----- Cleanup
-
     // pick the next value that hasn't already been removed
     // from the sieve starting from the next consecutive number
-    counter = counter + 1
     while (counter < sieve.length && !sieve[counter]) {
       counter++
     }

@@ -1,5 +1,5 @@
 import assert from 'assert'
-import anagram from '../../dist/strings/anagram'
+import { counting, sorting } from '../../dist/strings/anagram'
 
 describe('anagram', function() {
   let anagramNoSpaces = ['cinema', 'iceman']
@@ -8,19 +8,23 @@ describe('anagram', function() {
   let anagramSpaces = ['cinema the', 'iceman het']
 
   it('returns false for non-anagrams where the lengths differ', function() {
-    assert.equal(anagram(...notAnagram), false)
+    assert.equal(counting(...notAnagram), false)
+    assert.equal(sorting(...notAnagram), false)
   })
 
   it('returns false for non-anagrams where the lengths are the same', function() {
-    assert.equal(anagram(...notAnagramLength), false)
+    assert.equal(counting(...notAnagramLength), false)
+    assert.equal(sorting(...notAnagramLength), false)
   })
 
   it('returns true for anagrams without spaces', function() {
-    assert.equal(anagram(...anagramNoSpaces), true)
+    assert.equal(counting(...anagramNoSpaces), true)
+    assert.equal(sorting(...anagramNoSpaces), true)
   })
 
   it('returns true for anagrams with spaces', function() {
-    assert.equal(anagram(...anagramSpaces), true)
+    assert.equal(counting(...anagramSpaces), true)
+    assert.equal(sorting(...anagramSpaces), true)
   })
 })
 

@@ -16,7 +16,7 @@
 // NOTE: we can switch the sign in the if statement to reverse
 // the sort order
 
-import swap from '../utils/swap'
+import { swap } from '../utils/swap'
 
 export function whileLoop(file) {
   let len = file.length

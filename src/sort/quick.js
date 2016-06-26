@@ -8,7 +8,7 @@
 // Space: O(n) for temporary arrays
 // Stable: not usually
 
-import swap from '../utils/swap'
+import { swap } from '../utils/swap'
 import { between } from '../helpers/random'
 
 export function simple(file, random = false) {

@@ -6,6 +6,10 @@ https://github.com/tejasmanohar/npm-algos
 https://github.com/parkjs814/AlgorithmVisualizer/blob/gh-pages/algorithm/graph_search/bfs/tree/code.js
 https://gist.github.com/amaxwell01/3728155
 
+## Books
+
+Bloc - Java concurrency
+
 ## Search
 
 - [x] binary search

@@ -6,14 +6,23 @@
 ##src/curry.js
 - explanation
 
-##src/hashMap.js
-- prime number generator
+##src/arrays/utils.js
+-
+- is it better to use the smallest value in the has table or the largest
 
-##test/hashMap.js
-- test the distribution after getting the prime
+##src/misc/fibonacci.js
+- test and memoize
 
 ##src/misc/minimumCoins.js
 - can we create a way to convert decimal places to
 
-##test/search/binary.js
-- fix these imports
+##src/lists/LinkedList.js
+-
+- Duplicate the current object first?
+- Support deleting by node reference of by value
+
+##src/hashMap/hashMap.js
+- prime number generator
+
+##src/utils/primes.js
+- set 0 and 1 to false

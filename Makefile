@@ -38,7 +38,7 @@ clean:
 	@rm -rf dist
 
 todos:
-	@$(TODO) --ignore='dist'
+	@$(TODO) --ignore='dist,test,README.md'
 
 watch: clean | node_modules
 	@npm run watch

@@ -16,29 +16,23 @@ G = [0,1,1,0,0,1,1], # A
     [1,0,0,1,1,0,0],
     [1,0,0,0,1,0,0]  # G
 
-LABLES = %w(A B C D E F G)
+LABELS = %w(A B C D E F G)
 
 def dfs(vertex)
   # mark v as explored
-  print "#{LABLES[vertex]} " # visited
+  #
+  # visit LABELS[vertex]
+  print "#{LABELS[vertex]} "
 
   # nullify the row to mark the
   # vertex as visited
-  edge = 0
-  while edge < G.size
-    G[vertex][edge] = 0
-    edge += 1
-  end
+  G.size.times { |edge| G[vertex][edge] = 0 }
 
   # Find unexplored edges
-  edge = 0
-  while edge < G.size
+  G.size.times do |edge|
     # not explored and not same vertex
-    if ( G[edge][vertex] != 0 && edge != vertex)
-      dfs(edge)
-    end
-    edge += 1
+    dfs(edge) if G[edge][vertex] != 0 && edge != vertex
   end
 end
 
-dfs(0) # Replace 0 with 1..6 to see different paths
+dfs(4)

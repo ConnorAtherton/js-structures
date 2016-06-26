@@ -6,7 +6,7 @@
 
 import stringReplace from '../strings/replace'
 
-export default function swap(arr, i, j = i + 1) {
+const swap = (arr, i, j = i + 1) => {
   if (i === j) { return arr }
 
   let tmp = arr[i]
@@ -16,10 +16,15 @@ export default function swap(arr, i, j = i + 1) {
   return arr
 }
 
-export function stringSwap(string, i, j = i + 1) {
+const stringSwap = (string, i, j = i + 1) => {
   let tmp = string[j]
   string = stringReplace(string, j, string[i])
   string = stringReplace(string, i, tmp)
 
   return string
+}
+
+export {
+  swap,
+  stringSwap
 }
