@@ -9,7 +9,9 @@
   "engines": {
     "node": ">6"
   },
-  "dependencies": {},
+  "dependencies": {
+    "express": "^4.14.0"
+  },
   "devDependencies": {
     "babel-core": "^6.7.6",
     "babel-cli": "^6.7.6",
@@ -25,6 +27,7 @@
   },
   "scripts": {
     "test": "make test",
+    "start": "node index.js",
     "build": "babel src -D -d dist",
     "watch": "babel src -D -d dist -w"
   },
