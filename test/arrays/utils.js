@@ -18,6 +18,13 @@ describe('utils', function() {
     })
   })
 
+  describe('.uniqIndexing', function() {
+    it('removes duplicate items in array', function() {
+      value = utils.uniqIndexing([1, 2, 3, 3, 4, 4, 5, 1])
+      assert.deepEqual(value, [1, 2, 3, 4, 5])
+    })
+  })
+
   describe('.intersectionSorted', function() {
     it('handles edge cases correctly', function() {
       value = utils.intersectionSorted([], [])

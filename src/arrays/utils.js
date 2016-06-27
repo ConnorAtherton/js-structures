@@ -33,6 +33,12 @@ export function uniqBrute(arr) {
   return set
 }
 
+export function uniqIndexing(arr) {
+  return arr.filter(function(item, pos, self) {
+    return self.indexOf(item) === pos;
+  });
+}
+
 // ∪
 //
 // Returns an array of all distinct values in both arrays
