@@ -7,12 +7,21 @@
 // Time: O(n log n)
 // Space: O(n) for temporary arrays
 // Stable: not usually
+//
+// We can optimize this by running insertion sort on the array if it is less
+// than a certain number of element.
 
 import { swap } from '../utils/swap'
 import { between } from '../helpers/random'
+import insertionSort from './insertion'
 
 export function simple(file, random = false) {
   if (file.length < 2) { return file }
+
+  // Optimize for cases here there are a small number of elements...
+  if (file.length <= 15) {
+    return insertionSort(file)
+  }
 
   // Pivot is either random of the first element
   //

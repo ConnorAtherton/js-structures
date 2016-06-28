@@ -19,11 +19,14 @@ Bloc - Java concurrency
 
 ## Sort
 
+http://math.hws.edu/eck/js/sorting/xSortLab.html
+https://www.toptal.com/developers/sorting-algorithms
+
 - [x] quick sort
 - [x] bubble sort
 - [ ] merge sort
-- [ ] selection sort
-- [ ] insertion sort
+- [x] selection sort
+- [x] insertion sort
 - [ ] shell sort
 - [ ] tsort
 - [ ] https://en.wikipedia.org/wiki/Timsort
@@ -70,7 +73,6 @@ Bloc - Java concurrency
 - [ ] First non-repeated character in string
 - [x] palindromes
 - [x] anagrams
-  - If, after jumbling, all characters in a string were used.
 - [ ] longest words in a string
 - [x] reverse a string (iterative, recursive)
 - [ ] reading complexity (Using wikipedia formulas on string complexity)
