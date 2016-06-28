@@ -3,4 +3,4 @@ sudo: false
 node_js:
   - "6"
   - "6.1"
-script: make && make coverage
+script: make test--full

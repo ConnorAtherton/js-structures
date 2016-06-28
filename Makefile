@@ -46,4 +46,6 @@ watch: clean | node_modules
 build: clean | node_modules
 	@npm run build
 
+test--full: build test coverage
+
 .PHONY: test coverage
