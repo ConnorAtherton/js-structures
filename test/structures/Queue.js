@@ -1,5 +1,5 @@
 import assert from 'assert'
-import Queue from '../dist/Queue'
+import Queue from '../../dist/structures/Queue'
 
 describe('Queue', function() {
   let queue

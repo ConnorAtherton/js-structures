@@ -1,5 +1,5 @@
 import assert from 'assert'
-import Stack from '../dist/Stack'
+import Stack from '../../dist/structures/Stack'
 
 describe('Stack', function() {
   let stack

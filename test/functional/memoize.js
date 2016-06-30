@@ -1,5 +1,5 @@
 import assert from 'assert'
-import memoize from '../dist/memoize'
+import memoize from '../../dist/functional/memoize'
 
 describe('memoize', function() {
   it('can handle a single argument', function() {

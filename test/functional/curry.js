@@ -1,5 +1,5 @@
 import assert from 'assert'
-import curry from '../dist/curry'
+import curry from '../../dist/functional/curry'
 
 describe('curry', function() {
   it('curries the function at least once', function() {

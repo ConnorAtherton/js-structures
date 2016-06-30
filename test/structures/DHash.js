@@ -1,5 +1,5 @@
 import assert from 'assert'
-import DHash from '../dist/DHash'
+import DHash from '../../dist/structures/DHash'
 
 describe('DHash', function() {
   let hash
