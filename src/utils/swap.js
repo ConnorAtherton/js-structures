@@ -9,7 +9,7 @@ import stringReplace from '../strings/replace'
 const swap = (arr, i, j = i + 1) => {
   if (i === j) { return arr }
 
-  let tmp = arr[i]
+  const tmp = arr[i]
   arr[i] = arr[j]
   arr[j] = tmp
 
@@ -17,7 +17,9 @@ const swap = (arr, i, j = i + 1) => {
 }
 
 const stringSwap = (string, i, j = i + 1) => {
-  let tmp = string[j]
+  if (i === j) { return string }
+
+  const tmp = string[j]
   string = stringReplace(string, j, string[i])
   string = stringReplace(string, i, tmp)
 

@@ -3,16 +3,26 @@
 //
 // Time: O(n lg n)
 //
-const sort = (arr) => {
+import Heap from '../structures/Heap'
 
+export default function heapsort(arr) {
+  // Builds a max heap
+  const heap = new Heap(arr)
+
+  // display nice with test output
+  // console.log('\nHeapsort ~')
+
+  // This represents the node number, not the array index
+  for (let end = heap.length; end > 0; end--) {
+    // console.log('Sort step =', heap._array.slice(0, heap.heapSize))
+    heap.swapNode(1, end)
+
+    // means we can't access this in the heap
+    heap.heapSize--
+
+    heap.heapify(1)
+  }
+
+  return arr
 }
 
-//
-// TODO:
-// heapify
-// siftDown
-//
-
-export {
-  sort
-}

@@ -12,6 +12,15 @@ export default class Heap {
     return this._array.length
   }
 
+  get maximum() {
+    return this.valueFor(1)
+  }
+
+  get values() {
+    return this._array.slice(0, this.heapSize)
+  }
+
+
   //
   // In an unsorted array we know that all elements above the middle
   // index will be leaf nodes so each is a trivial 1-element heap already.
@@ -20,38 +29,65 @@ export default class Heap {
     let middle = Math.floor(this.length / 2)
 
     while (middle > 0) {
-      this.maxHeapify(middle)
+      this.heapify(middle)
       middle--
     }
 
     return this
   }
 
-  maxHeapify(index = 0) {
+  heapify(index = 1) {
     const leftIndex = this.leftIndex(index)
     const rightIndex = this.rightIndex(index)
-
-    console.log(leftIndex, rightIndex)
-
-    let largest = null
     const value = this.valueFor(index)
+    let largest = null
 
+    // console.log('\ninspecting node', index)
+
+    // Find out the largest of this and the left
     if (this.leftValue(index) > value) {
-      largest = left
-    } else if (this.rightValue(index) > value) {
-      largest = right
+      largest = leftIndex
     } else {
       largest = index
     }
 
-    console.log('started - largest ->', index, largest)
+    // Work out which one of those two is the largest and choose it
+    if (this.rightValue(index) > this.valueFor(largest)) {
+      largest = rightIndex
+    }
 
     // Means we need switched nodes keep the max-heap property
     // further down the heap
     if (largest !== index) {
-      swap(this._array, index, largest)
-      this.maxHeapify(largest)
+      this.swapNode(index, largest)
+
+      // console.log('-> swap', index, largest)
+      // console.log('= After swap', this._array)
+
+      this.heapify(largest)
     }
+
+    return this
+  }
+
+  //
+  // Removes the maximum element and ensures we still retain
+  // the max-heap property
+  //
+  extractMax() {
+    const max = this.maximum
+
+    this.swapNode(1, this.length)
+    this.heapSize--
+    this.heapify(1)
+
+    return max
+  }
+
+
+  // Map onto correct array index
+  swapNode(origNode, swapNode) {
+    swap(this._array, origNode - 1, swapNode - 1)
 
     return this
   }
@@ -74,19 +110,24 @@ export default class Heap {
   //
 
   parentValue(index) {
-    return this._array[this.parentIndex(index)]
+    return this.valueFor(this.parentIndex(index))
   }
 
   leftValue(index) {
-    return this._array[this.leftIndex(index)]
+    return this.valueFor(this.leftIndex(index))
   }
 
   rightValue(index) {
-    return this._array[this.rightIndex(index)]
+    return this.valueFor(this.rightIndex(index))
   }
 
-  valueFor(index) {
-    return this._array[index]
+  // Largest element:
+  //   array index = 0
+  //   node number = 1
+  //   left child = 2
+  //   right child = 3
+  valueFor(nodeNumber) {
+    return this._array[nodeNumber - 1]
   }
 
   ifInHeap(index) {
