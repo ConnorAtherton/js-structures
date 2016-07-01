@@ -8,7 +8,7 @@ https://gist.github.com/amaxwell01/3728155
 
 ## Books
 
-Bloc - Java concurrency
+Bloch - Java concurrency
 
 ## Search
 
@@ -24,9 +24,10 @@ https://www.toptal.com/developers/sorting-algorithms
 
 - [x] quick sort
 - [x] bubble sort
-- [ ] merge sort
+- [x] merge sort
 - [x] selection sort
 - [x] insertion sort
+- [x] heap sort
 - [ ] shell sort
 - [ ] tsort
 - [ ] https://en.wikipedia.org/wiki/Timsort
@@ -48,7 +49,7 @@ https://www.toptal.com/developers/sorting-algorithms
   - [ ] adjacency list
   - [ ] adjacency matrix
   - [ ] incidence matrix
-- [ ] Heap
+- [x] Heap
 - [ ] Red-black tree https://github.com/electronicarts/EASTL/blob/master/source/red_black_tree.cpp
 
 ## Misc
@@ -70,7 +71,7 @@ https://www.toptal.com/developers/sorting-algorithms
 
 ## String problems
 
-- [ ] First non-repeated character in string
+- [x] First non-repeated character in string
 - [x] palindromes
 - [x] anagrams
 - [ ] longest words in a string

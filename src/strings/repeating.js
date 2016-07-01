@@ -8,6 +8,9 @@ import OrderedHash from '../helpers/orderedHash'
 // All solutions require us to scan through the full string at least
 // or we couldn't be certain that a character has not been repeated.
 //
+// Time: O(n)
+// Space: O(n)
+//
 // @returns
 //   The first non-repeated character, if any. False otherwise.
 export default function firstNonRepeated(str) {

@@ -12,7 +12,7 @@ export default class Heap {
     return this._array.length
   }
 
-  get maximum() {
+  get next() {
     return this.valueFor(1)
   }
 
@@ -20,6 +20,9 @@ export default class Heap {
     return this._array.slice(0, this.heapSize)
   }
 
+  empty() {
+    return this.heapSize === 0
+  }
 
   //
   // In an unsorted array we know that all elements above the middle
@@ -71,17 +74,17 @@ export default class Heap {
   }
 
   //
-  // Removes the maximum element and ensures we still retain
-  // the max-heap property
+  // Removes the first element and ensures we still retain
+  // the heap property we started with.
   //
-  extractMax() {
-    const max = this.maximum
+  pop() {
+    const next = this.next
 
     this.swapNode(1, this.length)
     this.heapSize--
     this.heapify(1)
 
-    return max
+    return next
   }
 
 

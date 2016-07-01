@@ -46,12 +46,12 @@ describe('Structures::Heap', function() {
   it('should return the maximum for a built heap', function() {
     heap = new Heap(data)
 
-    assert.deepEqual(heap.maximum, 16)
+    assert.deepEqual(heap.next, 16)
   });
 
-  it('should return the maximum for a built heap', function() {
+  it('should return the top element in a modified heap', function() {
     heap = new Heap(data)
-    let max = heap.extractMax()
+    let max = heap.pop()
 
     assert.equal(max, 16)
     assert.deepEqual(heap.values, [14, 8, 10, 4, 7, 9, 3, 2, 1])

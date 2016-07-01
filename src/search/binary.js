@@ -7,25 +7,14 @@
  * @time  O(log n)
  * @space O(1)
  *
- * @benefits
- * - quick
- *
- * @drawbacks
- * - only works on sorted arrays
+ * If there are duplicates, the first one found is returned, and this is not guaranteed to be the
+ * smallest or largest item.
  *
  */
 
 /**
  *  By using binary search, finds a value from this array which meets
  *  the given condition in O(log n) where n is the size of the array.
- *
- *  You can use this method in two use cases: a find-minimum mode and
- *  a find-any mode.  In either case, the elements of the array must be
- *  monotone (or sorted) with respect to the block.
- *
- *  In find-minimum mode (this is a good choice for typical use case),
- *  the block must return true or false, and there must be an index i
- *  (0 <= i <= ary.size) so that:
  *
  *  - the block returns false for any element whose index is less than
  *    i, and

@@ -4,6 +4,16 @@ import Node from '../helpers/node'
 export default class DoublyLinkedList extends LinkedList {
   constructor(node) {
     super(node)
+
+    this.tail = this.head
+  }
+
+  clear() {
+    this.head = null
+    this.tail = null
+    this.length = 0
+
+    return this
   }
 
   union(list) {

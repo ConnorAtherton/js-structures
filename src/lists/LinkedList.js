@@ -24,39 +24,21 @@ import Node from '../helpers/node'
 
 export default class LinkedList {
   constructor(node = null) {
-    this.head = this.tail = (node instanceof Node) ? node : null
+    this.head = (node instanceof Node) ? node : null
     this.length = node ? 1 : 0
-    this.current = this.head
   }
 
   // Adds node to the end of the list
-  append(node) {
+  push(node) {
     node = (node instanceof Node) ? node : new Node(node)
 
-    if (this.empty()) {
-      this.head = this.tail = this.current = node
+    if (this.empty) {
+      this.head = node
     } else {
-      this.tail.next = node
-      this.tail = node
+      this.findNodeFromEnd(0).next = node
     }
 
-    this.length++
-
-    return this
-  }
-
-  // Adds node to the start of the list
-  prepend(node) {
-    node = (node instanceof Node) ? node : new Node(node)
-
-    if (this.empty()) {
-      this.head = this.tail = this.current = node
-    } else {
-      this.head.previous = node
-      node.next = this.head
-      this.head = this.current = node
-    }
-
+    node.next = null
     this.length++
 
     return this
@@ -64,29 +46,47 @@ export default class LinkedList {
 
   // Removes node from the end of the list
   pop() {
-    let node = this.tail
-
-    if (this.tail.previous) {
-      this.tail = this.tail.previous
-      this.tail.next = null
-    } else {
-      this.tail = null
+    // Cannot pop an empty this
+    if (this.empty) {
+      return null
     }
 
-    this.length--
+    let newTail = this.findNodeFromEnd(1)
+    let oldNode = null
 
-    return node
+    if (newTail) {
+      oldNode = newTail.next
+      newTail.next = null
+      this.length--
+    }
+
+    return oldNode
+  }
+
+  // Adds node to the start of the list
+  unshift(node) {
+    node = (node instanceof Node) ? node : new Node(node)
+
+    if (this.empty) {
+      this.head = node
+    } else {
+      node.next = this.head
+      this.head = node
+    }
+
+    this.length++
+
+    return this
   }
 
   // Removes node from the start of the list
-  lpop() {
+  shift() {
     let node = this.head
 
-    if (this.head.next) {
-      this.current = this.head = this.head.next
-      this.head.previous = null
+    if (node.next) {
+      this.head = this.head.next
     } else {
-      this.current = this.head = null
+      this.head = null
     }
 
     this.length--
@@ -102,7 +102,7 @@ export default class LinkedList {
   //   return this
   // }
 
-  empty() {
+  get empty() {
     return this.length === 0
   }
 
@@ -113,7 +113,6 @@ export default class LinkedList {
   //
   union(list) {
     this.tail.next = list.head
-    this.tail = list.tail
 
     return this
   }
@@ -144,7 +143,11 @@ export default class LinkedList {
   //
   // Given a singly linked list, find the nth element from the end.
   //
-  findElementFromEnd(n) {
+  findNodeFromEnd(n) {
+    if (n < 0) {
+      throw new Error('n must be a positive integer')
+    }
+
     let slow = this.head
     let fast = this.head
 
@@ -154,12 +157,16 @@ export default class LinkedList {
     }
 
     // iterate both pointers through until the fast [pointer is at the end
-    while (fast.next !== null) {
+    while (fast && fast.next !== null) {
       slow = slow.next
       fast = fast.next
     }
 
-    return slow.value
+    return slow
+  }
+
+  findValueFromEnd(n) {
+    return findNodeFromEnd(n).value
   }
 
   // TODO: Support deleting by node reference of by value
@@ -203,45 +210,16 @@ export default class LinkedList {
   toString() {
     let str = ''
 
-    for (let node of this) {
+    if (this.empty) {
+      return str
+    }
+
+    for (let node of this.nodes()) {
       str += `${node.value} -> `
     }
 
     str += 'null'
 
     return str
-  }
-
-  [Symbol.iterator]() {
-    return this
-  }
-
-  next() {
-    let obj = null
-
-    if (this.current === null) {
-      return { done: true }
-    } else {
-      obj = { value: this.current, done: false }
-      this.current = this.current.next
-      return obj
-    }
-  }
-
-  //
-  // Called when the iterator ends prematurely (abruptly)
-  // Caused by the following
-  //
-  // - break
-  // - return
-  // - throw
-  // - continue (can act like a break if in outer loop)
-  //
-  reset() {
-    this.current = this.head
-  }
-
-  return() {
-    this.current = this.head
   }
 }
