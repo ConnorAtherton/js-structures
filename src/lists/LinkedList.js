@@ -1,7 +1,5 @@
-import Node from '../helpers/node'
-
 //
-// List
+// Linked List
 //
 // An ordered collection, can also be thought of as a sequence.
 //
@@ -9,17 +7,11 @@ import Node from '../helpers/node'
 //
 // TODO
 //
-// -> Split into subclasses with doubly and singly linked and an a common interface for both.
-//
 // 1) Write a method that accepts a predicate as its only argument and
 // removes any node where the value matches the predicate.
 //
 // 2) Write the above function again but instead return a list containing all
 // nodes matching the predicate.
-//
-// 3) Test for a cycle in the list.
-//
-// 4) Select a random node.
 //
 // 6) Given two linked lists, return the intersection of the two lists: i.e. return a list
 //    containing only the elements that occur in both of the input lists.
@@ -27,6 +19,9 @@ import Node from '../helpers/node'
 // 7) There is linked list of millions of node and you do not know the length of it. Write
 //    a function which will return a random number from the list.
 //
+
+import Node from '../helpers/node'
+import { randomFromRange } from '../utils/random'
 
 export default class LinkedList {
   constructor(node = null) {
@@ -50,7 +45,6 @@ export default class LinkedList {
     return this
   }
 
-  // Removes node from the end of the list
   pop() {
     // Cannot pop an empty this
     if (this.empty) {
@@ -145,20 +139,22 @@ export default class LinkedList {
   // Given a singly linked list, find the nth element from the end.
   //
   findNodeFromEnd(n) {
-    if (n < 0) {
-      throw new Error('n must be a positive integer')
+    if (n < 0 || n > this.length) {
+      return null
     }
 
     let slow = this.head
     let fast = this.head
 
-    // Advanmce th fast pointer n numbers in from
+    // Advance the fast pointer n numbers in from the start
     while (n--) {
       fast = fast.next
     }
 
-    // iterate both pointers through until the fast [pointer is at the end
-    while (fast && fast.next !== null) {
+    // iterate both pointers through until the fast pointer is at the end
+    //
+    // Need the first condition in case the list is empty.
+    while (fast && fast.next) {
       slow = slow.next
       fast = fast.next
     }
@@ -166,8 +162,8 @@ export default class LinkedList {
     return slow
   }
 
-  findValueFromEnd(n) {
-    return findNodeFromEnd(n).value
+  nodeAtIndex(index) {
+    return this.findNodeFromEnd(this.length - index - 1)
   }
 
   //
@@ -221,5 +217,44 @@ export default class LinkedList {
     str += 'null'
 
     return str
+  }
+
+  //
+  // Returns true if a cycle is found in the list
+  //
+  // NOTE: How can we make this return the start node of the cycle?
+  //
+  hasCycle() {
+    let slow = this.head
+    let fast = this.head
+
+    while (slow && fast) {
+      // Fast pointer reached the end so no cycle
+      if (fast.next === null || fast.next.next === null) {
+        return false
+      }
+
+      // Found the cycle
+      if (slow === fast) {
+        return true
+      }
+
+      // Fast pointer moves just as quick
+      slow = slow.next
+      fast = fast.next.next
+    }
+  }
+
+  //
+  // Returns a random node in the list
+  //
+  random() {
+    const index = randomFromRange(0, this.length - 1)
+
+    return this.nodeAtIndex(index)
+  }
+
+  randomWithoutLength() {
+    // TODO
   }
 }

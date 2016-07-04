@@ -151,7 +151,7 @@ describe('Linked list', function() {
     })
   })
 
-  describe('#findNodeFromEnd', function() {
+  describe('finding nodes', function() {
     beforeEach(function() {
       llist = new LinkedList
       llist.push(1).push(2).push(3).push(4).push(5).push(6).push(7)
@@ -159,6 +159,21 @@ describe('Linked list', function() {
 
     it('Can find the element correctly', function() {
       assert.equal(llist.findNodeFromEnd(2).value, 5)
+    })
+
+    it('finds the last element', function() {
+      assert.equal(llist.findNodeFromEnd(0).value, 7)
+    })
+
+    it('finds nodes at an index', function() {
+      // first
+      assert.equal(llist.nodeAtIndex(0).value, 1)
+
+      // middle
+      assert.equal(llist.nodeAtIndex(3).value, 4)
+
+      // last
+      assert.equal(llist.nodeAtIndex(llist.length - 1).value, 7)
     })
   })
 
@@ -181,6 +196,42 @@ describe('Linked list', function() {
       assert.equal(llist.toString(), '1 -> 2 -> 3 -> null')
       llist.remove(notPresent)
       assert.equal(llist.toString(), '1 -> 2 -> 3 -> null')
+    })
+  })
+
+  describe('#findCycle', function() {
+    let startNode
+    let loopNode
+
+    beforeEach(function() {
+      llist = new LinkedList
+
+      startNode = new Node(2)
+      loopNode = new Node(2)
+
+      llist.push(1).push(startNode).push(3).push(loopNode).push(5)
+
+      loopNode.next = startNode
+    })
+
+    it('can detect a cycle', function() {
+      assert.equal(llist.hasCycle(), true)
+    })
+  })
+
+  describe('random nodes', function() {
+    const values = [1, 2, 3, 4, 5]
+
+    beforeEach(function() {
+      llist = new LinkedList
+
+      values.forEach(val => llist.push(val))
+    })
+
+    it('always selects an element from the list', function() {
+      let selected = llist.random()
+
+      assert.notEqual(values.indexOf(selected.value), -1)
     })
   })
 })

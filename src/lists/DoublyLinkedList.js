@@ -16,9 +16,25 @@ export default class DoublyLinkedList extends LinkedList {
     return this
   }
 
-  //
-  // Joins the current list to another list in O(1) time.
-  //
+  push(val) {
+    node = (node instanceof Node) ? node : new Node(node)
+
+    if (this.empty) {
+      this.head = node
+      this.tail = node
+    } else {
+      const oldTail = this.tail
+
+      oldTail.next = node
+      node.previous = oldTail
+      node.next = null
+    }
+
+    this.length++
+
+    return this
+  }
+
   union(list) {
     this.tail.next = list.head
     list.head.previous = this.tail
