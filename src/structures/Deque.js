@@ -19,11 +19,11 @@ export default class DoublyLinkedList {
 
   }
 
-  popFront(val) {
+  popFront() {
 
   }
 
-  popBack(val) {
+  popBack() {
 
   }
 }

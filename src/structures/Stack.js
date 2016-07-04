@@ -10,6 +10,10 @@ export default class Queue {
     this.size = 0
   }
 
+  get empty() {
+    return this.size === 0
+  }
+
   pop() {
     if (this.size === 0) { return null }
     let val = this.store.pop()

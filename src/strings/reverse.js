@@ -25,5 +25,7 @@ export function iterative(string) {
 // and calling the function on the rest of the string
 export function recursive(string) {
   let bound = string.length - 1
-  return string.length < 2 ? string : string[bound] + recursive(string.substring(0, bound))
+  return string.length < 2
+    ? string
+    : string[bound] + recursive(string.substring(0, bound))
 }

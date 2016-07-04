@@ -41,7 +41,7 @@ describe('Linked list', function() {
     })
   })
 
-  xdescribe('iterating', function() {
+  describe('iterating', function() {
     beforeEach(function() {
       llist = new LinkedList().push(1).push(2).push(3)
     })
@@ -94,61 +94,30 @@ describe('Linked list', function() {
 
   it('#unshift', function() {
     llist.unshift(1).unshift(2)
+
     assert.equal(llist.length, 2)
     assert.equal(llist.head.value, 2)
     assert.equal(llist.toString(), '2 -> 1 -> null')
   })
 
-  xit('chains prepends and push', function() {
-    llist.prepend(2).push(3).prepend(4)
-    assert.equal(llist.length, 4)
+  it('chains prepends and push', function() {
+    llist.unshift(2).push(3).unshift(4)
+
+    assert.equal(llist.length, 3)
     assert.equal(llist.head.value, 4)
+    assert.equal(llist.toString(), '4 -> 2 -> 3 -> null')
   })
 
+  it('can move a node to head', function() {
+    let node2 = new Node(2)
 
-  // it('can remove a node', function() {
-  //   var node2 = new Node(2)
-  //   var result = []
-
-  //   llist.push(node2).push(3)
-  //   llist.remove(node2)
-
-  //   for (var obj of llist) {
-  //     result.push(obj.value)
-  //   }
-
-  //   assert.equal(llist.length, 2)
-  //   assert.equal(result.indexOf(node2), -1)
-  // })
-
-  // it('can remove a node from the end', function() {
-  //   var node2 = new Node(2)
-
-  //   llist.push('re').push(node2).remove(node2)
-
-  //   assert.equal(llist.length, 2)
-  //   assert.equal(llist.head, node)
-  // })
-
-  // it('can remove a node from the start', function() {
-  //   var node2 = new Node(2)
-
-  //   llist.prepend(node2).remove(node2)
-
-  //   assert.equal(llist.length, 1)
-  //   assert.equal(llist.head, node)
-  // })
-
-  xit('can move a node to head', function() {
-    var node2 = new Node(2)
-
-    llist.push(node2).push(3)
+    llist.push(1).push(node2).push(3)
     llist.moveToHead(node2)
 
     assert.equal(llist.head, node2)
   })
 
-  xdescribe('.union', function() {
+  describe('.union', function() {
     let llist2
 
     beforeEach(function() {
@@ -170,20 +139,16 @@ describe('Linked list', function() {
     })
   })
 
-  xdescribe('reversing', function() {
+  describe('reversing', function() {
     beforeEach(function() {
       llist = new LinkedList(node)
       llist.push(2).push(3).push(4)
     })
 
-    it('Can print out the list correctly', function() {
-      assert.equal(llist.toString(), '1 -> 2 -> 3 -> 4 -> null')
-    })
-
     it('Can reverse a singly-linked list', function() {
+      assert.equal(llist.toString(), '1 -> 2 -> 3 -> 4 -> null')
       assert.equal(llist.reverse().toString(), '4 -> 3 -> 2 -> 1 -> null')
     })
-
   })
 
   describe('#findNodeFromEnd', function() {
@@ -197,16 +162,25 @@ describe('Linked list', function() {
     })
   })
 
-  // describe('#remove', function() {
-  //   beforeEach(function() {
-  //     llist = new LinkedList
-  //     let node = new Node(2)
-  //     llist.push(1).push(2).push(3)
-  //   })
+  describe('#remove', function() {
+    beforeEach(function() {
+      llist = new LinkedList
+      node = new Node(2)
 
-  //   it('Can remove when given a node reference', function() {
-  //     llist.remove(node)
-  //     assert.equal(llist.toString(), '1 -> 3 -> null')
-  //   })
-  // })
+      llist.push(1).push(node).push(3)
+    })
+
+    it('Can remove when given a node reference', function() {
+      assert.equal(llist.toString(), '1 -> 2 -> 3 -> null')
+      llist.remove(node)
+      assert.equal(llist.toString(), '1 -> 3 -> null')
+    })
+
+    it('Leaves the list as is if the node is not present', function() {
+      let notPresent = new Node(2)
+      assert.equal(llist.toString(), '1 -> 2 -> 3 -> null')
+      llist.remove(notPresent)
+      assert.equal(llist.toString(), '1 -> 2 -> 3 -> null')
+    })
+  })
 })

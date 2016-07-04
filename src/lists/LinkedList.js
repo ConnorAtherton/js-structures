@@ -1,6 +1,12 @@
 import Node from '../helpers/node'
 
 //
+// List
+//
+// An ordered collection, can also be thought of as a sequence.
+//
+// NOTE: We aren't storing the tail in this implementation.
+//
 // TODO
 //
 // -> Split into subclasses with doubly and singly linked and an a common interface for both.
@@ -94,25 +100,20 @@ export default class LinkedList {
     return node
   }
 
-  // moveToHead(node) {
-  //   this.excise(node)
-  //   node.next = this.head
-  //   this.head = this.current = node
+  moveToHead(node) {
+    this.remove(node)
+    node.next = this.head
+    this.head = node
 
-  //   return this
-  // }
+    return this
+  }
 
   get empty() {
     return this.length === 0
   }
 
-  //
-  // Joins the current list to another list in O(1) time.
-  //
-  // TODO: Duplicate the current object first?
-  //
   union(list) {
-    this.tail.next = list.head
+    this.findNodeFromEnd(0).next = list.head
 
     return this
   }
@@ -169,27 +170,26 @@ export default class LinkedList {
     return findNodeFromEnd(n).value
   }
 
-  // TODO: Support deleting by node reference of by value
   //
   // Since we can't look backwards this will be O(n)
+  //
   remove(node) {
     let slow = this.head
     let fast = this.head
 
-    while (fast.next !== null) {
+    while (fast !== null) {
       // Switch references
       if (fast == node) {
-        console.log('Found node', fast)
+        // Remove node references
+        fast == this.head
+          ? this.head = this.head.next
+          : slow.next = fast.next
 
-        if (fast == this.head) {
-          this.head = this.head.next
-        } else {
-          slow.next = fast.next
-        }
-
-        // mark it for deletion by CG
+        // mark it for deletion by GC
         fast = null
         this.length--
+
+        break
       }
 
       fast = fast.next

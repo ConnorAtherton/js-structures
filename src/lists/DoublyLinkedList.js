@@ -16,6 +16,9 @@ export default class DoublyLinkedList extends LinkedList {
     return this
   }
 
+  //
+  // Joins the current list to another list in O(1) time.
+  //
   union(list) {
     this.tail.next = list.head
     list.head.previous = this.tail
@@ -34,6 +37,19 @@ export default class DoublyLinkedList extends LinkedList {
     str += 'null'
 
     return str
+  }
+
+  //
+  // Helper methods to make supporting the Deque structure easier
+  //
+  removeFirst() {
+    this.head = this.head.next
+    return this
+  }
+
+  removeLast() {
+    this.tail = this.tail.previous
+    return this
   }
 
   append(node) {
