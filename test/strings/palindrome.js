@@ -1,5 +1,5 @@
-let assert = require('assert')
-let palindrome = require('../../dist/strings/palindrome.js')
+import assert from 'assert'
+import * as palindrome from '../../dist/strings/palindrome'
 
 describe('palindrome', function() {
   context('iterative', function() {
@@ -29,6 +29,20 @@ describe('palindrome', function() {
     it('returns true for palindromes', function() {
       assert.equal(palindrome.recursive('sas'), true)
       assert.equal(palindrome.recursive('saw was'), true)
+    })
+  })
+
+  context('permute', function() {
+    it('returns false for non-palindromes', function() {
+      assert.equal(palindrome.permuted('saw war'), false)
+    })
+
+    it('returns true for palindromes', function() {
+      assert.equal(palindrome.permuted('sas'), true)
+    })
+
+    it('returns true for permuted palindromes', function() {
+      assert.equal(palindrome.permuted('ivicc'), true)
     })
   })
 })

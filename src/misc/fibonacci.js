@@ -48,7 +48,7 @@ export const iterator = {
   }
 }
 
-export function* infinite(n = null) {
+export function* loop(n = null) {
   const infinite = n === null;
   let [current, next] = [0, 1]
 

@@ -3,6 +3,8 @@
 //
 // NOTE: What is the largest number we can store in JS, 2**32?
 //
+// http://www.cs.ucf.edu/~dmarino/ucf/java/BigInt.java
+//
 export default class BigInt {
   constructor() {
 

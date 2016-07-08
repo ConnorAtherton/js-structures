@@ -46,13 +46,27 @@ export default class DoublyLinkedList extends LinkedList {
   toString() {
     let str = ''
 
-    for (let node of this) {
+    if (this.empty) {
+      return str
+    }
+
+    for (let node of this.nodesForward()) {
       str += `${node.value} <-> `
     }
 
     str += 'null'
 
     return str
+  }
+
+  //
+  // Generators, used to iterate over the list.
+  //
+  * nodesForward() {
+    return super.nodes()
+  }
+
+  * nodesBackward() {
   }
 
   //
@@ -135,10 +149,9 @@ export default class DoublyLinkedList extends LinkedList {
 
     // swap the references
     tmp = this.head
-    this.head = this.current = this.tail
+    this.head = this.tail
     this.tail = tmp
 
     return this
   }
-
 }

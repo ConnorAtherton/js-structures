@@ -6,7 +6,7 @@
 //
 import DoublyLinkedList from '../lists/DoublyLinkedList'
 
-export default class DoublyLinkedList {
+export default class Deque {
   constructor() {
     this._list = new DoublyLinkedList()
   }
@@ -24,6 +24,20 @@ export default class DoublyLinkedList {
   }
 
   popBack() {
+
+  }
+
+  //
+  // Iterates in FIFO order, Queue order
+  //
+  eachForward(fn) {
+
+  }
+
+  //
+  // Iterates in LIFO order, Stack order
+  //
+  eachBackward(fn) {
 
   }
 }

@@ -26,12 +26,12 @@ describe('Fibonacci', function() {
     })
   })
 
-  describe('infinite', function() {
+  describe('loop', function() {
     it('iterator produces infinite fibonacci sequence', () => {
       const expected = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987]
       let acc = []
 
-      for (let fib of fibonacci.infinite()) {
+      for (let fib of fibonacci.loop()) {
         if (fib > 1000) break
 
         acc.push(fib)
@@ -44,7 +44,7 @@ describe('Fibonacci', function() {
       const expected = [0, 1, 1, 2, 3, 5, 8, 13, 21]
       let acc = []
 
-      for (let fib of fibonacci.infinite(9)) {
+      for (let fib of fibonacci.loop(9)) {
         acc.push(fib)
       }
 
