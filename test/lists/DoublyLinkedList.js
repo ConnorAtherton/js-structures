@@ -2,242 +2,278 @@ import assert from 'assert'
 import DoublyLinkedList from '../../dist/lists/DoublyLinkedList.js'
 import Node from '../../dist/helpers/node'
 
-// describe('Lists::DoublyLinkedList', function() {
-//   let llist
-//   let node
+describe('Lists::DoublyLinkedList', function() {
+  let llist
+  let node
 
-//   beforeEach(function() {
-//     llist = new DoublyLinkedList
-//   })
+  beforeEach(function() {
+    llist = new DoublyLinkedList
+  })
 
-//   describe('starting empty', function() {
-//     beforeEach(function() {
-//       llist = new DoublyLinkedList
-//     })
+  afterEach(function() {
+    llist = null
+  })
 
-//     it ('should have 0 length', function() {
-//       assert.equal(llist.length, 0)
-//     })
+  describe('starting empty', function() {
+    beforeEach(function() {
+      llist = new DoublyLinkedList
+    })
 
-//     it ('tail and head should be null', function() {
-//       assert.equal(llist.tail, null)
-//       assert.equal(llist.head, null)
-//     })
+    it ('should have 0 length', function() {
+      assert.equal(llist.length, 0)
+    })
 
-//     it ('Should stringify to an empty string', function() {
-//       assert.equal(llist.toString(), '')
-//     })
-//   })
+    it ('tail and head should be null', function() {
+      assert.equal(llist.tail, null)
+      assert.equal(llist.head, null)
+    })
 
-//   describe('passing node to the constructor', function() {
-//     beforeEach(function() {
-//       node = new Node(1)
-//       llist = new DoublyLinkedList(node)
-//     })
+    it ('Should stringify to an empty string', function() {
+      assert.equal(llist.toString(), '')
+    })
+  })
 
-//     it('should have correct size', function() {
-//       assert.equal(llist.length, 1)
-//     })
+  describe('passing node to the constructor', function() {
+    beforeEach(function() {
+      node = new Node(1)
+      llist = new DoublyLinkedList(node)
+    })
 
-//     it('should have correct head and tail', function() {
-//       assert.equal(llist.tail, node)
-//       assert.equal(llist.head, node)
-//     })
-//   })
+    it('should have correct size', function() {
+      assert.equal(llist.length, 1)
+    })
 
-//   describe('iterating', function() {
-//     beforeEach(function() {
-//       llist = new DoublyLinkedList().push(1).push(2).push(3)
-//     })
+    it('should have correct head and tail', function() {
+      assert.equal(llist.tail, node)
+      assert.equal(llist.head, node)
+    })
+  })
 
-//     it('#nodesForward', function() {
-//       let res = []
+  describe('.clear', function() {
+    it('resets all information to null', function() {
+      llist.push(1).push(2).push(3)
 
-//       for (let node of llist.nodesForward()) {
-//         res.push(node.value)
-//       }
+      assert.equal(llist.length, 3)
+      assert.equal(llist.head.value, 1)
+      assert.equal(llist.tail.value, 3)
 
-//       assert.deepEqual(res, [1, 2, 3])
-//     })
+      llist.clear()
 
-//     it('#nodesBackward', function() {
-//       let res = []
+      assert.equal(llist.length, 0)
+      assert.equal(llist.head, null)
+      assert.equal(llist.tail, null)
+    })
+  })
 
-//       for (let node of llist.nodesBackward()) {
-//         res.push(node.value)
-//       }
+  describe('#toString', function() {
+    beforeEach(function() {
+      llist = new DoublyLinkedList(node)
+      llist.push(2).push(3).push(4)
+    })
 
-//       assert.deepEqual(res, [3, 2, 1])
-//     })
-//   })
+    it('Can print out the list correctly', function() {
+      assert.equal(llist.toString(), '1 <-> 2 <-> 3 <-> 4 <-> null')
+    })
+  })
 
-//   //
-//   // List operations
-//   //
-//   it.only('#push', function() {
-//     assert.equal(llist.toString(), '')
+  describe('iterating', function() {
+    beforeEach(function() {
+      llist = new DoublyLinkedList().push(1).push(2).push(3)
+    })
 
-//     llist.push(1).push(2)
+    it('#nodesForward', function() {
+      let res = []
 
-//     assert.equal(llist.toString(), '1 <-> 2 <-> null')
-//     assert.equal(llist.length, 2)
-//   })
+      for (let node of llist.nodesForward()) {
+        res.push(node.value)
+      }
 
-//   it('#pop', function() {
-//     llist.push(2).push(3).push(1)
+      assert.deepEqual(res, [1, 2, 3])
+    })
 
-//     assert.equal(llist.toString(), '2 -> 3 -> 1 -> null')
+    it('#nodesBackward', function() {
+      let res = []
 
-//     const node = llist.pop()
+      for (let node of llist.nodesBackward()) {
+        res.push(node.value)
+      }
 
-//     assert.equal(llist.toString(), '2 -> 3 -> null')
-//     assert.equal(llist.length, 2)
-//     assert.equal(node.value, 1)
-//   })
+      assert.deepEqual(res, [3, 2, 1])
+    })
+  })
 
-//   it('#pop empty', function() {
-//     let node = llist.pop()
+  //
+  // List operations
+  //
+  it('#push', function() {
+    assert.equal(llist.toString(), '')
 
-//     assert.equal(llist.length, 0)
-//     assert.equal(node, null)
-//   })
+    llist.push(1).push(2)
 
-//   it('#shift', function() {
-//     let node = llist.push(1).shift()
+    assert.equal(llist.toString(), '1 <-> 2 <-> null')
+    assert.equal(llist.length, 2)
+  })
 
-//     assert.equal(llist.length, 0)
-//     assert.equal(node.value, 1)
-//   })
+  it('#pop', function() {
+    llist.push(2).push(3).push(1)
 
-//   it('#unshift', function() {
-//     llist.unshift(1).unshift(2)
+    assert.equal(llist.length, 3)
+    assert.equal(llist.toString(), '2 <-> 3 <-> 1 <-> null')
 
-//     assert.equal(llist.length, 2)
-//     assert.equal(llist.head.value, 2)
-//     assert.equal(llist.toString(), '2 -> 1 -> null')
-//   })
+    const node = llist.pop()
 
-//   it('chains prepends and push', function() {
-//     llist.unshift(2).push(3).unshift(4)
+    assert.equal(llist.length, 2)
+    assert.equal(llist.toString(), '2 <-> 3 <-> null')
+    assert.equal(node.value, 1)
+  })
 
-//     assert.equal(llist.length, 3)
-//     assert.equal(llist.head.value, 4)
-//     assert.equal(llist.toString(), '4 -> 2 -> 3 -> null')
-//   })
+  it('#pop empty', function() {
+    let node = llist.pop()
 
-//     // it('can remove a node', function() {
-//     //   var node2 = new Node(2)
-//     //   var result = []
+    assert.equal(llist.length, 0)
+    assert.equal(node, null)
+  })
 
-//     //   llist.append(node2).append(3)
-//     //   llist.remove(node2)
+  it('#pop single', function() {
+    let node = llist.push(1).pop()
 
-//     //   for (var obj of llist) {
-//     //     result.push(obj.value)
-//     //   }
+    assert.equal(llist.empty, true)
+    assert.equal(node.value, 1)
+  })
 
-//     //   assert.equal(llist.length, 2)
-//     //   assert.equal(result.indexOf(node2), -1)
-//     // })
+  it('#shift', function() {
+    let node = llist.push(1).shift()
 
-//     // it('can remove a node from the end', function() {
-//     //   var node2 = new Node(2)
+    assert.equal(llist.length, 0)
+    assert.equal(node.value, 1)
+  })
 
-//     //   llist.append('re').append(node2).remove(node2)
+  it('#unshift', function() {
+    llist.unshift(1).unshift(2)
 
-//     //   assert.equal(llist.length, 2)
-//     //   assert.equal(llist.head, node)
-//     // })
+    assert.equal(llist.length, 2)
+    assert.equal(llist.head.value, 2)
+    assert.equal(llist.toString(), '2 <-> 1 <-> null')
+  })
 
-//     // it('can remove a node from the start', function() {
-//     //   var node2 = new Node(2)
+  it('chains prepends and push', function() {
+    llist.unshift(2).push(3).unshift(4)
 
-//     //   llist.prepend(node2).remove(node2)
+    assert.equal(llist.length, 3)
+    assert.equal(llist.head.value, 4)
+    assert.equal(llist.toString(), '4 <-> 2 <-> 3 <-> null')
+  })
 
-//     //   assert.equal(llist.length, 1)
-//     //   assert.equal(llist.head, node)
-//     //   assert.equal(llist.tail, node)
-//     // })
 
-//     xit('can move a node to head', function() {
-//       var node2 = new Node(2)
+    it('can move a node to head', function() {
+      let node2 = new Node(2)
 
-//       llist.append(node2).append(3)
-//       llist.moveToHead(node2)
+      llist.push(3).push(node2).push(5)
+      llist.moveToHead(node2)
 
-//       assert.equal(llist.head, node2)
-//     })
+      assert.equal(llist.head, node2)
+      assert.equal(llist.toString(), '2 <-> 3 <-> 5 <-> null')
+    })
 
-//   xdescribe('.union', function() {
-//     let llist2
+  describe('.union', function() {
+    let llist2
 
-//     beforeEach(function() {
-//       llist = new LinkedList()
-//       llist.append(1).append(2).append(3).append(4)
+    beforeEach(function() {
+      llist = new DoublyLinkedList()
+      llist.push(1).push(2).push(3).push(4)
 
-//       llist2 = new LinkedList()
-//       llist2.append(5).append(6).append(7)
-//     })
+      llist2 = new DoublyLinkedList()
+      llist2.push(5).push(6).push(7)
+    })
 
-//     it('Joins two lists together', function() {
-//       llist.union(llist2)
-//       assert.equal(llist.toString(), '1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> null')
-//     })
+    it('Joins two lists together', function() {
+      llist.union(llist2)
+      assert.equal(llist.toString(), '1 <-> 2 <-> 3 <-> 4 <-> 5 <-> 6 <-> 7 <-> null')
+    })
 
-//     it('returns the first list for chaining', function() {
-//       let res = llist.union(llist2)
-//       assert.equal(llist, res)
-//     })
-//   })
+    it('returns the first list for chaining', function() {
+      let res = llist.union(llist2)
+      assert.equal(llist, res)
+    })
+  })
 
-//   xdescribe('reversing', function() {
-//     beforeEach(function() {
-//       llist = new LinkedList(node)
-//       llist.append(2).append(3).append(4)
-//     })
+  describe('reversing', function() {
+    it('Can reverse a singly-linked list', function() {
+      llist.push(1).push(2).push(3).push(4)
+      assert.equal(llist.reverse().toString(), '4 <-> 3 <-> 2 <-> 1 <-> null')
+    })
+  })
 
-//     it('Can print out the list correctly', function() {
-//       assert.equal(llist.toString(), '1 -> 2 -> 3 -> 4 -> null')
-//     })
+  describe('.findNodeFromEnd', function() {
+    beforeEach(function() {
+      llist.push(1).push(2).push(3).push(4).push(5).push(6).push(7)
+    })
 
-//     it('Can reverse a singly-linked list', function() {
-//       assert.equal(llist.reverse().toString(), '4 -> 3 -> 2 -> 1 -> null')
-//     })
+    it('Can find the element correctly', function() {
+      assert.equal(llist.findNodeFromEnd(2).value, 5)
+    })
 
-//   })
+    it('Can find the last element correctly', function() {
+      assert.equal(llist.findNodeFromEnd(0).value, 7)
+    })
 
-//   describe('#toString', function() {
-//     beforeEach(function() {
-//       llist = new DoublyLinkedList(node)
-//       llist.push(2).push(3).push(4)
-//     })
+    it('Can find the first element correctly', function() {
+      assert.equal(llist.findNodeFromEnd(llist.length - 1), llist.head)
+    })
 
-//     it('Can print out the list correctly', function() {
-//       assert.equal(llist.toString(), '1 <-> 2 <-> 3 <-> 4 <-> null')
-//     })
-//   })
+    it('Returns null for elements out of the index range', function() {
+      assert.equal(llist.findNodeFromEnd(-1), null)
+      assert.equal(llist.findNodeFromEnd(Infinity), null)
+    })
+  })
 
-//   xdescribe('#findElementFromEnd', function() {
-//     beforeEach(function() {
-//       llist = new DoublyLinkedList
-//       llist.append(1).append(2).append(3).append(4).append(5).append(6).append(7)
-//     })
+  describe('#remove', function() {
+    beforeEach(function() {
+      llist.push(1).push(2).push(3)
+    })
 
-//     it('Can find the element correctly', function() {
-//       assert.equal(llist.findElementFromEnd(2), 5)
-//     })
-//   })
+    it('chains', function() {
+      let node = new Node(4)
+      llist.push(node)
 
-//   // describe('#remove', function() {
-//   //   beforeEach(function() {
-//   //     llist = new LinkedList
-//   //     let node = new Node(2)
-//   //     llist.append(1).append(2).append(3)
-//   //   })
+      assert.equal(llist.remove(node), llist)
+    })
 
-//   //   it('Can remove when given a node reference', function() {
-//   //     llist.remove(node)
-//   //     assert.equal(llist.toString(), '1 -> 3 -> null')
-//   //   })
-//   // })
-// })
+    it('from the end', function() {
+      let node = new Node(4)
+
+      llist.push(node)
+
+      assert.equal(llist.length, 4)
+
+      llist.remove(node)
+
+      assert.equal(llist.length, 3)
+      assert.equal(llist.toString(), '1 <-> 2 <-> 3 <-> null')
+    })
+
+    it('from the start', function() {
+      let node = llist.head
+
+      assert.equal(llist.length, 3)
+
+      llist.remove(node)
+
+      assert.equal(llist.length, 2)
+      assert.equal(llist.toString(), '2 <-> 3 <-> null')
+    })
+
+    it('from the middle', function() {
+      let node = new Node(4)
+
+      llist.push(node).push(5)
+
+      assert.equal(llist.length, 5)
+
+      llist.remove(node)
+
+      assert.equal(llist.length, 4)
+      assert.equal(llist.toString(), '1 <-> 2 <-> 3 <-> 5 <-> null')
+    })
+  })
+})

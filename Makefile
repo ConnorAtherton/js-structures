@@ -16,14 +16,21 @@ ESLINT := $(BIN)/eslint
 TODO := $(BIN)/todos
 ISTANBUL := $(BIN)/istanbul
 NODE := $(BIN)/babel-node
+BROWSERIFY := $(BIN)/browserify
 
 default: build
 
 test: | node_modules
 	@$(NODE) $(MOCHA) --opts .mocha
 
+browser-test: | node_modules
+	@$(BROWSERIFY) test/**/*.js -o test/browser.js
+
 coverage:
-	@$(NODE) ./node_modules/istanbul/lib/cli cover --report text $(MOCHA) --  --opts .mocha
+	@$(NODE) ./node_modules/.bin/istanbul cover $(MOCHA) -- --opts .mocha
+
+coveralls: coverage
+	@cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage
 
 lint: | node_modules
 	@$(ESLINT) src/

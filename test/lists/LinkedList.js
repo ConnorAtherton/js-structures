@@ -10,6 +10,10 @@ describe('Linked list', function() {
     llist = new LinkedList
   })
 
+  afterEach(function() {
+    llist = null
+  })
+
   describe('starting empty', function() {
     it ('knows about its own size', function() {
       assert.equal(llist.length, 0)
@@ -85,11 +89,20 @@ describe('Linked list', function() {
     assert.equal(node, null)
   })
 
-  it('#shift', function() {
-    let node = llist.push(1).shift()
+  describe('#shift', function() {
+    it('single element', function() {
+      let node = llist.push(1).shift()
 
-    assert.equal(llist.length, 0)
-    assert.equal(node.value, 1)
+      assert.equal(llist.length, 0)
+      assert.equal(node.value, 1)
+    })
+
+    it('multiple elements', function() {
+      llist.push(1).push(2).shift()
+
+      assert.equal(llist.length, 1)
+      assert.equal(llist.head.value, 2)
+    })
   })
 
   it('#unshift', function() {
@@ -157,6 +170,11 @@ describe('Linked list', function() {
       llist.push(1).push(2).push(3).push(4).push(5).push(6).push(7)
     })
 
+    it('Returns null for elements out of the index range', function() {
+      assert.equal(llist.findNodeFromEnd(-1), null)
+      assert.equal(llist.findNodeFromEnd(Infinity), null)
+    })
+
     it('Can find the element correctly', function() {
       assert.equal(llist.findNodeFromEnd(2).value, 5)
     })
@@ -200,22 +218,32 @@ describe('Linked list', function() {
   })
 
   describe('#findCycle', function() {
-    let startNode
-    let loopNode
-
-    beforeEach(function() {
-      llist = new LinkedList
-
-      startNode = new Node(2)
-      loopNode = new Node(2)
+    it('can detect a shallow cycle', function() {
+      let startNode = new Node(2)
+      let loopNode = new Node(2)
 
       llist.push(1).push(startNode).push(3).push(loopNode).push(5)
 
       loopNode.next = startNode
+
+      assert.equal(llist.hasCycle(), true)
     })
 
-    it('can detect a cycle', function() {
+    it('can detect a deep cycle', function() {
+      let startNode = new Node(2)
+      let loopNode = new Node(2)
+
+      llist.push(1).push(2).push(3).push(startNode).push(3).push(loopNode).push(5).push(6).push(7)
+
+      loopNode.next = startNode
+
       assert.equal(llist.hasCycle(), true)
+    })
+
+    it('returns false is no cycle detected', function() {
+      llist.push(1).push(2)
+
+      assert.equal(llist.hasCycle(), false)
     })
   })
 

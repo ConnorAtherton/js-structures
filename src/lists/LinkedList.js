@@ -67,13 +67,11 @@ export default class LinkedList {
   unshift(node) {
     node = (node instanceof Node) ? node : new Node(node)
 
-    if (this.empty) {
-      this.head = node
-    } else {
+    if (!this.empty) {
       node.next = this.head
-      this.head = node
     }
 
+    this.head = node
     this.length++
 
     return this
@@ -228,12 +226,14 @@ export default class LinkedList {
     let slow = this.head
     let fast = this.head
 
-    while (slow && fast) {
-      // Fast pointer reached the end so no cycle
-      if (fast.next === null || fast.next.next === null) {
-        return false
-      }
+    // Fast pointer reached the end so no cycle
+    if (fast.next === null || fast.next.next === null) {
+      return false
+    }
 
+    fast = fast.next.next
+
+    while (slow && fast) {
       // Found the cycle
       if (slow === fast) {
         return true
@@ -254,7 +254,30 @@ export default class LinkedList {
     return this.nodeAtIndex(index)
   }
 
+  //
+  // Knuth random sampling of stream
+  //
   randomWithoutLength() {
-    // TODO
+    if (this.empty) {
+      return null
+    }
+
+    let currentElement = this.head
+    let current = this.head
+    let currentIndex = 1
+    let randomNumber = null
+
+    while (current.next !== null) {
+      current = current.next
+      currentIndex++
+
+      randomNumber = randomFromRange(1, currentIndex)
+
+      if (randomNumber === 1) {
+        currentElement = current
+      }
+    }
+
+    return currentElement
   }
 }

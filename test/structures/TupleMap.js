@@ -1,5 +1,5 @@
 import assert from 'assert'
-import TupleMap from '../../dist/hashMap/tupleMap'
+import TupleMap from '../../dist/structures/TupleMap'
 
 describe('TupleMap', () => {
   let tuple = null

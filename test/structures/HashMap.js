@@ -1,5 +1,5 @@
 import assert from 'assert'
-import HashMap from '../../dist/hashMap/HashMap'
+import HashMap from '../../dist/structures/HashMap'
 
 // HashMap.has(key) always returns an integer
 describe('HashMap', () => {

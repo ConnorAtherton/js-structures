@@ -8,7 +8,7 @@
 //
 // 1) What’s the difference between a hashtable and a hashmap?
 //
-import TupleMap from './tupleMap'
+import TupleMap from './TupleMap'
 
 export default class HashMap {
   //

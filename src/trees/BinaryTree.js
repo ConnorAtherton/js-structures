@@ -1,11 +1,32 @@
 import Queue from '../Queue';
 
 //
+// TODO: Tests for tree traversals
+//
+
+//
 // External storage structure, such as a stack, a queue, or the call stack if we are using recusion,
 // will require space proportional to the maximum number of nodes at a given depth. This can be as
-// much as the total number of nodes / 2
+// much as the total number of nodes / 2.
 //
 export default class BinaryTreeNode {
+  //
+  // Switches all nodes around the middle axis. Assumes the given node is the root.
+  //
+  // http://stackoverflow.com/questions/9460255/reverse-a-binary-tree-left-to-right
+  //
+  static reverse(root) {
+    if (node === null) return
+
+    const tmp = node.left
+    node.left = node.right
+    node.right = tmp
+
+    // Recurse down the tree
+    BinaryTreeNode.reverse(node.left)
+    BinaryTreeNode.reverse(node.right)
+  }
+
   constructor(value, left = null, right = null) {
     this.value = value
     this.left = left
@@ -20,6 +41,10 @@ export default class BinaryTreeNode {
   insertRight(value) {
     this.right = new BinaryTreeNode(value)
     return this
+  }
+
+  * children() {
+    return [this.left, this.right].filter(node => !!node)
   }
 
   //
@@ -61,6 +86,7 @@ export default class BinaryTreeNode {
 
     while (!q.isEmpty) {
       currentNode = q.dequeue()
+
       fn(currentNode)
 
       if (currentNode.left !== null) {

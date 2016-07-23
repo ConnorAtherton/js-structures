@@ -4,3 +4,5 @@ node_js:
   - "6"
   - "6.1"
 script: make test--full
+after_success:
+  - make coveralls

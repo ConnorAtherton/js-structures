@@ -1,4 +1,4 @@
-import LinkedList from './LinkedList';
+import LinkedList from './LinkedList'
 import Node from '../helpers/node'
 
 export default class DoublyLinkedList extends LinkedList {
@@ -17,20 +17,48 @@ export default class DoublyLinkedList extends LinkedList {
   }
 
   push(val) {
-    node = (node instanceof Node) ? node : new Node(node)
+    const node = (val instanceof Node) ? val : new Node(val)
 
     if (this.empty) {
       this.head = node
       this.tail = node
     } else {
       const oldTail = this.tail
-
       oldTail.next = node
+
       node.previous = oldTail
       node.next = null
+
+      this.tail = node
     }
 
     this.length++
+
+    return this
+  }
+
+  pop() {
+    // Cannot pop an empty this
+    if (this.empty) { return null }
+
+    let oldNode = this.tail
+    let newTail = this.tail.previous
+
+    if (newTail) {
+      newTail.next = null
+    }
+
+    this.length--
+
+    return oldNode
+  }
+
+  unshift(node) {
+    super.unshift(node)
+
+    if (this.length === 1) {
+      this.tail = this.head
+    }
 
     return this
   }
@@ -41,6 +69,19 @@ export default class DoublyLinkedList extends LinkedList {
     this.tail = list.tail
 
     return this
+  }
+
+  findNodeFromEnd(n) {
+    if (n === 0) return this.tail
+    if (n < 0 || n > this.length - 1) return null
+
+    let node = this.tail
+
+    while (n--) {
+      node = node.previous
+    }
+
+    return node
   }
 
   toString() {
@@ -63,10 +104,16 @@ export default class DoublyLinkedList extends LinkedList {
   // Generators, used to iterate over the list.
   //
   * nodesForward() {
-    return super.nodes()
+    yield* this.nodes()
   }
 
   * nodesBackward() {
+    let current = this.tail
+
+    while (current !== null) {
+      yield current
+      current = current.previous
+    }
   }
 
   //
@@ -79,22 +126,6 @@ export default class DoublyLinkedList extends LinkedList {
 
   removeLast() {
     this.tail = this.tail.previous
-    return this
-  }
-
-  append(node) {
-    node = (node instanceof Node) ? node : new Node(node)
-
-    if (this.empty()) {
-      this.head = this.tail = this.current = node
-    } else {
-      this.tail.next = node
-      node.previous = this.tail
-      this.tail = node
-    }
-
-    this.length++
-
     return this
   }
 

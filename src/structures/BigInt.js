@@ -4,6 +4,7 @@
 // NOTE: What is the largest number we can store in JS, 2**32?
 //
 // http://www.cs.ucf.edu/~dmarino/ucf/java/BigInt.java
+// http://iwillgetthatjobatgoogle.tumblr.com/post/32583376161/writing-biginteger-better-than-jdk-one
 //
 export default class BigInt {
   constructor() {
@@ -14,14 +15,17 @@ export default class BigInt {
 
   }
 
+  // @returns [Number]
   add() {
 
   }
 
+  // @returns [Number]
   subtract() {
 
   }
 
+  // @returns [Boolean]
   equals() {
 
   }
