@@ -123,3 +123,29 @@ export function intersectionSorted(arr1, arr2) {
 //     return intersectionUnsortedBinary(a, b)
 //   })
 // }
+
+//
+// Removes a reference type from an array
+//
+export function remove(arr, el) {
+  const index = arr.indexOf(el)
+
+  arr.splice(index, 1)
+
+  return arr
+}
+
+export function repeat(arr, numRepeat = 0) {
+  if (numRepeat < 1) {
+    return arr
+  }
+
+  const copy = arr.slice()
+  let res = arr
+
+  for (let i = 0; i < numRepeat; i++) {
+    res = [...res, ...copy]
+  }
+
+  return res.sort()
+}

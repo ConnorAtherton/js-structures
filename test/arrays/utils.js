@@ -55,4 +55,21 @@ describe('utils', function() {
       assert.deepEqual(value, [3, 4, 5])
     })
   })
+
+  describe('.remove', function() {
+    it('removes a reference object from an array', function() {
+      let el = [2]
+      let arr = [[1], el, [3]]
+
+      assert.deepEqual(utils.remove(arr, el), [[1], [3]])
+    })
+  })
+
+  describe('.repeat', function() {
+    it('repeats an array', function() {
+      let arr = [1, 3, 2]
+
+      assert.deepEqual(utils.repeat(arr, 2), [1, 1, 1, 2, 2, 2, 3, 3, 3])
+    })
+  })
 })

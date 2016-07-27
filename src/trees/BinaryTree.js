@@ -14,6 +14,7 @@ export default class BinaryTreeNode {
   // Switches all nodes around the middle axis. Assumes the given node is the root.
   //
   // http://stackoverflow.com/questions/9460255/reverse-a-binary-tree-left-to-right
+  // http://www.egr.unlv.edu/~larmore/Courses/CSC477/bfsDfs.pdf
   //
   static reverse(root) {
     if (node === null) return
