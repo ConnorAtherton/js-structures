@@ -16,8 +16,6 @@
 // 6) Given two linked lists, return the intersection of the two lists: i.e. return a list
 //    containing only the elements that occur in both of the input lists.
 //
-// 7) There is linked list of millions of node and you do not know the length of it. Write
-//    a function which will return a random number from the list.
 //
 
 import Node from '../helpers/node'
@@ -233,13 +231,13 @@ export default class LinkedList {
 
     fast = fast.next.next
 
-    while (slow && fast) {
+    while (slow && fast && fast.next) {
       // Found the cycle
       if (slow === fast) {
         return true
       }
 
-      // Fast pointer moves just as quick
+      // Fast pointer moves twice as quick
       slow = slow.next
       fast = fast.next.next
     }
@@ -255,7 +253,11 @@ export default class LinkedList {
   }
 
   //
+  // There is linked list of millions of node and you do not know the length of it.
+  // Write a function which will return a random node from the list.
+  //
   // Knuth random sampling of stream
+  //
   //
   randomWithoutLength() {
     if (this.empty) {

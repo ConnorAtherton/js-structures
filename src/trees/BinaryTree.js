@@ -1,22 +1,18 @@
-import Queue from '../Queue';
-
-//
-// TODO: Tests for tree traversals
-//
+import TreeNode from './Tree'
 
 //
 // External storage structure, such as a stack, a queue, or the call stack if we are using recusion,
 // will require space proportional to the maximum number of nodes at a given depth. This can be as
 // much as the total number of nodes / 2.
 //
-export default class BinaryTreeNode {
+export default class BinaryTreeNode extends TreeNode {
   //
   // Switches all nodes around the middle axis. Assumes the given node is the root.
   //
   // http://stackoverflow.com/questions/9460255/reverse-a-binary-tree-left-to-right
   // http://www.egr.unlv.edu/~larmore/Courses/CSC477/bfsDfs.pdf
   //
-  static reverse(root) {
+  static reverse(node) {
     if (node === null) return
 
     const tmp = node.left
@@ -29,74 +25,51 @@ export default class BinaryTreeNode {
   }
 
   constructor(value, left = null, right = null) {
+    super()
+
     this.value = value
-    this.left = left
-    this.right = right
+    this.left = left && new BinaryTreeNode(left)
+    this.right = right && new BinaryTreeNode(right)
   }
 
   insertLeft(value) {
     this.left = new BinaryTreeNode(value)
-    return this
+    return this.left
   }
 
   insertRight(value) {
     this.right = new BinaryTreeNode(value)
-    return this
+    return this.right
   }
 
-  * children() {
+  children() {
     return [this.left, this.right].filter(node => !!node)
   }
 
-  //
-  // DFS
-  //
   dfs(fn, type = 'inorder') {
-    for (let node of this[`_${type}`]()) {
-      fn(node)
-    }
+    return super.dfs(fn, type)
   }
 
   * _preorder() {
-    yield this
-    yield* this.left.preorder()
-    yield* this.right.preorder()
+    yield this.value
+
+    if (this.left) yield* this.left._preorder()
+    if (this.right) yield* this.right._preorder()
   }
 
   * _postorder() {
-    yield* this.left.preorder()
-    yield* this.right.preorder()
-    yield this
+    if (this.left) yield* this.left._postorder()
+    if (this.right) yield* this.right._postorder()
+
+    yield this.value
   }
 
   // In a search tree, inorder retrieves the values in sorted order.
   * _inorder() {
-    yield* this.left.preorder()
-    yield this
-    yield* this.right.preorder()
-  }
+    if (this.left) yield* this.left._inorder()
 
-  //
-  // BFS
-  //
-  bfs(fn) {
-    let q = new Queue
-    let currentNode = null
+    yield this.value
 
-    q.enqueue(this)
-
-    while (!q.isEmpty) {
-      currentNode = q.dequeue()
-
-      fn(currentNode)
-
-      if (currentNode.left !== null) {
-        q.enqueue(currentNode.left)
-      }
-
-      if (currentNode.right !== null) {
-        q.enqueue(currentNode.right)
-      }
-    }
+    if (this.right) yield* this.right._inorder()
   }
 }

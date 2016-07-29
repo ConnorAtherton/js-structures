@@ -43,7 +43,7 @@ export function simple(file, random = false) {
     }
   }
 
-  return simple(left).concat(eq).concat(simple(right))
+  return [...simple(left), eq, ...simple(right)]
 }
 
 export function simpleSwap(file, lower = 0, upper = file.length - 1) {

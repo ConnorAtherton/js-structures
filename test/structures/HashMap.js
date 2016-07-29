@@ -5,9 +5,8 @@ import HashMap from '../../dist/structures/HashMap'
 describe('HashMap', () => {
   let hash = null
 
-  beforeEach(() => {
-    hash = new HashMap()
-  })
+  beforeEach(() => hash = new HashMap())
+  afterEach(() => hash = null)
 
   it('is initialized correctly', () => {
     assert.equal(hash.maxSize, HashMap.maxSize)

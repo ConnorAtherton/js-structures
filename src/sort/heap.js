@@ -17,7 +17,7 @@ export default function heapsort(arr) {
     // console.log('Sort step =', heap._array.slice(0, heap.heapSize))
     heap.swapNode(1, end)
 
-    // means we can't access this in the heap
+    // Means we can't access end node in the heap
     heap.heapSize--
 
     heap.heapify(1)

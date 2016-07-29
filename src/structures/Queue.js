@@ -10,6 +10,10 @@ export default class Queue {
     this.size = 0
   }
 
+  get empty() {
+    return this.size === 0
+  }
+
   enqueue(value) {
     this.store.unshift(value)
     this.size++
