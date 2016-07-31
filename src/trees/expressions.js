@@ -1,6 +1,9 @@
 //
 // Rewriting formatted expressions.
 //
+// http://csis.pace.edu/~wolf/CS122/infix-postfix.htm
+// http://www.cs.man.ac.uk/~pjj/cs212/fix.html
+//
 // Focus on operators with two operands to convert between infix, postfix, and prefix notation.
 // The in- post- and pre- refer to the relative position of the operator with respect to the two
 // operands.

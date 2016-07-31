@@ -9,14 +9,9 @@ import Queue from '../structures/Queue';
 // bfs()
 //
 
-export default class TreeNode {
-  constructor(value, ...children) {
-    this.value = value
-    this.childNodes = children.map(value => new TreeNode(value))
-  }
-
-  children() {
-    return this.childNodes
+export default class Tree {
+  constructor(key, value) {
+    this.root = key ? new TreeNode(key, value) : null
   }
 
   * _preorder() {
@@ -56,9 +51,9 @@ export default class TreeNode {
 
   // NOTE: This traverses in preorder
   dfsRecursive() {
-    let results = [this.value]
+    let results = [this.root.value]
 
-    for (let childNode of this.children()) {
+    for (let childNode of this.root.children()) {
       results = [...results, ...childNode.dfsRecursive()]
     }
 
@@ -66,19 +61,19 @@ export default class TreeNode {
   }
 
   * _preorder() {
-    yield this.value
+    yield this.root.value
 
-    for (let childNode of this.children()) {
+    for (let childNode of this.root.children()) {
       yield* childNode._preorder()
     }
   }
 
   * _postorder() {
-    for (let childNode of this.children()) {
+    for (let childNode of this.root.children()) {
       yield* childNode._postorder()
     }
 
-    yield this.value
+    yield this.root.value
   }
 
   //
@@ -92,7 +87,7 @@ export default class TreeNode {
     let currentNode = null
     let results = []
 
-    q.enqueue(this)
+    q.enqueue(this.root)
 
     while (!q.empty) {
       currentNode = q.dequeue()
@@ -105,5 +100,23 @@ export default class TreeNode {
     }
 
     return results
+  }
+}
+
+export class TreeNode {
+  constructor(key, value) {
+    this.key = key
+    this.value = value
+    this.childNodes = []
+
+    return this
+  }
+
+  children() {
+    return this.childNodes
+  }
+
+  addChild(...args) {
+    this.childNodes.push(new TreeNode(...args))
   }
 }

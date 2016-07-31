@@ -6,7 +6,7 @@
 // hmap.set(1, 2)
 // hmap.get(1) => 2
 //
-// 1) What’s the difference between a hashtable and a hashmap?
+// h: Key universe -> [0..m-1]
 //
 import TupleMap from './TupleMap'
 
@@ -33,7 +33,7 @@ export default class HashMap {
     // Will create empty slots with values =>
     // this.map = new Array(this.maxSize)
     //
-    // Will create all undefined valyes because the obj is spread =>
+    // Will create all undefined values because the obj is spread =>
     this.map = Array.apply(null, { length: this.maxSize })
 
     // holds all of our keys. Helps to avoid
@@ -69,7 +69,7 @@ export default class HashMap {
   get(key) {
     let position = this.hash(key)
     let tupleMap = this.map[position]
-    return (!tupleMap ? null : tupleMap.get(key))
+    return (!tupleMap ? undefined : tupleMap.get(key))
   }
 
   // deletes a key from our hashmap
