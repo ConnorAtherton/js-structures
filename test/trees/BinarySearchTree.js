@@ -62,7 +62,7 @@ xdescribe('BinarySearchTree', () => {
       })
     })
 
-    describe.only('remove', function() {
+    describe('remove', function() {
       let removeNode = null
 
       it('can handle having no children', function() {

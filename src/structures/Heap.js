@@ -73,6 +73,31 @@ export default class Heap {
     return this
   }
 
+  siftUp(index = this.length) {
+    let currentIndex = index
+    let currentParentIndex = this.parentIndex(index)
+
+    // Still has a parent..
+    while (currentParentIndex) {
+      // console.log('Comparing',this.valueFor(currentIndex), this.valueFor(currentParentIndex))
+
+      if (this.valueFor(currentIndex) > this.valueFor(currentParentIndex)) {
+        this.swapNode(currentIndex, currentParentIndex)
+        currentIndex = currentParentIndex
+      } else {
+        break
+      }
+
+      currentParentIndex = this.parentIndex(currentParentIndex)
+    }
+  }
+
+  insert(value) {
+    this._array.push(value)
+    this.heapSize++
+    this.siftUp()
+  }
+
   //
   // Removes the first element and ensures we still retain
   // the heap property we started with.
@@ -86,7 +111,6 @@ export default class Heap {
 
     return next
   }
-
 
   // Map onto correct array index
   swapNode(origNode, swapNode) {

@@ -56,4 +56,15 @@ describe('Structures::Heap', function() {
     assert.equal(max, 16)
     assert.deepEqual(heap.values, [14, 8, 10, 4, 7, 9, 3, 2, 1])
   });
+
+  it('should insert new values and keep the heap constraints', function() {
+    heap = new Heap(data)
+    heap.insert(17)
+
+    assert.equal(heap.next, 17)
+    assert.deepEqual(heap.values, [17, 16, 10, 8, 14, 9, 3, 2, 4, 1, 7])
+
+    heap.insert(11)
+    assert.deepEqual(heap.values, [17, 16, 11, 8, 14, 10, 3, 2, 4, 1, 7, 9])
+  });
 })
