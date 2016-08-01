@@ -8,6 +8,13 @@
 //
 // h: Key universe -> [0..m-1]
 //
+// NOTES:
+//
+// For speed, we often only use a fixed number of elements,
+// Such as the first 5 characters of the string. If the string is shorter
+// than the required amount we can pad out the rest of the string with
+// a static known character.
+//
 import TupleMap from './TupleMap'
 
 export default class HashMap {

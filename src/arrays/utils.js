@@ -149,3 +149,27 @@ export function repeat(arr, numRepeat = 0) {
 
   return res.sort()
 }
+
+export function smallest(arr) {
+  let min = Infinity
+
+  for (let el of arr) {
+    if (min > el) {
+      min = el
+    }
+  }
+
+  return min
+}
+
+export function largest(arr) {
+  let max = -Infinity
+
+  for (let el of arr) {
+    if (el > max) {
+      max = el
+    }
+  }
+
+  return max
+}

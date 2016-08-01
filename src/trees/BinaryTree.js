@@ -5,6 +5,16 @@ import Tree, { TreeNode } from './Tree'
 // will require space proportional to the maximum number of nodes at a given depth. This can be as
 // much as the total number of nodes / 2.
 //
+// A full binary tree.is a binary tree in which each node has exactly zero or two children.
+// A complete binary tree is a binary tree, which is completely filled, with the possible exception
+// of the bottom level, which is filled from left to right.
+//
+// Use trees because they:
+// - reflect structural relationships in the data
+// - are used to represent hierarchies
+// - provide an efficient insertion and searching
+// - are very flexible data, allowing to move subtrees around with minumum effort
+//
 export default class BinaryTree extends Tree {
   //
   // Switches all nodes around the middle axis. Assumes the given node is the root.

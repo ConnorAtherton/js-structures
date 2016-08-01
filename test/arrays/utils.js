@@ -72,4 +72,16 @@ describe('utils', function() {
       assert.deepEqual(utils.repeat(arr, 2), [1, 1, 1, 2, 2, 2, 3, 3, 3])
     })
   })
+
+  describe('.smallest', function() {
+    it('returns the smallest element in an array', function() {
+      assert.deepEqual(utils.smallest([1, 6, 10, 3, 65, 8, -1]), -1)
+    })
+  })
+
+  describe('.largest', function() {
+    it('returns the largest element in an array', function() {
+      assert.deepEqual(utils.largest([1, 6, 10, 3, 65, 8, -1]), 65)
+    })
+  })
 })
