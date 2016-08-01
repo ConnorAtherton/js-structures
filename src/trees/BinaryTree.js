@@ -16,6 +16,12 @@ import Tree, { TreeNode } from './Tree'
 // - are very flexible data, allowing to move subtrees around with minumum effort
 //
 export default class BinaryTree extends Tree {
+  constructor(key, value) {
+    super()
+
+    this.root = key ? new BinaryTreeNode(key, value) : null
+  }
+
   //
   // Switches all nodes around the middle axis. Assumes the given node is the root.
   //
@@ -34,16 +40,6 @@ export default class BinaryTree extends Tree {
     BinaryTreeNode.reverse(node.right)
   }
 
-  insertLeft(value) {
-    this.left = new BinaryTreeNode(value)
-    return this.left
-  }
-
-  insertRight(value) {
-    this.right = new BinaryTreeNode(value)
-    return this.right
-  }
-
   dfs(fn, type = 'inorder') {
     return super.dfs(fn, type)
   }
@@ -56,7 +52,7 @@ export default class BinaryTree extends Tree {
     const stack = []
 
     // TODO: Move this to a tree class with a root
-    let current = this
+    let current = this.root
 
     while(stack.length !== 0 || current) {
       if (current) {
@@ -73,6 +69,32 @@ export default class BinaryTree extends Tree {
 
     return results
   }
+}
+
+export class BinaryTreeNode extends TreeNode {
+  constructor(...args) {
+    super(args)
+
+    let [key, value] = args
+
+    this.key = key
+    this.value = value || key
+    this.left = null
+    this.right = null
+  }
+
+  children() {
+    return [this.left, this.right].filter(node => !!node)
+  }
+
+  // In a search tree, inorder retrieves the values in sorted order.
+  * _inorder() {
+    if (this.left) yield* this.left._inorder()
+
+    yield this.value
+
+    if (this.right) yield* this.right._inorder()
+  }
 
   * _preorder() {
     yield this.value
@@ -88,25 +110,13 @@ export default class BinaryTree extends Tree {
     yield this.value
   }
 
-  // In a search tree, inorder retrieves the values in sorted order.
-  * _inorder() {
-    if (this.left) yield* this.left._inorder()
-
-    yield this.value
-
-    if (this.right) yield* this.right._inorder()
-  }
-}
-
-export class BinaryTreeNode extends TreeNode {
-  constructor(...args) {
-    super(args)
-
-    this.left = null
-    this.right = null
+  insertLeft(key, value) {
+    this.left = new BinaryTreeNode(key, value)
+    return this.left
   }
 
-  children() {
-    return [this.left, this.right].filter(node => !!node)
+  insertRight(key, value) {
+    this.right = new BinaryTreeNode(key, value)
+    return this.right
   }
 }

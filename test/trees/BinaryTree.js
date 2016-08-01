@@ -1,70 +1,79 @@
 import assert from 'assert'
-import BinaryTreeNode from '../../dist/trees/BinaryTree'
+import BinaryTree, { BinaryTreeNode } from '../../dist/trees/BinaryTree'
 
-// xdescribe('BinaryTree', () => {
-//   let tree = null
+describe('BinaryTree', () => {
+  let tree = null
+  let left = null
+  let right = null
 
-//   // TODO: Use monodraw to draw a representation of this tree
-//   beforeEach(() => {
-//     tree = new BinaryTreeNode(1, 2, 3)
-//   })
+  // TODO: Use monodraw to draw a representation of this tree
+  beforeEach(() => {
+    tree = new BinaryTree(1)
 
-//   afterEach(() => tree = null)
+    tree.root.insertLeft(2)
+    tree.root.insertRight(3)
 
-//   describe('Returns child nodes correctly', function() {
-//     it('with no children', () => {
-//       tree.left = null
-//       tree.right = null
+    tree.root.left.insertLeft(4)
+    tree.root.right.insertLeft(5)
+    tree.root.right.insertRight(6)
+  })
 
-//       assert.deepEqual(tree.children(), [])
-//     })
+  afterEach(() => tree = left = right = null)
 
-//     it('with empty left child', () => {
-//       tree.left = null
+  describe('Returns child nodes correctly', function() {
+    it('with no children', () => {
+      tree.root.left = null
+      tree.root.right = null
 
-//       assert.deepEqual(tree.children(), [tree.right])
-//     })
+      assert.deepEqual(tree.root.children(), [])
+    })
 
-//     it('with empty right child', () => {
-//       tree.right = null
+    it('with empty left child', () => {
+      tree.root.left = null
 
-//       assert.deepEqual(tree.children(), [tree.left])
-//     })
+      assert.deepEqual(tree.root.children(), [tree.root.right])
+    })
 
-//     it('with both children', () => {
-//       assert.deepEqual(tree.children(), [tree.left, tree.right])
-//     })
-//   })
+    it('with empty right child', () => {
+      tree.root.right = null
 
-//   describe('Breadth-first search', function() {
-//     it('Visits all nodes using a queue', () => {
-//       assert.deepEqual(tree.bfs(value => value), [1, 2, 3])
-//     })
+      assert.deepEqual(tree.root.children(), [tree.root.left])
+    })
 
-//     it('Works on a simple tree', () => {
-//       assert.deepEqual(tree.bfs(node => node * 2), [2, 4, 6])
-//     })
-//   })
+    it('with both children', () => {
+      assert.deepEqual(tree.root.children(), [tree.root.left, tree.root.right])
+    })
+  })
 
-//   describe('Depth-first search', function() {
-//     it('Visits all nodes', () => {
-//       assert.deepEqual(tree.dfs(value => value).length, 3)
-//     })
+  describe('Breadth-first search', function() {
+    it('Visits all nodes using a queue', () => {
+      assert.deepEqual(tree.bfs(value => value), [1, 2, 3, 4, 5, 6])
+    })
 
-//     it('Traverses inorder by default', () => {
-//       assert.deepEqual(tree.dfs(value => value), [2, 1, 3])
-//     })
+    it('Works on a simple tree', () => {
+      assert.deepEqual(tree.bfs(value => value * 2), [2, 4, 6, 8, 10, 12])
+    })
+  })
 
-//     it('Traverses preorder correctly', () => {
-//       assert.deepEqual(tree.dfs(value => value, 'preorder'), [1, 2, 3])
-//     })
+  describe('Depth-first search', function() {
+    it('Visits all nodes', () => {
+      assert.deepEqual(tree.dfs().length, 6)
+    })
 
-//     it('Traverses postorder correctly', () => {
-//       assert.deepEqual(tree.dfs(value => value, 'postorder'), [2, 3, 1])
-//     })
+    it('Traverses inorder by default', () => {
+      assert.deepEqual(tree.dfs(), [4, 2, 1, 5, 3, 6])
+    })
 
-//     it('traverses inorder using a stack solution', () => {
-//       assert.deepEqual(tree.dfsIterative(), [2, 1, 3])
-//     })
-//   })
-// })
+    it('Traverses preorder correctly', () => {
+      assert.deepEqual(tree.dfs(value => value, 'preorder'), [1, 2, 4, 3, 5, 6])
+    })
+
+    it('Traverses postorder correctly', () => {
+      assert.deepEqual(tree.dfs(value => value, 'postorder'), [4, 2, 5, 6, 3, 1])
+    })
+
+    it('traverses inorder using a stack solution', () => {
+      assert.deepEqual(tree.dfsIterative(), [4, 2, 1, 5, 3, 6])
+    })
+  })
+})

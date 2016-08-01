@@ -63,6 +63,8 @@ export default class BinarySearchTree extends BinaryTree {
      ? parent.right = node
      : parent.left = node
 
+    node.parent = parent
+
     return node
   }
 
@@ -82,14 +84,14 @@ export default class BinarySearchTree extends BinaryTree {
     return null
   }
 
-  searchRecursive(node = this.root, key) {
-    if (!node || node.key === key) {
-      return node
+  searchRecursive(key, startNode = this.root) {
+    if (!startNode || startNode.key === key) {
+      return startNode
     }
 
-    return key > node.key
-      ? this.searchRecursive(node.right, key)
-      : this.searchRecursive(node.left, key)
+    return key > startNode.key
+      ? this.searchRecursive(key, startNode.right)
+      : this.searchRecursive(key, startNode.left)
   }
 
   //
@@ -114,13 +116,30 @@ export default class BinarySearchTree extends BinaryTree {
   // - 2 children
   //
   remove(node) {
-    if (!node.left) {
+    if (!node.left && !node.right) {
+      // Handles case where we are deleting a single node, the root
+      if (!node.parent) return
+
+      node === node.parent.left
+        ? node.parent.left = null
+        : node.parent.right = null
+
+      node = null
+      return
+    } else if (!node.left) {
+      console.log('No node left')
+
       this._replace(node, node.right)
       return
     } else if (!node.right)  {
+      console.log('No node right')
+
       this._replace(node, node.left)
       return
     }
+
+    console.log('removing', node)
+    return
 
     const replacement = this.min(node.right)
 
@@ -128,7 +147,7 @@ export default class BinarySearchTree extends BinaryTree {
     // Delete the node
     //
     if (replacement.parent !== node) {
-      this.transplant(replacement, replacement.right)
+      this._replace(replacement, replacement.right)
       replacement.right = node.right
       replacement.right.parent = replacement
     }
@@ -136,7 +155,7 @@ export default class BinarySearchTree extends BinaryTree {
     //
     // Replace the node, making sure to add parent references correctly.
     //
-    this.transplant(node, replacement)
+    this._replace(node, replacement)
     replacement.left = node.left
     replacement.left.parent = replacement
   }
@@ -148,11 +167,13 @@ export default class BinarySearchTree extends BinaryTree {
     // Handles the case where we are replacing the root
     if (!first.parent) {
       this.root = second
-    } else if (first = first.parent.left) {
+    } else if (first === second.parent.left) {
       first.parent.left = second
     } else {
       first.parent.right = second
     }
+
+    console.log('setting left child', second.parent.left)
 
     if (second) {
       second.parent = first.parent

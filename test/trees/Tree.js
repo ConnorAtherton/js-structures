@@ -1,7 +1,7 @@
 import assert from 'assert'
 import Tree, { TreeNode } from '../../dist/trees/Tree'
 
-xdescribe('Tree', () => {
+describe('Tree', () => {
   let tree = null
 
   // TODO: Use monodraw to draw a representation of this tree
@@ -28,19 +28,19 @@ xdescribe('Tree', () => {
 
   describe('Depth-first search', function() {
     it('Visits all nodes using a stack', () => {
-      assert.deepEqual(tree.dfs(value => value).length, 5)
+      assert.deepEqual(tree.dfs(value => value).length, 3)
     })
 
     it('Visits all nodes recursively', () => {
-      assert.deepEqual(tree.dfsRecursive().length, 5)
+      assert.deepEqual(tree.dfsRecursive().length, 3)
     })
 
     it('Traverses preorder correctly', () => {
-      assert.deepEqual(tree.dfs(value => value, 'preorder'), [1, 2, 3, 4, 5])
+      assert.deepEqual(tree.dfs(value => value, 'preorder'), [1, 2, 3])
     })
 
     it('Traverses postorder correctly', () => {
-      assert.deepEqual(tree.dfs(value => value, 'postorder'), [2, 3, 4, 5, 1])
+      assert.deepEqual(tree.dfs(value => value, 'postorder'), [2, 3, 1])
     })
   })
 })
