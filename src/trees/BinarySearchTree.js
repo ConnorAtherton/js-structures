@@ -15,6 +15,10 @@ import BinaryTree, { BinaryTreeNode } from './BinaryTree'
 //
 // Visiting a BST inorder will give us an ordered collection.
 //
+// Docs:
+// - http://algs4.cs.princeton.edu/32bst/
+// - http://algs4.cs.princeton.edu/32bst/BST.java.html
+//
 export default class BinarySearchTree extends BinaryTree {
   static comparators = {
     'default': (a, b) => a >= b

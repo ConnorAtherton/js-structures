@@ -23,6 +23,6 @@ export default function heapsort(arr) {
     heap.heapify(1)
   }
 
-  return arr
+  return heap._array
 }
 
