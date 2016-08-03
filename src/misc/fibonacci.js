@@ -1,11 +1,17 @@
 //
 // The Fibonacci sequence
 //
-export function recursive(n) {
+const recursive = (n) => {
   return n <= 2 ? 1 : recursive(n - 1) + recursive(n - 2)
 }
 
-export function iterative(n) {
+const tailRecursiveHelper = (first, second, n)  => {
+  return n > 0 ? tailRecursive(second, first + second, n - 1) : first
+}
+
+const tailRecursive = (n) => tailRecursiveHelper(0, 1, n)
+
+const iterative = (n) => {
   // base cases
   let first = 0
   let second = 1
@@ -26,10 +32,21 @@ export function iterative(n) {
   return result
 }
 
+const betterIterative = (n) => {
+  let [first, second] = [0, 1]
+
+  while (n > 0) {
+    let [first, second] = [second, first + second]
+    n--
+  }
+
+  return first
+}
+
 //
 // TODO: test and memoize
 //
-export const iterator = {
+const iterator = {
   [Symbol.iterator]() {
     let first = 0
     let second = 1
@@ -48,7 +65,7 @@ export const iterator = {
   }
 }
 
-export function* loop(n = null) {
+function* loop(n = null) {
   const infinite = n === null;
   let [current, next] = [0, 1]
 
@@ -56,4 +73,13 @@ export function* loop(n = null) {
     yield current;
     [current, next] = [next, current + next];
   }
+}
+
+export default {
+  recursive,
+  tailRecursive,
+  iterative,
+  betterIterative,
+  iterator,
+  loop
 }

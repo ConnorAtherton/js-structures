@@ -1,5 +1,5 @@
-let assert = require('assert')
-let fibonacci = require('../../dist/misc/fibonacci')
+import assert from 'assert'
+import fibonacci from '../../dist/misc/fibonacci'
 
 describe('Fibonacci', function() {
   describe('recursive', function() {

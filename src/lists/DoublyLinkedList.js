@@ -142,7 +142,7 @@ export default class DoublyLinkedList extends LinkedList {
     }
 
     if (this.head === node) {
-      this.head = this.current = next
+      this.head = next
     }
 
     if (this.tail === node) {

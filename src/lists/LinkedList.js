@@ -126,7 +126,7 @@ export default class LinkedList {
       current = next
     }
 
-    this.head = this.current = previous
+    this.head = previous
 
     return this
   }
