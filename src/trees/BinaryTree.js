@@ -68,6 +68,26 @@ export default class BinaryTree extends Tree {
   }
 
   //
+  // Returns true if both trees have the same structure and the same values for the nodes
+  //
+  equal(otherTreeRoot, ourRoot = this.root) {
+     // both are empty...
+     if (ourRoot === null && otherTreeRoot === null) {
+       return true
+     }
+
+     // both have values...
+     if (ourRoot !== null && otherTreeRoot !== null) {
+       // and both of those values are the same
+       return (ourRoot.value === otherTreeRoot.value)
+         && this.equal(ourRoot.left, otherTreeRoot.left)
+         && this.equal(ourRoot.right, otherTreeRoot.right)
+     }
+
+     return false
+  }
+
+  //
   // PERFORMS ITERATIVE INORDER
   //
   dfsIterativeInorder(fn = val => val) {
