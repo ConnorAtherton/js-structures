@@ -1,11 +1,16 @@
 //
 // BitSet
 //
+// An Array (should be a Vector) of bits that grows as needed.
+//
 export default class BitSet {
-  constructor(size) {
-    // Each element will be an integer holding 32 possible bit
-    // flags
-    this.bitset = new Array(size >> 5)
+  //
+  // Each element will be an integer holding 32 possible bit flags.
+  //
+  // TODO: Make this configurable.
+  //
+  constructor() {
+    this.bitset = Array.apply(null, { length: 32 }).fill(0)
   }
 
   get(pos) {
@@ -20,5 +25,13 @@ export default class BitSet {
     const bit = pos % 32
 
     this.bitset[element] |= (1 << bit)
+  }
+
+  clear(pos) {
+
+  }
+
+  toString() {
+    return this.bitset.join('')
   }
 }

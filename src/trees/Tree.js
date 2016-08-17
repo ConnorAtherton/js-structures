@@ -39,6 +39,10 @@ export default class Tree {
     return this.root.dfsRecursive()
   }
 
+  toString() {
+    return this.dfs().join(' -> ')
+  }
+
   //
   // NOTE: This traverses in preorder
   //

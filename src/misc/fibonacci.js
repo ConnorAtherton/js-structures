@@ -75,11 +75,26 @@ function* loop(n = null) {
   }
 }
 
+//
+// https://en.wikipedia.org/wiki/Fibonacci_number#Recognizing_Fibonacci_numbers
+//
+const isFibonacci = (() => {
+  const perfectSquare = (n) => {
+    let s = Math.sqrt(n)
+    return s * s === n
+  }
+
+  return (n) => {
+    return perfectSquare(5 * n * n + 4) || perfectSquare(5 * n * n - 4)
+  }
+})
+
 export default {
   recursive,
   tailRecursive,
   iterative,
   betterIterative,
   iterator,
-  loop
+  loop,
+  isFibonacci
 }

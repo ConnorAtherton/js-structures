@@ -8,6 +8,8 @@
 //
 // h: Key universe -> [0..m-1]
 //
+// load factor: the maximum ratio of items in the Hashtable to the total number of slots
+//
 // NOTES:
 //
 // For speed, we often only use a fixed number of elements,

@@ -1,4 +1,5 @@
 import Tree, { TreeNode } from './Tree'
+import Stack from '../structures/Stack'
 
 //
 // External storage structure, such as a stack, a queue, or the call stack if we are using recusion,
@@ -31,27 +32,47 @@ export default class BinaryTree extends Tree {
   reverse(node = this.root) {
     if (node === null) return
 
-    const tmp = node.left
-    node.left = node.right
-    node.right = tmp
+    const swapChildren = (node) => {
+      const tmp = node.left
+      node.left = node.right
+      node.right = tmp
+    }
 
-    // Recurse down the tree
-    BinaryTreeNode.reverse(node.left)
-    BinaryTreeNode.reverse(node.right)
+    let current = node
+    let stack = []
+
+    while (current || stack.length !== 0) {
+      // Go left
+      if (current) {
+        stack.push(current)
+        current = current.left
+
+      // Go back up the tree
+      } else {
+        current = stack.pop()
+
+        // Process the node
+        swapChildren(current)
+
+        current = current.right
+      }
+    }
   }
 
   dfs(fn, type = 'inorder') {
     return super.dfs(fn, type)
   }
 
+  toString() {
+    return this.bfs().join(' -> ')
+  }
+
   //
-  // Performs iterative inorder
+  // PERFORMS ITERATIVE INORDER
   //
-  dfsIterative(fn = val => val) {
-    const results = []
+  dfsIterativeInorder(fn = val => val) {
     const stack = []
 
-    // TODO: Move this to a tree class with a root
     let current = this.root
 
     while(stack.length !== 0 || current) {
@@ -61,13 +82,73 @@ export default class BinaryTree extends Tree {
       } else {
         current = stack.pop()
 
-        results.push(fn(current.value))
+        fn(current)
 
         current = current.right
       }
     }
+  }
 
-    return results
+  //
+  // PERFORMS ITERATIVE preorder
+  //
+  dfsIterativePreorder(fn = val => val) {
+    if (this.empty) {
+      return null
+    }
+
+    let stack = new Stack
+    let results = []
+    let current = null
+
+    stack.push(this.root)
+
+    while (!stack.empty) {
+      current = stack.pop()
+
+      fn(current)
+
+      // We want to visit the left node before the right node
+      if (!!current.right)
+        stack.push(current.right)
+
+      if (!!current.left)
+        stack.push(current.left)
+    }
+  }
+
+  //
+  // PERFORMS ITERATIVE postorder
+  //
+  dfsIterativePostorder(fn = val => val) {
+    if (this.empty) {
+      return null
+    }
+
+    let stack = new Stack
+    let lastNode = null
+    let peekNode = null
+    let current = this.root
+
+    while (!stack.empty || current !== null) {
+      if (current) {
+        stack.push(current)
+        current = current.left
+      } else {
+        peekNode = stack.peek()
+
+        //
+        // Always going to the left first so we want to check that a right
+        // branch exists and that we haven't already visited it
+        //
+        if (!!peekNode.right && lastNode !== peekNode.right) {
+          current = peekNode.right
+        } else {
+          lastNode = stack.pop()
+          fn(lastNode)
+        }
+      }
+    }
   }
 }
 

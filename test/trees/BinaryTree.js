@@ -5,6 +5,7 @@ describe('BinaryTree', () => {
   let tree = null
   let left = null
   let right = null
+  let results = []
 
   // TODO: Use monodraw to draw a representation of this tree
   beforeEach(() => {
@@ -18,7 +19,10 @@ describe('BinaryTree', () => {
     tree.root.right.insertRight(6)
   })
 
-  afterEach(() => tree = left = right = null)
+  afterEach(() => {
+    tree = left = right = null
+    results = []
+  })
 
   describe('Returns child nodes correctly', function() {
     it('with no children', () => {
@@ -72,8 +76,26 @@ describe('BinaryTree', () => {
       assert.deepEqual(tree.dfs(value => value, 'postorder'), [4, 2, 5, 6, 3, 1])
     })
 
-    it('traverses inorder using a stack solution', () => {
-      assert.deepEqual(tree.dfsIterative(), [4, 2, 1, 5, 3, 6])
+    it('Traverses inorder by default', () => {
+      assert.deepEqual(tree.dfs(), [4, 2, 1, 5, 3, 6])
+    })
+
+    it('Traverses preorder iteratively correctly ', () => {
+      tree.dfsIterativePreorder(node => results.push(node.value))
+
+      assert.deepEqual(results, [1, 2, 4, 3, 5, 6])
+    })
+
+    it('Traverses postorder iteratively correctly', () => {
+      tree.dfsIterativePostorder(node => results.push(node.value))
+
+      assert.deepEqual(results, [4, 2, 5, 6, 3, 1])
+    })
+
+    it('traverses inorder iteratively correctly', () => {
+      tree.dfsIterativeInorder(node => results.push(node.value))
+
+      assert.deepEqual(results, [4, 2, 1, 5, 3, 6])
     })
   })
 })

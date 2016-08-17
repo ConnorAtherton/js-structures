@@ -6,8 +6,10 @@
 
 import { stringSwap as swap } from '../utils/swap'
 
-// iterative. We need to identify whether this works
+//
+// Iterative. We need to identify whether this works
 // for both odd and even strings.
+//
 export function iterative(string) {
   let len = string.length
   let indexBound = len - 1
@@ -21,8 +23,10 @@ export function iterative(string) {
   return string
 }
 
-// tail recursive solution bringing the last character to the front
-// and calling the function on the rest of the string
+//
+// Recursive solution bringing the last character to the front
+// and calling the function on the rest of the string.
+//
 export function recursive(string) {
   let bound = string.length - 1
 

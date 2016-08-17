@@ -21,6 +21,10 @@ export default class Queue {
     return val
   }
 
+  peek() {
+    return this.store[this.size - 1]
+  }
+
   push(value) {
     this.store.push(value)
     this.size++
