@@ -18,5 +18,11 @@ describe('quicksort', function() {
     quick.simpleSwap(file)
     assert.deepEqual(file, expected)
   })
+
+  it('sorts using original hoare partitiion', function() {
+    quick.quick2(file)
+
+    assert.deepEqual(file, expected)
+  })
 })
 

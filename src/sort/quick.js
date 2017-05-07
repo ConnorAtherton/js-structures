@@ -83,3 +83,38 @@ export function simpleSwap(file, lower = 0, upper = file.length - 1) {
   simpleSwap(file, pivotPos + 1, upper)
 }
 
+export function quick2(file, lower = 0, upper = file.length - 1) {
+  // Sorted base case
+  if (lower >= upper) { return file }
+
+  // pivot in the correct place
+  const pivot = partition2(file, lower, upper)
+
+  // console.log('Pivot is:', pivot)
+  // console.log('Arry:', file)
+
+  // sort the two sub-arrays
+  quick2(file, lower, pivot - 1)
+  quick2(file, pivot + 1, upper)
+}
+
+const partition2 = (file, lower, upper) => {
+  // Can choose a better pivot value than this
+  let pivotVal = file[lower]
+
+  // console.log('Pivot val:', pivotVal)
+
+  while (true) {
+    while (file[upper] > pivotVal) { upper-- }
+    while (file[lower] < pivotVal) { lower++ }
+
+    // console.log('First pass:', lower, upper)
+
+    if (upper > lower) {
+      swap(file, lower, upper)
+    } else {
+      // finished
+      return upper
+    }
+  }
+}

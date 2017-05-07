@@ -1,3 +1,5 @@
+import assert from 'assert'
+
 //
 // Given a linear street of houses, represented by an array, where each house
 // has a given value associated with it; return the highest amount you could obtain
@@ -50,3 +52,9 @@ export default function housingRobber(houses) {
 
   return runningMax.length === 0 ? 0 : runningMax.pop();
 }
+
+assert.equal(housingRobber([]), 0)
+assert.equal(housingRobber([1]), 1)
+assert.equal(housingRobber([1, 20]), 20)
+assert.equal(housingRobber([1, 20, 18]), 20)
+assert.equal(housingRobber([9, 20, 5, 15, 30]), 50)

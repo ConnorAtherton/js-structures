@@ -3,35 +3,35 @@
 //
 // An Array (should be a Vector) of bits that grows as needed.
 //
+// Assume word length is 32bits. We store 1 word at each array index.
+//
 export default class BitSet {
   //
-  // Each element will be an integer holding 32 possible bit flags.
   //
-  // TODO: Make this configurable.
-  //
-  constructor() {
-    this.bitset = Array.apply(null, { length: 32 }).fill(0)
+  constructor(size) {
+    // divide by 32
+    size = size >> 5
+
+    this.bitset = Array.apply(null, { length: size }).fill(0)
   }
 
   get(pos) {
-    const element = pos >> 5
-    const bit = pos % 32
+    const word = pos >> 5 // divide by 32 to get index
+    const bit = pos & 31 // mod 32
+    const mask = 1 << bit
 
-    return (this.bitset[element] & (1 << bit) === 1)
+    return (this.bitset[word] & mask) !== 0
   }
 
   set(pos) {
-    const element = pos >> 5
-    const bit = pos % 32
+    const word = pos >> 5 // divide by 32 to get index
+    const bit = pos & 31 // mod 32
+    const mask = 1 << bit
 
-    this.bitset[element] |= (1 << bit)
-  }
-
-  clear(pos) {
-
+    this.bitset[word] |= mask
   }
 
   toString() {
-    return this.bitset.join('')
+    return this.bitset.map(num => ('0'.repeat(32) + num.toString(2)).substr(-32)).join('')
   }
 }

@@ -45,6 +45,9 @@ const hash = (arr) => {
 // encounter it. If we see an index that is greater than 0, we can store it an
 // auxiliiary storage and return.
 //
+// Or we can use a BitSet to mark the element as already having been seen ans store it as
+// a duplicate.
+//
 const array = (arr) => {
 
 }

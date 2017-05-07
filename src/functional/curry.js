@@ -32,7 +32,12 @@ export default function curry(func, ...initialArgs) {
 //
 export function newCurry(fn) {
   const arity = fn.length
-  const curried = (...args) =>
-    args.length < arity ? (...more) => curried(...args, ...more) : fn(...args)
+
+  const curried = (...args) => {
+    args.length < arity
+      ? (...more) => curried(...args, ...more)
+      : fn(...args)
+  }
+
   return curried
 }

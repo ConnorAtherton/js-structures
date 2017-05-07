@@ -16,7 +16,9 @@ export default function memoize(fn, hasher, name) {
 
     // neat tidbit - wrapping the expression in *()* causes the resulting
     // assignment value to be returned
-    return isCached ? cache[key] : (cache[key] = fn.apply(this, args));
+    return isCached
+      ? cache[key]
+      : (cache[key] = fn.apply(this, args));
   }
 }
 
