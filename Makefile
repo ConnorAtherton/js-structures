@@ -20,7 +20,7 @@ BROWSERIFY := $(BIN)/browserify
 
 default: build
 
-test: | node_modules
+test: | node_modules build
 	@$(NODE) $(MOCHA) --opts .mocha
 
 browser-test: | node_modules

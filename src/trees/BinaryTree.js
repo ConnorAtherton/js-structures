@@ -170,6 +170,27 @@ export default class BinaryTree extends Tree {
       }
     }
   }
+
+  prettyPrintImpl (node, prefix = "", isLeft = true) {
+    if (!node) {
+      console.log('Empty Tree')
+      return
+    }
+
+    if (node.right) {
+      this.prettyPrintImpl(node.right, prefix + (isLeft ? "│   " : "    "), false)
+    }
+
+    console.log(prefix + (isLeft ? '└── ' : '┌── ') + node.value)
+
+    if (node.left) {
+      this.prettyPrintImpl(node.left, prefix + (isLeft ? "    " : "│   "), true)
+    }
+  }
+
+  prettyPrint () {
+    this.prettyPrintImpl(this.root)
+  }
 }
 
 export class BinaryTreeNode extends TreeNode {
@@ -221,3 +242,18 @@ export class BinaryTreeNode extends TreeNode {
     return this.right
   }
 }
+
+//
+// Testing pretty printing
+//
+const tree = new BinaryTree(1)
+
+tree.root.insertLeft(2)
+tree.root.insertRight(3)
+
+tree.root.left.insertLeft(4)
+tree.root.left.insertRight(5)
+tree.root.right.insertLeft(6)
+tree.root.right.insertRight(7)
+
+tree.prettyPrint()
